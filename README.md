@@ -11,5 +11,5 @@ git clone
 
 ### Import absensi.sql didalam folder database
 
-## :trollface: Kontributor
+## Kontributor
 - [@yaelahnong](https://gitlab.com/yaelahnong)
