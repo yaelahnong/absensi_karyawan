@@ -1,8 +1,3 @@
-<meta property="og:description" content="SGB Code Membership Adalah Project yang baru dibuat pada tanggal 19 Agustus Project ini hanya berlaku buat Member SGB Team Reborn. Dimana SGB Code Membership ini untuk membuktikan kalau kamu member asli di SGB Team"/>
-<meta property="og:image" content="https://member.sgb.or.id/img/membership.png"/>
-<meta property="og:image:alt" content="https://member.sgb.or.id/img/membership.png"/>
-<link rel="shortcut icon" href="https://sharinggilsblog.org/member/favicon.ico">
-<link href="https://cdn.sgb.or.id/sgb_img/favicon.ico" rel="icon" type="image/x-icon"/>
 <?php
 
 session_start();
