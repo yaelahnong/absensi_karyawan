@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2020 at 10:06 PM
+-- Generation Time: Nov 06, 2020 at 08:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,13 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Table structure for table `absen`
 --
 
-CREATE TABLE `absensi` (
+CREATE TABLE `absen` (
   `id_absen` int(10) NOT NULL,
-  `tanggal` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL,
+  `keterangan` text NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `absen`
+--
+
+INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
+(1, '08:24:09', '19:28:42', '', '2020-10-28', 32, '2020-11-03 08:27:32', NULL),
+(2, '08:27:46', '19:29:22', '', '2020-10-28', 28, NULL, NULL),
+(3, '08:30:09', '19:30:09', '', '2020-10-28', 31, NULL, NULL),
+(4, '09:01:55', '19:30:55', '', '2020-10-28', 29, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -40,51 +56,164 @@ CREATE TABLE `absensi` (
 --
 
 CREATE TABLE `admin` (
-  `id_admin` int(11) NOT NULL,
+  `id_admin` int(10) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `photo` text NOT NULL,
+  `id_akses` int(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
-(3, 'yaelahnong', '$2y$10$lBpCt6CfDiLldWMhaQ8QNOMfpWrjBfIPH1.UCWJUgePmhxnXvhhhu'),
-(4, 'admin', '$2y$10$niVNX94hzD0sS2KwF.HrTuvFG7/JIA3PYoOmDnu32HGIhSzfg2rgC');
+INSERT INTO `admin` (`id_admin`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
+(14, 'yaelahnong', '$2y$10$JR6ksfB0M84F5rUZdexwh.8Tz2tSgq85iut4ykE6pSLRFBnMmfYL6', 'ino.jpg', 1, '2020-11-04 00:14:16', NULL),
+(15, 'admin', '$2y$10$Lo6.FZ82Zl9O8onQSE80b.hk2LYeiI4Qu4oRKGu5lXNpslnILFkyG', '244551.jpg', 0, '2020-11-04 00:14:28', NULL),
+(16, 'pupu', '$2y$10$Mknyq2UnXrPogp24WPm9b.O0FlAwoVsTOrV0snNJXXGF/VmygYEpe', 'ino.jpg', 3, '2020-11-04 04:16:31', NULL),
+(17, 'marino', '$2y$10$XEDtlHf3m5RBBfT6Hn3QYeWVCl1Sl8mYlA.WrMAHnooI0ypRSB7Fu', 'user-6.jpg', 3, '2020-11-04 04:17:49', NULL),
+(18, 'ols', '$2y$10$qgfRts28E0B0ktXxSwZkQegbX6sZ6rX/USd/c4/9SEApvyA2GYEJC', 'user-4.jpg', 3, '2020-11-04 04:22:26', NULL),
+(19, 'pupup', '$2y$10$cVMIBLvroHzE6lVDRkgc/uqBWclVcJuyoDt/M3HPo7l5eUxt8xcy2', 'user-4.jpg', 2, '2020-11-04 04:23:12', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawan`
+-- Table structure for table `akses`
 --
 
-CREATE TABLE `karyawan` (
-  `id_karyawan` int(11) NOT NULL,
+CREATE TABLE `akses` (
+  `id_akses` int(10) NOT NULL,
+  `ket_akses` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akses`
+--
+
+INSERT INTO `akses` (`id_akses`, `ket_akses`) VALUES
+(0, 'Super Admin'),
+(1, 'Admin'),
+(2, 'Project Manager'),
+(3, 'Lead Department');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `id_department` int(10) NOT NULL,
+  `ket_department` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`id_department`, `ket_department`) VALUES
+(1, 'Software Developement'),
+(2, 'Digital Marketing'),
+(3, 'Manage Service Provider');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jabatan`
+--
+
+CREATE TABLE `jabatan` (
+  `id_jabatan` int(10) NOT NULL,
+  `jabatan` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`id_jabatan`, `jabatan`) VALUES
+(1, 'Employee'),
+(2, 'Project Manager'),
+(3, 'Lead Department');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `overtime`
+--
+
+CREATE TABLE `overtime` (
+  `id_overtime` int(10) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL,
+  `ket_overtime` text NOT NULL,
+  `id_absen` int(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `overtime`
+--
+
+INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `created_at`, `updated_at`) VALUES
+(1, '19:00:00', '23:00:00', 'BugFixing', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id_schedule` int(10) NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(10) NOT NULL,
   `nip` varchar(20) NOT NULL,
-  `nama_karyawan` varchar(30) NOT NULL,
+  `nama` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(20) NOT NULL,
   `status` text NOT NULL,
-  `tanggal_masuk` date NOT NULL,
-  `tanggal_keluar` date DEFAULT NULL
+  `id_akses` int(10) NOT NULL,
+  `id_jabatan` int(10) NOT NULL,
+  `id_department` int(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `karyawan`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `karyawan` (`id_karyawan`, `nip`, `nama_karyawan`, `email`, `username`, `password`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `tanggal_masuk`, `tanggal_keluar`) VALUES
-(1, '', 'Marino Imola', '', '', '', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Pelajar', '2020-10-23', '0000-00-00'),
-(3, '202010132021061001', 'Marino Imola', 'marinoimola@gmail.com', 'inoo0001', '$2y$10$/A8rRxY3AObZUHDz06hv9e1X/8ohXiqJjGHdkcDAMi4gNpF1cN8Oi', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113 Bogor Jawa Barat', '081284855532', 'Pelajar', '2020-10-20', '0000-00-00');
+INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_jabatan`, `id_department`, `created_at`, `updated_at`) VALUES
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$vUeMFmpd2Wd0Z331o/SJ0uIOTAH0hu1dmzM8A1hYzFRDO3x8b8LjW', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 3, 1, '2020-11-03 02:14:48', '2020-11-04 02:55:27');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `absen`
+--
+ALTER TABLE `absen`
+  ADD PRIMARY KEY (`id_absen`);
 
 --
 -- Indexes for table `admin`
@@ -93,26 +222,80 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `karyawan`
+-- Indexes for table `akses`
 --
-ALTER TABLE `karyawan`
-  ADD PRIMARY KEY (`id_karyawan`);
+ALTER TABLE `akses`
+  ADD PRIMARY KEY (`id_akses`);
+
+--
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id_department`);
+
+--
+-- Indexes for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  ADD PRIMARY KEY (`id_jabatan`);
+
+--
+-- Indexes for table `overtime`
+--
+ALTER TABLE `overtime`
+  ADD PRIMARY KEY (`id_overtime`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id_schedule`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `absen`
+--
+ALTER TABLE `absen`
+  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `karyawan`
+-- AUTO_INCREMENT for table `department`
 --
-ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `department`
+  MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `overtime`
+--
+ALTER TABLE `overtime`
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id_schedule` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
