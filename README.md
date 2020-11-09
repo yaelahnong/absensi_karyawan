@@ -5,7 +5,7 @@
 ### Clone Project
 
 ```
-git clone https://github.com/yaelahnong/absensi_karyawan.git
+git clone https://gitlab.com/yaelahnong/prakerin_absensi_karyawan.git
 
 cd absensi_karyawan
 ```
