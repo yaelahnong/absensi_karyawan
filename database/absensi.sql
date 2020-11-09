@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 08:50 AM
+-- Generation Time: Nov 09, 2020 at 07:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -57,6 +57,7 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 
 CREATE TABLE `admin` (
   `id_admin` int(10) NOT NULL,
+  `nama` varchar(30) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `photo` text NOT NULL,
@@ -69,13 +70,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
-(14, 'yaelahnong', '$2y$10$JR6ksfB0M84F5rUZdexwh.8Tz2tSgq85iut4ykE6pSLRFBnMmfYL6', 'ino.jpg', 1, '2020-11-04 00:14:16', NULL),
-(15, 'admin', '$2y$10$Lo6.FZ82Zl9O8onQSE80b.hk2LYeiI4Qu4oRKGu5lXNpslnILFkyG', '244551.jpg', 0, '2020-11-04 00:14:28', NULL),
-(16, 'pupu', '$2y$10$Mknyq2UnXrPogp24WPm9b.O0FlAwoVsTOrV0snNJXXGF/VmygYEpe', 'ino.jpg', 3, '2020-11-04 04:16:31', NULL),
-(17, 'marino', '$2y$10$XEDtlHf3m5RBBfT6Hn3QYeWVCl1Sl8mYlA.WrMAHnooI0ypRSB7Fu', 'user-6.jpg', 3, '2020-11-04 04:17:49', NULL),
-(18, 'ols', '$2y$10$qgfRts28E0B0ktXxSwZkQegbX6sZ6rX/USd/c4/9SEApvyA2GYEJC', 'user-4.jpg', 3, '2020-11-04 04:22:26', NULL),
-(19, 'pupup', '$2y$10$cVMIBLvroHzE6lVDRkgc/uqBWclVcJuyoDt/M3HPo7l5eUxt8xcy2', 'user-4.jpg', 2, '2020-11-04 04:23:12', NULL);
+INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
+(20, 'Administrator', 'admin', '$2y$10$atJfVZK/hDkvAwh3Xm31a.op1RRKlsKe6OWvZMjCVoBWvmFGnEK8a', 'IMG_1089.jpg', 0, '2020-11-09 11:10:37', NULL),
+(21, 'Marino Imola', 'yaelahnong', '$2y$10$E3HaN2qQhmDnrRLAPNKqHudskW70n7mwiVWmBg0oXEzf0GJXV1LKq', 'ino.jpg', 1, '2020-11-09 11:28:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -95,8 +92,8 @@ CREATE TABLE `akses` (
 INSERT INTO `akses` (`id_akses`, `ket_akses`) VALUES
 (0, 'Super Admin'),
 (1, 'Admin'),
-(2, 'Project Manager'),
-(3, 'Lead Department');
+(2, 'Lead Department'),
+(3, 'Project Manager');
 
 -- --------------------------------------------------------
 
@@ -271,7 +268,7 @@ ALTER TABLE `absen`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `department`
