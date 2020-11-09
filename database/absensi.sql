@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 07:30 PM
+-- Generation Time: Nov 09, 2020 at 07:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -82,18 +82,20 @@ INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_ak
 
 CREATE TABLE `akses` (
   `id_akses` int(10) NOT NULL,
-  `ket_akses` varchar(20) NOT NULL
+  `ket_akses` varchar(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `akses`
 --
 
-INSERT INTO `akses` (`id_akses`, `ket_akses`) VALUES
-(0, 'Super Admin'),
-(1, 'Admin'),
-(2, 'Lead Department'),
-(3, 'Project Manager');
+INSERT INTO `akses` (`id_akses`, `ket_akses`, `created_at`, `updated_at`) VALUES
+(0, 'Super Admin', '2020-11-09 18:40:47', NULL),
+(1, 'Admin', '2020-11-09 18:40:56', NULL),
+(2, 'Lead Department', '2020-11-09 18:41:05', NULL),
+(3, 'Project Manager', '2020-11-09 18:41:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,17 +105,19 @@ INSERT INTO `akses` (`id_akses`, `ket_akses`) VALUES
 
 CREATE TABLE `department` (
   `id_department` int(10) NOT NULL,
-  `ket_department` varchar(50) NOT NULL
+  `ket_department` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`id_department`, `ket_department`) VALUES
-(1, 'Software Developement'),
-(2, 'Digital Marketing'),
-(3, 'Manage Service Provider');
+INSERT INTO `department` (`id_department`, `ket_department`, `created_at`, `updated_at`) VALUES
+(1, 'Software Developement', '2020-11-09 18:41:57', NULL),
+(2, 'Digital Marketing', '2020-11-09 18:42:04', NULL),
+(3, 'Manage Service Provider', '2020-11-09 18:42:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,17 +127,19 @@ INSERT INTO `department` (`id_department`, `ket_department`) VALUES
 
 CREATE TABLE `jabatan` (
   `id_jabatan` int(10) NOT NULL,
-  `jabatan` varchar(15) NOT NULL
+  `jabatan` varchar(15) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jabatan`
 --
 
-INSERT INTO `jabatan` (`id_jabatan`, `jabatan`) VALUES
-(1, 'Employee'),
-(2, 'Project Manager'),
-(3, 'Lead Department');
+INSERT INTO `jabatan` (`id_jabatan`, `jabatan`, `created_at`, `updated_at`) VALUES
+(1, 'Employee', '2020-11-09 18:38:32', NULL),
+(2, 'Project Manager', '2020-11-09 18:38:46', NULL),
+(3, 'Lead Department', '2020-11-09 18:38:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,7 @@ CREATE TABLE `overtime` (
 --
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `created_at`, `updated_at`) VALUES
-(1, '19:00:00', '23:00:00', 'BugFixing', 1, NULL, NULL);
+(1, '19:00:00', '23:00:00', 'BugFixing', 1, '2020-11-09 18:39:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -171,6 +177,13 @@ CREATE TABLE `schedule` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id_schedule`, `jam_masuk`, `jam_keluar`, `created_at`, `updated_at`) VALUES
+(1, '08:00:00', '19:00:00', '2020-11-09 18:35:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,7 +299,7 @@ ALTER TABLE `overtime`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id_schedule` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_schedule` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
