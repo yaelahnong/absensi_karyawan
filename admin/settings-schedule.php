@@ -58,12 +58,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Department</h4>
+                                    <h4 class="page-title">Schedule</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item active">Department</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Settings</a></li>
+                                        <li class="breadcrumb-item active">Schedule</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -81,45 +82,7 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-6"></div>
-                                                <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="user-add.php">[+] Add User</a>
-                                                </div>
-                                            </div>
-                                        </div>
-        
-                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                                <th>Employee ID Number</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Department</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-        
-        
-                                            <tbody>
-                                            <?php foreach($user as $row) : ?>
-                                            <tr>
-                                                <td><?= $row['nip']; ?></td>
-                                                <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['jabatan']; ?></td>
-                                                <td><?= $row['ket_department']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href=""><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            <?php endforeach; ?>
-                                            
-                                            </tbody>
-                                        </table>
-        
+                                        
                                     </div>
                                 </div>
                             </div> <!-- end col -->

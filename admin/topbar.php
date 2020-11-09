@@ -30,12 +30,34 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
+                    <div class="dropdown-item">
+                        <div class="d-flex">
+                            <div>
+                                <img src="assets/images/users/<?= $_SESSION['admin']['photo']; ?>" alt="user" width="45px" class="rounded-circle">
+                            </div>
+                            <div class="pl-2">
+                                <span class="mt-0 profile-name font-weight-bold text-capitalize"><?= $_SESSION['admin']['nama']; ?></span>
+                                <span class="d-block text-muted">
+                                    <?php 
+                                        if($_SESSION['admin']['id_akses'] == 0) {
+                                            echo "Super Admin";
+                                        } else if($_SESSION['admin']['id_akses'] == 1) {
+                                            echo "Admin";
+                                        } else if($_SESSION['admin']['id_akses'] == 2) {
+                                            echo "Lead Department";
+                                        } else if($_SESSION['admin']['id_akses'] == 3) {
+                                            echo "Project Manager";
+                                        }
+                                    ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
                     <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a>
+                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="logout.php" onclick="return confirm('Apakah anda ingin logout?')"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                    <a id="logout-btn" class="dropdown-item btn text-danger"><i class="mdi mdi-power text-danger"></i> Logout</a>
                 </div>
             </div>
         </li>
@@ -62,3 +84,29 @@
 
 </div>
 <!-- Top Bar End -->
+
+<!-- jQuery  -->
+<script src="assets/js/jquery.min.js"></script>
+
+<!-- Sweet-Alert  -->
+<script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
+<!-- <script src="assets/js/sweetalert2.all.min.js"></script> -->
+<!-- <script src="assets/pages/sweet-alert.init.js"></script>  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#logout-btn').on('click', function() {
+            swal.fire({
+                    title: 'Are you sure?',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Logout',
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        window.location.href = 'logout.php';
+                    }
+                });
+        })
+    });
+</script>

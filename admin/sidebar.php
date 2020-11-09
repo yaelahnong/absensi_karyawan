@@ -23,7 +23,7 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-folder"></i><span> Master <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="department.php">Departemen</a></li>
+                        <li><a href="department.php">Department</a></li>
                     </ul>
                 </li>
 
@@ -35,9 +35,11 @@
                 </li>
 
                 <li>
-                    <a href="settings.php" class="waves-effect">
-                        <i class="icon-setting-2"></i><!-- <span class="badge badge-success badge-pill float-right">9+</span> --> <span> Settings </span>
-                    </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-setting-2"></i><span> App Settings <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                    <ul class="submenu">
+                        <li><a href="settings-address.php">Address</a></li>
+                        <li><a href="settings-schedule.php">Schedule</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

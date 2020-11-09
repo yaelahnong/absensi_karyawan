@@ -11,8 +11,10 @@
         
         if(registrasi($_POST) > 0) {
             echo "<script>alert('Success!');</script>";
+            echo "<script>window.location.href='login.php'</script>";
         } else {
             echo "<script>alert('Failed!');</script>";
+            echo "<script>window.location.href='login.php'</script>";
         }
 
     }
@@ -34,7 +36,7 @@
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css?<?php echo date('l jS \of F Y h:i:s A'); ?>" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -45,7 +47,7 @@
         <!-- <div class="home-btn d-none d-sm-block">
             <a href="index.php" class="text-white"><i class="fas fa-home h2"></i></a>
         </div> -->
-        <div class="wrapper-page">
+        <div class="wrapper-page custom-register-page">
                 <div class="card card-pages shadow-none">
     
                     <div class="card-body">
@@ -64,6 +66,13 @@
                                     </div> -->
                             <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
     
+                            <div class="form-group">
+                                <div class="col-12">
+                                        <label>Full Name</label>
+                                    <input class="form-control" type="text" name="nama" required="" placeholder="Full Name">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-12">
                                         <label>Username</label>

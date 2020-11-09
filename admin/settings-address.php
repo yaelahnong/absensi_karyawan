@@ -87,12 +87,13 @@ require dirname(__FILE__)."/lib/countrycodes.php";
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Settings</h4>
+                                    <h4 class="page-title">Address</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item active">Settings</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Settings</a></li>
+                                        <li class="breadcrumb-item active">Àddress</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->

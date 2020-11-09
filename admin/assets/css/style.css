@@ -940,7 +940,7 @@ dt {
 }
 
 .notification-list .profile-dropdown {
-  width: 170px;
+  width: 185px;
 }
 
 .notification-list .profile-dropdown i {
@@ -952,6 +952,14 @@ dt {
 
 .notification-list .profile-dropdown span {
   margin-top: 5px;
+}
+
+.profile-name {
+  display: block;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .arrow-none:after {
@@ -3264,6 +3272,10 @@ table.focus-on tbody tr.focused td {
   margin: 12.5% auto;
   width: 420px;
   position: relative;
+}
+
+.wrapper-page.custom-register-page {
+  margin: 7.5% auto;
 }
 
 @media (max-width: 767px) {

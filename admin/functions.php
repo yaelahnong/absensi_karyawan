@@ -99,6 +99,7 @@
     function registrasi($data) {
         global $conn;
 
+        $nama = $_POST['nama'];
         $username = $_POST['username'];
         $password = $_POST['password'];
         $created_at = $_POST['created_at'];
@@ -111,7 +112,7 @@
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO admin VALUES('', '$username', '$password', '$photo', $akses, '$created_at', null)";
+        $query = "INSERT INTO admin VALUES('', '$nama', '$username', '$password', '$photo', $akses, '$created_at', null)";
         mysqli_query($conn, $query);
 
         return mysqli_affected_rows($conn);
