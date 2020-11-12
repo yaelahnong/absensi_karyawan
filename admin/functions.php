@@ -27,7 +27,7 @@
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
-        $jabatan = $_POST['jabatan'];
+        $id_akses = $_POST['akses'];
         $created_at = $_POST['created_at'];
 
         $result = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
@@ -45,7 +45,29 @@
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO user VALUES('','$nip', '$nama', '$email', '$password', '$jenis_kelamin', '$alamat', '$no_telp', '$status', 2, $jabatan, '$created_at', null)";
+        $query = "INSERT INTO user(
+                                nip, 
+                                nama, 
+                                email, 
+                                password, 
+                                jenis_kelamin, 
+                                alamat, 
+                                no_telp, 
+                                status, 
+                                id_akses, 
+                                created_at
+                            ) VALUES(
+                                '$nip', 
+                                '$nama', 
+                                '$email', 
+                                '$password', 
+                                '$jenis_kelamin', 
+                                '$alamat', 
+                                '$no_telp', 
+                                '$status', 
+                                $id_akses, 
+                                '$created_at'
+                            )";
         mysqli_query($conn, $query);
 
         return mysqli_affected_rows($conn);
@@ -64,7 +86,7 @@
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
-        $jabatan = $_POST['jabatan'];
+        $id_akses = $_POST['akses'];
         $updated_at = $_POST['updated_at'];
         
 
@@ -76,8 +98,7 @@
                         alamat = '$alamat', 
                         no_telp = '$no_telp', 
                         status = '$status', 
-                        id_akses = 2,
-                        id_jabatan = $jabatan,
+                        id_akses = $id_akses,
                         updated_at = '$updated_at'
                     WHERE id_user = '$id_user'";
         

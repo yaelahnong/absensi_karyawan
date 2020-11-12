@@ -166,10 +166,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Position</label>
-                                                <select class="form-control" name="jabatan">
-                                                    <option value="1" <?= $user['id_jabatan'] == 1 ? 'selected' : '' ?>>Employee</option>
-                                                    <option value="2" <?= $user['id_jabatan'] == 2 ? 'selected' : '' ?>>Project Manager</option>
-                                                    <option value="3" <?= $user['id_jabatan'] == 3 ? 'selected' : '' ?>>Lead Department</option>
+                                                <select class="form-control" name="akses">
+                                                    <option value="2" <?= $user['id_akses'] == 2 ? 'selected' : '' ?>>Lead Department</option>
+                                                    <option value="3" <?= $user['id_akses'] == 3 ? 'selected' : '' ?>>Project Manager</option>
+                                                    <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, jabatan.jabatan FROM user, akses, jabatan WHERE akses.id_akses = user.id_akses AND jabatan.id_jabatan = user.id_jabatan");
+    $user = query("SELECT user.*, akses.ket_akses FROM user, akses WHERE akses.id_akses = user.id_akses");
 
 ?>
 
@@ -101,7 +101,6 @@
                                                 <th>Address</th>
                                                 <th>Gender</th>
                                                 <th>Status</th>
-                                                <th>Level</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -114,13 +113,12 @@
                                             <tr>
                                                 <td><?= $row['nip']; ?></td>
                                                 <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['jabatan']; ?></td>
+                                                <td><?= $row['ket_akses']; ?></td>
                                                 <td><?= $row['email']; ?></td>
                                                 <td><?= $row['no_telp']; ?></td>
                                                 <td><?= $row['alamat']; ?></td>
                                                 <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
                                                 <td><?= $row['status']; ?></td>
-                                                <td><?= $row['ket_akses']; ?></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>

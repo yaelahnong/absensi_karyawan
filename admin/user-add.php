@@ -162,10 +162,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Position</label>
-                                                <select class="form-control" name="jabatan">
-                                                    <option value="1">Employee</option>
-                                                    <option value="2">Project Manager</option>
-                                                    <option value="3">Lead Department</option>
+                                                <select class="form-control" name="akses">
+                                                    <option value="4">Employee</option>
+                                                    <option value="3">Project Manager</option>
+                                                    <option value="2">Lead Department</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
