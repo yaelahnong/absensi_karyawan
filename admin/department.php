@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, jabatan.jabatan, department.ket_department FROM user, akses, jabatan, department WHERE akses.id_akses = user.id_akses AND jabatan.id_jabatan = user.id_jabatan AND department.id_department = user.id_department");
+    $user = query("SELECT user.*, akses.ket_akses department.ket_department FROM user, akses WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
 
 ?>
 
