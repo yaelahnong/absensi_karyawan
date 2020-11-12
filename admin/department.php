@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, jabatan.jabatan, department.ket_department FROM user, akses, jabatan, department WHERE akses.id_akses = user.id_akses AND jabatan.id_jabatan = user.id_jabatan AND department.id_department = user.id_department");
+    $user = query("SELECT user.*, akses.ket_akses, department.ket_department FROM user, akses, department WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
 
 ?>
 
@@ -107,7 +107,7 @@
                                             <tr>
                                                 <td><?= $row['nip']; ?></td>
                                                 <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['jabatan']; ?></td>
+                                                <td><?= $row['ket_akses']; ?></td>
                                                 <td><?= $row['ket_department']; ?></td>
                                                 <td>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href=""><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
