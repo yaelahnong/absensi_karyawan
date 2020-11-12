@@ -5,11 +5,11 @@
 ### Clone Project
 
 ```
-git clone https://github.com/yaelahnong/absensi_karyawan.git
+git clone https://gitlab.com/yaelahnong/prakerin_absensi_karyawan.git
 
 cd absensi_karyawan
 ```
 ## Kontributor
 - [@yaelahnong](https://github.com/yaelahnong)
 
-## :octocat: Copied From github.com/wrideveloper
+Copied From github.com/wrideveloper
