@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2020 at 10:10 AM
+-- Generation Time: Nov 13, 2020 at 01:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -192,7 +192,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imolaaa', 'marinoimola@gmail.com', '$2y$10$vUeMFmpd2Wd0Z331o/SJ0uIOTAH0hu1dmzM8A1hYzFRDO3x8b8LjW', '97f9f44e9b579157d48349bc70cfccd419410ee5', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-12 02:11:55');
+(32, '200310032021061456', 'Marino Imolaaa', 'marinoimola@gmail.com', '$2y$10$vUeMFmpd2Wd0Z331o/SJ0uIOTAH0hu1dmzM8A1hYzFRDO3x8b8LjW', '4ff3fa9f8720cf6fb5fd7aa800721fdfb9fccf8b', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-13 12:14:09');
 
 --
 -- Indexes for dumped tables
