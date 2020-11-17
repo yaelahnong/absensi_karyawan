@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, department.ket_department FROM user, akses, department WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
+    
 
 ?>
 
@@ -103,19 +103,6 @@
         
         
                                             <tbody>
-                                            <?php foreach($user as $row) : ?>
-                                            <tr>
-                                                <td><?= $row['nip']; ?></td>
-                                                <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['ket_akses']; ?></td>
-                                                <td><?= $row['ket_department']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href=""><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            <?php endforeach; ?>
                                             
                                             </tbody>
                                         </table>

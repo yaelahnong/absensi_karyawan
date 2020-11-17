@@ -6,10 +6,11 @@
         header("Location: login.php");
     }
 
-    $v_absen = query("SELECT user.nip, user.nama, jabatan.jabatan, absen.jam_masuk, absen.jam_keluar, absen.tanggal 
-                        FROM user, jabatan, absen 
-                        WHERE user.id_user = absen.id_user 
-                        AND jabatan.id_jabatan = user.id_jabatan");
+    $v_absen = query("SELECT user.nip, user.nama, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal 
+                        FROM user, absen, akses 
+                        WHERE user.id_user = absen.id_user
+                        AND akses.id_akses = user.id_akses; 
+                    ");
 ?>
 
 
@@ -97,7 +98,7 @@
                                                 <tr>
                                                     <td><?= $row['nip']; ?></td>
                                                     <td><?= $row['nama']; ?></td>
-                                                    <td><?= $row['jabatan']; ?></td>
+                                                    <td><?= $row['ket_akses']; ?></td>
                                                     <td><?= $row['jam_masuk']; ?></td>
                                                     <td><?= $row['jam_keluar']; ?></td>
                                                     <td><?= $row['tanggal']; ?></td>
