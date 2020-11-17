@@ -245,4 +245,48 @@
     } 
     // UBAH DEPARTMENT END
 
+     // TAMBAH DEPARTMENT START
+    function schedule($data) {
+        global $conn;
+
+        $ket_department = $_POST['department'];
+        $created_at = $_POST['created_at'];
+
+        $result = mysqli_query($conn, "SELECT * FROM department");
+
+        $query = "INSERT INTO department(
+                                ket_department, 
+                                created_at
+                            ) VALUES(
+                                '$ket_department', 
+                                '$created_at'
+                            )";
+        mysqli_query($conn, $query);
+
+        return mysqli_affected_rows($conn);
+    }
+    // TAMBAH DEPARTMENT END
+
+        // UBAH SCHEDULE START
+    function ubah_schedule($data) {
+        global $conn;
+
+        $id_schedule = $_POST['id_schedule'];
+        $jam_masuk = $_POST['jam_masuk'];
+        $jam_keluar = $_POST['jam_keluar'];
+        $updated_at = $_POST['updated_at'];
+        
+
+        $query = "UPDATE schedule 
+                    SET jam_masuk = '$jam_masuk', 
+                        jam_keluar = '$jam_keluar',
+                        updated_at = '$updated_at'
+                    WHERE id_schedule = '$id_schedule'";
+        
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    } 
+    // UBAH SCHEDULE END
+
+
 ?>
