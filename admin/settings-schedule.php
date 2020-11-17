@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, jabatan.jabatan, department.ket_department FROM user, akses, jabatan, department WHERE akses.id_akses = user.id_akses AND jabatan.id_jabatan = user.id_jabatan AND department.id_department = user.id_department");
+    $schedule = query("SELECT * FROM schedule");
 
 ?>
 
@@ -82,17 +82,45 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
-                                        
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                            <tr>
+                                                <th>Check-in</th>
+                                                <th>Check-out</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+        
+                                            <tbody>
+                                                <?php $i= 1; ?> 
+                                            <?php foreach($schedule as $row) : ?>
+                                            <tr>
+
+                                                <td><?= $row['jam_masuk']; ?></td>
+                                                <td><?= $row['jam_keluar']; ?></td>
+                                                <td><?= $row['created_at']; ?></td>
+                                                <td><?= $row['updated_at']; ?></td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="schedule-edit.php?id=<?= $row['id_schedule']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                            
+                                            </tbody>
+                                        </table>
+        
                                     </div>
                                 </div>
                             </div> <!-- end col -->
-                        </div> <!-- end row -->    
 
-                         
+                        </div> <!-- end row -->   
 
-                        
-                    </div>
+                  </div>
                     <!-- container-fluid -->
+
 
                 </div>
                 <!-- content -->
@@ -143,29 +171,7 @@
         <script src="assets/js/app.js"></script>
 
         <script>
-            function popupDelete() {
-                swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You won\'t be able to revert this!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                }).then((result) => {
-                    if(result.isConfirmed) {
-                        swal.fire({
-                            title: 'Deleted!',
-                            text: 'Your file has been deleted.',
-                            icon: 'success'
-                        }).then((result) => {
-                            if(result.isConfirmed) {
-                                window.location.href="user-delete.php?id=<?= $row['id_user']; ?>";
-                            }
-                        })
-                    } else if(result.isDismissed) {
 
-                    }
-                });
-            }
         </script>
         
     </body>
