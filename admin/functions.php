@@ -28,6 +28,7 @@
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
         $id_akses = $_POST['akses'];
+        $id_department = $_POST['department'];
         $created_at = $_POST['created_at'];
 
         $result = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
@@ -54,7 +55,8 @@
                                 alamat, 
                                 no_telp, 
                                 status, 
-                                id_akses, 
+                                id_akses,
+                                id_department,
                                 created_at
                             ) VALUES(
                                 '$nip', 
@@ -66,6 +68,7 @@
                                 '$no_telp', 
                                 '$status', 
                                 $id_akses, 
+                                $id_department,
                                 '$created_at'
                             )";
         mysqli_query($conn, $query);
@@ -87,6 +90,7 @@
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
         $id_akses = $_POST['akses'];
+        $id_department =$_POST['department'];
         $updated_at = $_POST['updated_at'];
         
 
@@ -99,6 +103,7 @@
                         no_telp = '$no_telp', 
                         status = '$status', 
                         id_akses = $id_akses,
+                        id_department = $id_department,
                         updated_at = '$updated_at'
                     WHERE id_user = '$id_user'";
         
@@ -188,5 +193,58 @@
 
     }
     // UPLOAD FOTO END
+
+
+    // TAMBAH USER START
+    function tambah_department($data) {
+        global $conn;
+
+        $ket_department = $_POST['department'];
+        $created_at = $_POST['created_at'];
+
+        $query = "INSERT INTO department( 
+                                ket_department,
+                                created_at
+                            ) VALUES(
+                                '$ket_department',
+                                '$created_at' 
+                            )";
+        $tambah = mysqli_query($conn, $query);
+
+        return mysqli_affected_rows($conn);
+    }
+    // TAMBAH USER END
+
+
+    // UBAH DEPARTMENT START
+    function ubah_department($data) {
+        global $conn;
+
+        $id_department = $_POST['id_department'];
+        $ket_department =$_POST['department'];
+        $updated_at = $_POST['updated_at'];
+        
+
+        $query = "UPDATE department 
+                    SET 
+                    ket_department = '$ket_department',
+                    updated_at = '$updated_at'
+                    WHERE id_department = '$id_department'";
+        
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    } 
+    // UBAH DEPARTMENT END
+
+
+     // HAPUS DEPARTMENT START
+    function hapus_department($id) {
+        global $conn;
+
+        mysqli_query($conn, "DELETE FROM department WHERE id_department = '$id'");
+        return mysqli_affected_rows($conn);
+    }
+    // HAPUS DEPARTMENT END
+
 
 ?>

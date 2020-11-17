@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses FROM user, akses WHERE akses.id_akses = user.id_akses");
+    $user = query("SELECT user.*, akses.ket_akses, department.ket_department FROM user, akses, department WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
 
 ?>
 
@@ -96,6 +96,7 @@
                                                 <th>Employee ID Number</th>
                                                 <th>Name</th>
                                                 <th>Position</th>
+                                                <th>Department</th>
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                                 <th>Address</th>
@@ -114,6 +115,7 @@
                                                 <td><?= $row['nip']; ?></td>
                                                 <td><?= $row['nama']; ?></td>
                                                 <td><?= $row['ket_akses']; ?></td>
+                                                <td><?= $row['ket_department']; ?></td>
                                                 <td><?= $row['email']; ?></td>
                                                 <td><?= $row['no_telp']; ?></td>
                                                 <td><?= $row['alamat']; ?></td>

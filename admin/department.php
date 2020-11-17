@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, department.ket_department FROM user, akses, department WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
+    $department = query("SELECT * FROM department");
 
 ?>
 
@@ -85,7 +85,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="user-add.php">[+] Add User</a>
+                                                    <a class="btn btn-primary text-light" href="department-add.php">[+] Add Department</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,28 +93,30 @@
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Employee ID Number</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
+                                                <th>No</th>
                                                 <th>Department</th>
+                                                <th>Created at</th>
+                                                <th>Updated at</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
         
         
                                             <tbody>
-                                            <?php foreach($user as $row) : ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach($department as $row) : ?>
                                             <tr>
-                                                <td><?= $row['nip']; ?></td>
-                                                <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['ket_akses']; ?></td>
+                                                <td><?= $i; ?></td>
                                                 <td><?= $row['ket_department']; ?></td>
+                                                 <td><?= $row['created_at']; ?></td>
+                                                <td><?= $row['updated_at']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href=""><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 </td>
                                             </tr>
-
+                                            </tr>
+                                            <?php $i++; ?>
                                             <?php endforeach; ?>
                                             
                                             </tbody>
@@ -195,7 +197,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href="user-delete.php?id=<?= $row['id_user']; ?>";
+                                window.location.href="department-delete.php?id=<?= $row['id_department']; ?>";
                             }
                         })
                     } else if(result.isDismissed) {

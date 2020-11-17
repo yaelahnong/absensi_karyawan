@@ -172,6 +172,15 @@
                                                     <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
                                                 </select>
                                             </div>
+                                              <div class="form-group">
+                                                <label>Department</label>
+                                                <select class="form-control" name="department">
+                                                    <option value="1" <?= $user['id_department'] == 1 ? 'selected' : '' ?>>Software Developemen</option>
+                                                    <option value="2" <?= $user['id_department'] == 2 ? 'selected' : '' ?>>Digital Marketing</option>
+                                                    <option value="3" <?= $user['id_department'] == 3 ? 'selected' : '' ?>>Manage Service Providere</option>
+                                                    <option value="4" <?= $user['id_department'] == 4 ? 'selected' : '' ?>>IT Support</option>
+                                                </select>
+                                            </div>
                                             <div class="form-group">
                                                 <div>
                                                     <button type="submit" name="ubah_user" class="btn btn-primary waves-effect waves-light">
