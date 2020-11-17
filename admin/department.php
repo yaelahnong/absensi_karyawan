@@ -6,7 +6,9 @@
         header("Location: login.php");
     }
 
+
     $department = query("SELECT * FROM department");
+
 ?>
 
 <!DOCTYPE html>
