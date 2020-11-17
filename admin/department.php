@@ -101,8 +101,6 @@
         
         
                                             <tbody>
-<<<<<<< HEAD
-=======
                                                 <?php $i= 1; ?> 
                                             <?php foreach($department as $row) : ?>
                                             <tr>
@@ -117,7 +115,6 @@
                                             </tr>
                                             <?php $i++; ?>
                                             <?php endforeach; ?>
->>>>>>> gitlab/department
                                             
                                             </tbody>
                                         </table>
