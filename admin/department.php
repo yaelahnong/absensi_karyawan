@@ -104,7 +104,6 @@
                                                 <?php $i= 1; ?> 
                                             <?php foreach($department as $row) : ?>
                                             <tr>
-
                                                 <td><?= $row['ket_department']; ?></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
