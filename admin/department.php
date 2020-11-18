@@ -4,9 +4,9 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
+    }
 
     $department = query("SELECT * FROM department");
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>user department</title>
+        <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -91,30 +91,27 @@
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Department</th>
-                                                    <th>Created at</th>
-                                                    <th>Updated at</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                            <tr>
+                                                <th>Department</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                <th>Action</th>
+                                            </tr>
                                             </thead>
         
         
                                             <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach($department as $row) : ?>
-                                                <tr>
-                                                    <td><?= $i; ?></td>
-                                                    <td><?= $row['ket_department']; ?></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['updated_at']; ?></td>
-                                                    <td>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                    </td>
-                                                </tr>
+                                                <?php $i= 1; ?> 
+                                            <?php foreach($department as $row) : ?>
+                                            <tr>
+
+                                                <td><?= $row['ket_department']; ?></td>
+                                                <td><?= $row['created_at']; ?></td>
+                                                <td><?= $row['updated_at']; ?></td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                             <?php endforeach; ?>
@@ -127,6 +124,7 @@
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
 
+                         
 
                         
                     </div>
