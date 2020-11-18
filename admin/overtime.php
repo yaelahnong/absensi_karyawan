@@ -6,11 +6,11 @@
         header("Location: login.php");
     }
 
-    $v_overtime = query("SELECT user.nip, user.nama, jabatan.jabatan, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, absen.tanggal 
-                            FROM user, jabatan, overtime, absen 
+    $v_overtime = query("SELECT user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, absen.tanggal 
+                            FROM user, akses, overtime, absen 
                             WHERE absen.id_absen = overtime.id_absen 
                             AND user.id_user = absen.id_user 
-                            AND jabatan.id_jabatan = user.id_jabatan");
+                            AND akses.id_akses = user.id_akses");
 ?>
 
 
@@ -99,7 +99,7 @@
                                                 <tr>
                                                     <td><?= $row['nip']; ?></td>
                                                     <td><?= $row['nama']; ?></td>
-                                                    <td><?= $row['jabatan']; ?></td>
+                                                    <td><?= $row['ket_akses']; ?></td>
                                                     <td><?= $row['jam_mulai']; ?></td>
                                                     <td><?= $row['jam_selesai']; ?></td>
                                                     <td><?= $row['ket_overtime']; ?></td>

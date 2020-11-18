@@ -7,12 +7,12 @@
     }
 
     if(isset($_GET['id'])) {
-        $id_department = $_GET['id'];
+        $id_schedule = $_GET['id'];
     } else {
-        header("department.php");
+        header("settings-schedule.php");
     }
 
-    $department = query("SELECT * FROM department WHERE id_department = '$id_department'")[0];
+    $schedule = query("SELECT * FROM schedule WHERE id_schedule = '$id_schedule'")[0];
 
 ?>
 
@@ -42,14 +42,14 @@
     <body>
 
         <?php 
-            if(isset($_POST['ubah_department'])) {
-                if(ubah_department($_POST) > 0) {
+            if(isset($_POST['ubah_schedule'])) {
+                if(ubah_schedule($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='department.php';} )</script>";
+                    }).then(() => {window.location.href='settings-schedule.php';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -78,13 +78,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Ubah Department</h4>
+                                    <h4 class="page-title">Ubah Schedule</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Department</a></li>
-                                        <li class="breadcrumb-item active">Ubah Department</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Schedule</a></li>
+                                        <li class="breadcrumb-item active">Ubah Schedule</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -93,26 +93,31 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card m-b-30">
+                                <div class="card m-b-30">   
                                     <div class="card-body">
+        
                                         <!-- <h4 class="mt-0 header-title">Validation type</h4>
                                         <p class="sub-title">Parsley is a javascript form validation
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
-        
+         
                                         <form method="post">
-                                            <input type="hidden" name="id_department" value="<?= $department['id_department']; ?>">
+                                            <input type="hidden" name="id_schedule" value="<?= $schedule['id_schedule']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
-                                                <label>Department</label>
-                                                <input type="text" name="department" value="<?= $department['ket_department']; ?>" class="form-control" required placeholder="department"/>
+                                                <label>Check-in</label>
+                                                <input type="time" name="jam_masuk" value="<?= $schedule['jam_masuk']; ?>" class="form-control" required placeholder="Check-in"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Check-out</label>
+                                                <input type="time" name="jam_keluar" value="<?= $schedule['jam_keluar']; ?>" class="form-control" required placeholder="Check-out"/>
                                             </div>
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" name="ubah_department" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" name="ubah_schedule" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="department.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="settings-schedule.php" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

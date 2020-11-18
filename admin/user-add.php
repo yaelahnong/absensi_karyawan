@@ -5,7 +5,7 @@
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
     }
-    $department = query('SELECT * FROM department');
+        $department = query("SELECT * FROM department");
 ?>
 
 <!DOCTYPE html>
@@ -177,7 +177,6 @@
                                                 <?php endforeach; ?>
                                                 </select>
                                             </div>
-
                                             <div class="form-group">
                                                 <div>
                                                     <button type="submit" name="tambah_user" class="btn btn-primary waves-effect waves-light">

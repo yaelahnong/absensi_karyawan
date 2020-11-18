@@ -4,7 +4,6 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
-    }
 
     $department = query("SELECT * FROM department");
 
@@ -85,36 +84,37 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="department-add.php">[+] Add Department</a>
+                                                    <a class="btn btn-primary text-light" href="department-add.php">[+] Add department</a>
                                                 </div>
                                             </div>
                                         </div>
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Department</th>
-                                                <th>Created at</th>
-                                                <th>Updated at</th>
-                                                <th>Action</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Department</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </thead>
         
         
                                             <tbody>
-                                            <?php $i = 1; ?>
-                                            <?php foreach($department as $row) : ?>
-                                            <tr>
-                                                <td><?= $i; ?></td>
-                                                <td><?= $row['ket_department']; ?></td>
-                                                 <td><?= $row['created_at']; ?></td>
-                                                <td><?= $row['updated_at']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                </td>
-                                            </tr>
+                                                <?php $i = 1; ?>
+                                                <?php foreach($department as $row) : ?>
+                                                <tr>
+                                                    <td><?= $i; ?></td>
+                                                    <td><?= $row['ket_department']; ?></td>
+                                                    <td><?= $row['created_at']; ?></td>
+                                                    <td><?= $row['created_at']; ?></td>
+                                                    <td><?= $row['updated_at']; ?></td>
+                                                    <td>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    </td>
+                                                </tr>
                                             </tr>
                                             <?php $i++; ?>
                                             <?php endforeach; ?>
@@ -127,7 +127,6 @@
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
 
-                         
 
                         
                     </div>

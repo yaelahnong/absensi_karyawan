@@ -13,6 +13,7 @@
     }
 
     $user = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
+    $department = query("SELECT * FROM department");
 
 ?>
 
@@ -172,13 +173,12 @@
                                                     <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
                                                 </select>
                                             </div>
-                                              <div class="form-group">
+                                             <div class="form-group">
                                                 <label>Department</label>
                                                 <select class="form-control" name="department">
-                                                    <option value="1" <?= $user['id_department'] == 1 ? 'selected' : '' ?>>Software Developemen</option>
-                                                    <option value="2" <?= $user['id_department'] == 2 ? 'selected' : '' ?>>Digital Marketing</option>
-                                                    <option value="3" <?= $user['id_department'] == 3 ? 'selected' : '' ?>>Manage Service Providere</option>
-                                                    <option value="4" <?= $user['id_department'] == 4 ? 'selected' : '' ?>>IT Support</option>
+                                                    <?php foreach($department as $row): ?> 
+                                                    <option value="<?= $row['id_department']; ?>" <?= $user['id_department'] == $row['id_department'] ? 'selected' : '' ?>><?= $row['ket_department']; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
