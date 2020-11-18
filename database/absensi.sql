@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2020 at 09:46 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Nov 17, 2020 at 04:50 AM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -177,6 +177,8 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `api_token` varchar(255) DEFAULT NULL,
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_expires` datetime DEFAULT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(20) NOT NULL,
@@ -191,8 +193,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imolaaa', 'marinoimola@gmail.com', '$2y$10$vUeMFmpd2Wd0Z331o/SJ0uIOTAH0hu1dmzM8A1hYzFRDO3x8b8LjW', '97f9f44e9b579157d48349bc70cfccd419410ee5', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-12 02:11:55');
+INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$YFyasgl2.6md2BvMQVEriOhvFkBSSJJnb2jHDx5EgMeA.mX3xHWyG', 'bb51a85325739fa43791ef372f2d2d43f015fc2a', 'eyJpdiI6InlFRjlzWmo3OG5OQnQ1ak9YS2cxRUE9PSIsInZhbHVlIjoiZ2FtcHcrU1hoVFNSRUpHbUFWcWYrdz09IiwibWFjIjoiOGJjNGY5MWM4NGE1MzIzNjJlYjNkMDljZTY2ODYzN2ZlMzQ2YzA2NDhlNDAwZjg4NmVkMTBhOTI2ZWYxMzZmOCJ9', '2020-11-17 01:32:12', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-16 21:49:27');
 
 --
 -- Indexes for dumped tables

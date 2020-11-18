@@ -91,18 +91,19 @@
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
-                                            <tr>
-                                                <th>Department</th>
-                                                <th>created_at</th>
-                                                <th>updated_at</th>
-                                                <th>Action</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Department</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </thead>
         
         
                                             <tbody>
                                                 <?php $i= 1; ?> 
-                                            <?php foreach($department as $row) : ?>
+                                                <?php foreach($department as $row) : ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
                                                 <td><?= $row['ket_department']; ?></td>
@@ -124,7 +125,6 @@
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
 
-                         
 
                         
                     </div>
