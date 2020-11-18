@@ -5,8 +5,16 @@
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
     }
+    $jml_kehadiran = query("SELECT COUNT(tanggal) AS jumlah_kehadiran FROM absen")[0];
+    $karyawan = query("SELECT COUNT(*) AS jumlah_karyawan FROM user")[0];
+    $bulan = query("SELECT DATE_FORMAT(tanggal, '%M') AS bulan FROM absen GROUP BY date_format(tanggal, '%M') ORDER BY tanggal");
+    $kehadiran = query("SELECT MONTH(tanggal) AS bulan, COUNT(*) AS jumlah_kehadiran FROM absen GROUP BY MONTH(tanggal)");
+    $overtime = query("SELECT COUNT(ket_overtime) AS jumlah_overtime FROM overtime")[0];
+    $late = query("SELECT COUNT(*) AS jumlah_telat FROM v_late WHERE cek = 1")[0];
+    $alpa = query("SELECT  COUNT(keterangan) AS keterangan FROM absen WHERE keterangan = 'alpa'")[0];
+    $izin = query("SELECT  COUNT(keterangan) AS keterangan FROM absen WHERE keterangan = 'izin'")[0];
+    $sakit = query("SELECT COUNT(keterangan) AS keterangan FROM absen WHERE keterangan = 'sakit'")[0];
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +23,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>ola</title>
+    <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
     <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -30,9 +38,10 @@
 
 </head>
 
-<body>
+    <body>
 
-    <!-- Begin page -->
+        
+      <!-- Begin page -->
     <div id="wrapper">
 
         <?php include 'topbar.php'; ?>
@@ -61,23 +70,22 @@
                         <!-- end row -->
                     </div>
                     <!-- end page-title -->
-
-                    <div class="row">
+                     <div class="row">
 
                         <div class="col-sm-6 col-xl-3">
                             <div class="card">
                                 <div class="card-heading p-4">
                                     <div class="mini-stat-icon float-right">
-                                        <i class="mdi mdi-cube-outline bg-primary  text-white"></i>
+                                        <i class="mdi mdi-account-group bg-primary  text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-16">Active Sessions</h5>
+                                        <h5 class="font-16">Employee</h5>
                                     </div>
-                                    <h3 class="mt-4">43,225</h3>
+                                    <h3 class="mt-4"><?= $karyawan['jumlah_karyawan'] ?></h3>
                                     <div class="progress mt-4" style="height: 4px;">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">75%</span></p>
+                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $karyawan['jumlah_karyawan'] ?></span></p> -->
                                 </div>
                             </div>
                         </div>
@@ -86,16 +94,16 @@
                             <div class="card">
                                 <div class="card-heading p-4">
                                     <div class="mini-stat-icon float-right">
-                                        <i class="mdi mdi-briefcase-check bg-success text-white"></i>
+                                        <i class="mdi mdi-format-list-bulleted-square bg-success text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-16">Total Revenue</h5>
+                                        <h5 class="font-16">Attendance</h5>
                                     </div>
-                                    <h3 class="mt-4">$73,265</h3>
+                                    <h3 class="mt-4"><?= $jml_kehadiran['jumlah_kehadiran']; ?></h3>
                                     <div class="progress mt-4" style="height: 4px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="88" aria-valuemin="0"aria-valuemax="100"></div>
                                     </div>
-                                    <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">88%</span></p>
+                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $jml_kehadiran['jumlah_kehadiran']; ?></span></p> -->
                                 </div>
                             </div>
                         </div>
@@ -104,16 +112,16 @@
                             <div class="card">
                                 <div class="card-heading p-4">
                                     <div class="mini-stat-icon float-right">
-                                        <i class="mdi mdi-tag-text-outline bg-warning text-white"></i>
+                                        <i class="mdi mdi-file-document-edit-outline bg-warning text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-16">Average Price</h5>
+                                        <h5 class="font-16">Overtime</h5>
                                     </div>
-                                    <h3 class="mt-4">447</h3>
+                                    <h3 class="mt-4"><?= $overtime['jumlah_overtime']; ?></h3>
                                     <div class="progress mt-4" style="height: 4px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">68%</span></p>
+                                   <!--  <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $overtime['jumlah_overtime']; ?></span></p> -->
                                 </div>
                             </div>
                         </div>
@@ -122,42 +130,42 @@
                             <div class="card">
                                 <div class="card-heading p-4">
                                     <div class="mini-stat-icon float-right">
-                                        <i class="mdi mdi-buffer bg-danger text-white"></i>
+                                        <i class="mdi mdi-clock-alert-outline bg-danger text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-16">Add to Card</h5>
+                                        <h5 class="font-16">Late</h5>
                                     </div>
-                                    <h3 class="mt-4">86%</h3>
+                                    <h3 class="mt-4"><?= $late['jumlah_telat']; ?></h3>
                                     <div class="progress mt-4" style="height: 4px;">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p>
+                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> -->
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-
-                                    <h4 class="mt-0 header-title mb-4">Area Chart</h4>
-
-                                    <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
-
+                        <div class="row" style="width: 200%">
+        
+                            <div class="col-xl-6">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Absensi</h4>
+                                        <!-- <div id="morris-line-example" class="morris-charts" style="height: 300px; width:100%;"></div> -->
+                                        <canvas id="canvas" width="960" height="400"></canvas>
+        
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end col -->
-
+                        
                         <div class="col-xl-4">
                             <div class="card m-b-30">
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title mb-4">Donut Chart</h4>
 
-                                    <div id="morris-donut-example" class="morris-charts morris-chart-height"></div>
+                                    <div id="donut-example" class="morris-charts morris-chart-height"></div>
 
                                 </div>
                             </div>
@@ -165,296 +173,73 @@
                         <!-- end col -->
                     </div>
                     <!-- end row -->
-
-                    <div class="row">
-                        <div class="col-xl-4">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-                                    <h4 class="mt-0 header-title mb-4">Friends Suggestions</h4>
-                                    <div class="friends-suggestions">
-                                        <a href="#" class="friends-suggestions-list">
-                                            <div class="border-bottom position-relative">
-                                                <div class="float-left mb-0 mr-3">
-                                                    <img src="assets/images/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
-                                                </div>
-                                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                                    <i class="mdi mdi-plus"></i>
-                                                </div>
-
-                                                <div class="desc">
-                                                    <h5 class="font-14 mb-1 pt-2 text-dark">Ralph Ramirez</h5>
-                                                    <p class="text-muted">3 Friend suggest</p>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#" class="friends-suggestions-list">
-                                            <div class="border-bottom position-relative">
-                                                <div class="float-left mb-0 mr-3">
-                                                    <img src="assets/images/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
-                                                </div>
-                                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                                    <i class="mdi mdi-plus"></i>
-                                                </div>
-
-                                                <div class="desc">
-                                                    <h5 class="font-14 mb-1 pt-2 text-dark">Patrick Beeler</h5>
-                                                    <p class="text-muted">17 Friend suggest</p>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#" class="friends-suggestions-list">
-                                            <div class="border-bottom position-relative">
-                                                <div class="float-left mb-0 mr-3">
-                                                    <img src="assets/images/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
-                                                </div>
-                                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                                    <i class="mdi mdi-plus"></i>
-                                                </div>
-
-                                                <div class="desc">
-                                                    <h5 class="font-14 mb-1 pt-2 text-dark">Victor Zamora</h5>
-                                                    <p class="text-muted">12 Friend suggest</p>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#" class="friends-suggestions-list">
-                                            <div class="border-bottom position-relative">
-                                                <div class="float-left mb-0 mr-3">
-                                                    <img src="assets/images/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
-                                                </div>
-                                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                                    <i class="mdi mdi-plus"></i>
-                                                </div>
-
-                                                <div class="desc">
-                                                    <h5 class="font-14 mb-1 pt-2 text-dark">Bryan Lacy</h5>
-                                                    <p class="text-muted">18 Friend suggest</p>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#" class="friends-suggestions-list">
-                                            <div class="position-relative">
-                                                <div class="float-left mb-0 mr-3">
-                                                    <img src="assets/images/users/user-6.jpg" alt="" class="rounded-circle thumb-md">
-                                                </div>
-                                                <div class="suggestion-icon float-right mt-2 pt-1">
-                                                    <i class="mdi mdi-plus"></i>
-                                                </div>
-
-                                                <div class="desc">
-                                                    <h5 class="font-14 mb-1 pt-2 text-dark">James Sorrells</h5>
-                                                    <p class="text-muted mb-1">6 Friend suggest</p>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-                                    <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
-                                    <div id="morris-line-example" class="morris-chart" style="height: 360px"></div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-xl-4">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-
-                                    <h4 class="mt-0 header-title mb-4">Recent Activity</h4>
-                                    <ol class="activity-feed mb-0">
-                                        <li class="feed-item">
-                                            <div class="feed-item-list">
-                                                <p class="text-muted mb-1">Now</p>
-                                                <p class="font-15 mt-0 mb-0">Andrei Coman magna sed porta finibus, risus posted a new article: <b class="text-primary">Forget UX Rowland</b></p>
-                                            </div>
-                                        </li>
-                                        <li class="feed-item">
-                                            <p class="text-muted mb-1">Yesterday</p>
-                                            <p class="font-15 mt-0 mb-0">Andrei Coman posted a new article: <b class="text-primary">Designer Alex</b></p>
-                                        </li>
-                                        <li class="feed-item">
-                                            <p class="text-muted mb-1">2:30PM</p>
-                                            <p class="font-15 mt-0 mb-0">Zack Wetass, sed porta finibus, risus  Chris Wallace Commented <b class="text-primary"> Developer Moreno</b></p>
-                                        </li>
-                                        <li class="feed-item pb-1">
-                                            <p class="text-muted mb-1">12:48 PM</p>
-                                            <p class="font-15 mt-0 mb-2">Zack Wetass, Chris Wallace Commented <b class="text-primary">UX Murphy</b></p>
-                                        </li>
-
-                                    </ol>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- START ROW -->
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-                                    <h4 class="mt-0 header-title mb-4">Active Deals</h4>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Amount</th>
-                                                    <th scope="col">Contact</th>
-                                                    <th scope="col">Location</th>
-                                                    <th scope="col" colspan="2">Date</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Philip Smead</td>
-                                                    <td><span class="badge badge-success">Delivered</span></td>
-                                                    <td>$9,420,000</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="assets/images/users/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Philip Smead
-                                                        </div>
-                                                    </td>
-                                                    <td>Houston, TX 77074</td>
-                                                    <td>15/1/2018</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brent Shipley</td>
-                                                    <td><span class="badge badge-warning">Pending</span></td>
-                                                    <td>$3,120,000</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="assets/images/users/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Brent Shipley
-                                                        </div>
-                                                    </td>
-                                                    <td>Oakland, CA 94612</td>
-                                                    <td>16/1/2019</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Robert Sitton</td>
-                                                    <td><span class="badge badge-success">Delivered</span></td>
-                                                    <td>$6,360,000</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="assets/images/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Robert Sitton
-                                                        </div>
-                                                    </td>
-                                                    <td>Hebron, ME 04238</td>
-                                                    <td>17/1/2019</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Alberto Jackson</td>
-                                                    <td><span class="badge badge-danger">Cancel</span></td>
-                                                    <td>$5,200,000</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="assets/images/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Alberto Jackson
-                                                        </div>
-                                                    </td>
-                                                    <td>Salinas, CA 93901</td>
-                                                    <td>18/1/2019</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>David Sanchez</td>
-                                                    <td><span class="badge badge-success">Delivered</span></td>
-                                                    <td>$7,250,000</td>
-                                                    <td>
-                                                        <div>
-                                                            <img src="assets/images/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> David Sanchez
-                                                        </div>
-                                                    </td>
-                                                    <td>Cincinnati, OH 45202</td>
-                                                    <td>19/1/2019</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- END ROW -->
-
-                </div>
                 <!-- container-fluid -->
 
-            </div>
-            <!-- content -->
+                </div>
+                <!-- content -->
 
-            <footer class="footer">
-                © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-            </footer>
+                <footer class="footer">
+                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+                </footer>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
 
         </div>
-        <!-- ============================================================== -->
-        <!-- End Right content here -->
-        <!-- ============================================================== -->
+        <!-- END wrapper -->
 
-    </div>
-    <!-- END wrapper -->
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metismenu.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
 
-    <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/metismenu.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/waves.min.js"></script>
+        <!--Morris Chart-->
+        <script src="../plugins/morris/morris.min.js"></script>
+        <script src="../plugins/raphael/raphael.min.js"></script>
+        <script src="assets/pages/morris.init.js"></script>  
 
-    <!--Morris Chart-->
-    <script src="../plugins/morris/morris.min.js"></script>
-    <script src="../plugins/raphael/raphael.min.js"></script>
 
-    <script src="assets/pages/dashboard.init.js"></script>
+        <script src="assets/pages/dashboard.init.js"></script>
 
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+        
+    </body>
 
-</body>
+</html>
+<script src="./chartjs/Chart.js"></script>
+<script>
+    var ctx = document.getElementById('canvas').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
 
+        // The data for our dataset
+        data: {
+            labels: [<?php foreach($bulan as $bln) { echo "'" . $bln['bulan'] . "',"; } ?>],
+            datasets: [{
+                borderColor: 'rgb(127, 181, 181)',
+                data: [<?php foreach($kehadiran as $trs) { echo $trs['jumlah_kehadiran'] . ','; } ?>]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+
+
+    Morris.Donut({
+      element: 'donut-example',
+      data: [
+        {label: "Alpa", value: <?= $alpa['keterangan']; ?>},
+        {label: "Izin", value: <?= $izin['keterangan']; ?>},
+        {label: "Sakit", value: <?= $sakit['keterangan']; ?>}
+      ]
+    });
+
+</script>
 </html>
