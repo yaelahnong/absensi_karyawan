@@ -38,10 +38,10 @@
 
 </head>
 
-    <body>
+<body>
 
         
-      <!-- Begin page -->
+    <!-- Begin page -->
     <div id="wrapper">
 
         <?php include 'topbar.php'; ?>
@@ -70,7 +70,7 @@
                         <!-- end row -->
                     </div>
                     <!-- end page-title -->
-                     <div class="row">
+                    <div class="row">
 
                         <div class="col-sm-6 col-xl-3">
                             <div class="card">
@@ -89,6 +89,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end col -->
 
                         <div class="col-sm-6 col-xl-3">
                             <div class="card">
@@ -107,6 +108,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end col -->
 
                         <div class="col-sm-6 col-xl-3">
                             <div class="card">
@@ -121,10 +123,11 @@
                                     <div class="progress mt-4" style="height: 4px;">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                   <!--  <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $overtime['jumlah_overtime']; ?></span></p> -->
+                                <!--  <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $overtime['jumlah_overtime']; ?></span></p> -->
                                 </div>
                             </div>
                         </div>
+                        <!-- end col -->
 
                         <div class="col-sm-6 col-xl-3">
                             <div class="card">
@@ -143,23 +146,24 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end col -->
 
                     </div>
+                    <!-- end row -->
 
-                        <div class="row" style="width: 200%">
-        
-                            <div class="col-xl-6">
-                                <div class="card m-b-30">
-                                    <div class="card-body">
-                                        <h4 class="mt-0 header-title">Absensi</h4>
-                                        <!-- <div id="morris-line-example" class="morris-charts" style="height: 300px; width:100%;"></div> -->
-                                        <canvas id="canvas" width="960" height="400"></canvas>
-        
-                                    </div>
+                    <div class="row">
+    
+                        <div class="col-xl-8">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <h4 class="mt-0 header-title">Absensi</h4>
+                                    <!-- <div id="morris-line-example" class="morris-charts" style="height: 300px; width:100%;"></div> -->
+                                    <canvas id="canvas"></canvas>
+    
                                 </div>
                             </div>
                         </div>
-                        
+                        <!-- end col -->
                         <div class="col-xl-4">
                             <div class="card m-b-30">
                                 <div class="card-body">
@@ -173,45 +177,46 @@
                         <!-- end col -->
                     </div>
                     <!-- end row -->
-                <!-- container-fluid -->
 
                 </div>
-                <!-- content -->
+                <!-- container-fluid -->
+            </div>
+            <!-- content -->
 
                 <footer class="footer">
                     © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
                 </footer>
 
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
-
         </div>
-        <!-- END wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
 
-        <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/metismenu.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/waves.min.js"></script>
+    </div>
+    <!-- END wrapper -->
 
-        <!--Morris Chart-->
-        <script src="../plugins/morris/morris.min.js"></script>
-        <script src="../plugins/raphael/raphael.min.js"></script>
-        <script src="assets/pages/morris.init.js"></script>  
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/waves.min.js"></script>
+
+    <!--Morris Chart-->
+    <script src="../plugins/morris/morris.min.js"></script>
+    <script src="../plugins/raphael/raphael.min.js"></script>
+    <script src="assets/pages/morris.init.js"></script>  
 
 
-        <script src="assets/pages/dashboard.init.js"></script>
+    <script src="assets/pages/dashboard.init.js"></script>
 
-        <!-- App js -->
-        <script src="assets/js/app.js"></script>
-        
-    </body>
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+    
+</body>
 
 </html>
-<script src="./chartjs/Chart.js"></script>
+<script src="../plugins/chartjs/chart.min.js"></script>
 <script>
     var ctx = document.getElementById('canvas').getContext('2d');
     var chart = new Chart(ctx, {
@@ -233,12 +238,12 @@
 
 
     Morris.Donut({
-      element: 'donut-example',
-      data: [
-        {label: "Alpa", value: <?= $alpa['keterangan']; ?>},
-        {label: "Izin", value: <?= $izin['keterangan']; ?>},
-        {label: "Sakit", value: <?= $sakit['keterangan']; ?>}
-      ]
+        element: 'donut-example',
+        data: [
+            {label: "Alpa", value: <?= $alpa['keterangan']; ?>},
+            {label: "Izin", value: <?= $izin['keterangan']; ?>},
+            {label: "Sakit", value: <?= $sakit['keterangan']; ?>}
+        ]
     });
 
 </script>
