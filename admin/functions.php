@@ -204,7 +204,7 @@
     }
     // HAPUS DEPARTMENT END
 
-        // TAMBAH DEPARTMENT START
+    // TAMBAH DEPARTMENT START
     function tambah_department($data) {
         global $conn;
 
@@ -226,7 +226,7 @@
     }
     // TAMBAH DEPARTMENT END
 
-        // UBAH DEPARTMENT START
+    // UBAH DEPARTMENT START
     function ubah_department($data) {
         global $conn;
 
@@ -245,7 +245,7 @@
     } 
     // UBAH DEPARTMENT END
 
-     // TAMBAH DEPARTMENT START
+    // TAMBAH DEPARTMENT START
     function schedule($data) {
         global $conn;
 
@@ -267,7 +267,7 @@
     }
     // TAMBAH DEPARTMENT END
 
-        // UBAH SCHEDULE START
+    // UBAH SCHEDULE START
     function ubah_schedule($data) {
         global $conn;
 
