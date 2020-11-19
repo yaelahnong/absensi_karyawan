@@ -70,6 +70,7 @@
                         <!-- end row -->
                     </div>
                     <!-- end page-title -->
+
                     <div class="row">
 
                         <div class="col-sm-6 col-xl-3">
@@ -85,7 +86,7 @@
                                     <div class="progress mt-4" style="height: 4px;">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $karyawan['jumlah_karyawan'] ?></span></p> -->
+                                    <p class="text-muted mt-2 mb-0">Person<span class="float-right"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,7 @@
                                     <div class="progress mt-4" style="height: 4px;">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="88" aria-valuemin="0"aria-valuemax="100"></div>
                                     </div>
-                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $jml_kehadiran['jumlah_kehadiran']; ?></span></p> -->
+                                    <p class="text-muted mt-2 mb-0">Person<span class="float-right"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +124,9 @@
                                     <div class="progress mt-4" style="height: 4px;">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                <!--  <p class="text-muted mt-2 mb-0">Previous period<span class="float-right"><?= $overtime['jumlah_overtime']; ?></span></p> -->
+
+                                 <p class="text-muted mt-2 mb-0">Person<span class="float-right"></span></p>
+
                                 </div>
                             </div>
                         </div>
@@ -142,7 +145,7 @@
                                     <div class="progress mt-4" style="height: 4px;">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <!-- <p class="text-muted mt-2 mb-0">Previous period<span class="float-right">82%</span></p> -->
+                                    <p class="text-muted mt-2 mb-0">Person<span class="float-right"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +167,7 @@
                             </div>
                         </div>
                         <!-- end col -->
+
                         <div class="col-xl-4">
                             <div class="card m-b-30">
                                 <div class="card-body">
@@ -180,12 +184,13 @@
 
                 </div>
                 <!-- container-fluid -->
+
             </div>
             <!-- content -->
 
-                <footer class="footer">
-                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-                </footer>
+            <footer class="footer">
+                © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+            </footer>
 
         </div>
         <!-- ============================================================== -->
@@ -227,7 +232,8 @@
         data: {
             labels: [<?php foreach($bulan as $bln) { echo "'" . $bln['bulan'] . "',"; } ?>],
             datasets: [{
-                borderColor: 'rgb(127, 181, 181)',
+                label: 'Attendance Count',
+                borderColor: "#30419b",
                 data: [<?php foreach($kehadiran as $trs) { echo $trs['jumlah_kehadiran'] . ','; } ?>]
             }]
         },
@@ -238,12 +244,13 @@
 
 
     Morris.Donut({
-        element: 'donut-example',
-        data: [
-            {label: "Alpa", value: <?= $alpa['keterangan']; ?>},
-            {label: "Izin", value: <?= $izin['keterangan']; ?>},
-            {label: "Sakit", value: <?= $sakit['keterangan']; ?>}
-        ]
+      element: 'donut-example',
+      data: [
+        {label: "Alpa", value: <?= $alpa['keterangan']; ?>},
+        {label: "Izin", value: <?= $izin['keterangan']; ?>},
+        {label: "Sakit", value: <?= $sakit['keterangan']; ?>}
+      ],
+      colors: ['#fcbe2d', '#30419b', '#02c58d']
     });
 
 </script>
