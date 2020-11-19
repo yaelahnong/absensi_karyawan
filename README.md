@@ -11,5 +11,7 @@ cd absensi_karyawan
 ```
 ## Kontributor
 - [@yaelahnong](https://github.com/yaelahnong)
+- [@rimalestari09](https://gitlab.com/rimalestari09)
+- [@pupuoktavia26](https://gitlab.com/pupuoktavia26)
 
 Copied From github.com/wrideveloper

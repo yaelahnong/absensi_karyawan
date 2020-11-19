@@ -1,5 +1,9 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 4.8.4
+=======
+-- version 4.8.3
+>>>>>>> 9b010a6a309bd69c485626832fd4b44ba61e5fd7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1

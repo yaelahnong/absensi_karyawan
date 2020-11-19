@@ -5,6 +5,7 @@
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
     }
+        $department = query("SELECT * FROM department");
 ?>
 
 <!DOCTYPE html>
@@ -166,6 +167,14 @@
                                                     <option value="4">Employee</option>
                                                     <option value="3">Project Manager</option>
                                                     <option value="2">Lead Department</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Department</label>
+                                                <select class="form-control" name="department">
+                                                    <?php  foreach($department as $row) : ?>
+                                                    <option value="<?= $row['id_department']; ?>"><?= $row['ket_department']; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
