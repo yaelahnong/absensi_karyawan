@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Nov 2020 pada 13.33
+-- Waktu pembuatan: 19 Nov 2020 pada 11.53
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.1
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `absen` (
   `id_absen` int(10) NOT NULL,
-  `jam_masuk` time NOT NULL,
-  `jam_keluar` time NOT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `jam_keluar` time DEFAULT NULL,
   `keterangan` text NOT NULL,
   `tanggal` date NOT NULL,
   `id_user` int(10) NOT NULL,
@@ -44,17 +44,23 @@ CREATE TABLE `absen` (
 --
 
 INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, '08:24:09', '19:28:42', 'alpa', '2020-10-28', 32, '2020-11-03 08:27:32', NULL),
-(2, '08:27:46', '19:29:22', 'izin', '2020-10-28', 28, NULL, NULL),
-(3, '08:30:09', '19:30:09', 'sakit', '2020-10-28', 31, NULL, NULL),
-(4, '09:01:55', '19:30:55', 'alpa', '2020-10-28', 29, NULL, NULL),
-(5, '13:12:00', '11:10:00', '', '2020-11-17', 0, NULL, NULL),
-(6, '04:08:00', '19:03:00', '', '2020-12-16', 0, NULL, NULL),
-(7, '13:22:00', '11:12:05', '', '2020-11-08', 0, NULL, NULL),
-(8, '11:16:00', '00:00:00', '', '2020-12-08', 0, NULL, NULL),
-(9, '15:22:16', '19:21:04', '', '2020-11-02', 0, NULL, NULL),
-(10, '04:08:00', '11:12:05', '', '2020-12-25', 0, NULL, NULL),
-(11, '12:14:04', '19:03:00', '', '2020-12-19', 0, NULL, NULL);
+(1, '08:24:09', '19:28:42', '', '2020-10-28', 32, '2020-11-03 08:27:32', NULL),
+(2, '08:27:46', '19:29:22', '', '2020-10-28', 39, '2020-11-17 17:00:00', NULL),
+(3, '08:30:09', '19:30:09', '', '2020-10-28', 40, '2020-11-17 17:00:00', NULL),
+(4, '09:01:55', '19:30:55', '', '2020-10-28', 41, '2020-11-17 17:00:00', NULL),
+(5, NULL, NULL, 'izin', '2020-10-29', 32, '2020-10-28 23:00:00', NULL),
+(6, NULL, NULL, 'alpa', '2020-10-29', 39, '2020-10-29 00:00:00', NULL),
+(7, '07:22:00', '19:12:05', '', '2020-10-29', 40, '2020-10-28 17:00:00', NULL),
+(8, '07:51:09', '19:08:26', '', '2020-10-29', 41, '2020-10-28 17:00:00', NULL),
+(9, '07:41:30', '19:31:15', '', '2020-10-30', 32, '2020-10-29 17:00:00', NULL),
+(10, '07:53:26', '11:12:05', '', '2020-10-30', 39, '2020-10-29 17:00:00', NULL),
+(11, NULL, NULL, 'izin', '2020-11-30', 40, '2020-10-29 17:00:00', NULL),
+(12, '09:09:00', '18:07:00', '', '2020-12-09', 0, NULL, NULL),
+(13, '07:09:00', '14:00:00', '', '2020-12-17', 0, NULL, NULL),
+(14, '08:08:00', '19:03:00', '', '2020-12-08', 0, NULL, NULL),
+(15, '09:13:00', '19:03:00', '', '2020-11-08', 0, NULL, NULL),
+(16, '09:13:00', '11:12:05', '', '2020-11-16', 0, NULL, NULL),
+(17, '09:13:00', '24:08:00', '', '2020-11-08', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +131,7 @@ CREATE TABLE `department` (
 INSERT INTO `department` (`id_department`, `ket_department`, `created_at`, `updated_at`) VALUES
 (1, 'Software Developement', '2020-11-09 18:41:57', NULL),
 (2, 'Digital Marketing', '2020-11-09 18:42:04', NULL),
-(3, 'Manage Service Provider', '2020-11-09 18:42:12', NULL);
+(3, 'Manage Service Provider', '2020-11-09 18:42:12', '2020-11-19 04:45:01');
 
 -- --------------------------------------------------------
 
@@ -169,7 +175,7 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id_schedule`, `jam_masuk`, `jam_keluar`, `created_at`, `updated_at`) VALUES
-(1, '08:00:00', '19:00:00', '2020-11-09 18:35:29', NULL);
+(1, '08:00:00', '19:00:00', '2020-11-09 18:35:29', '2020-11-19 04:02:05');
 
 -- --------------------------------------------------------
 
@@ -201,7 +207,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$YFyasgl2.6md2BvMQVEriOhvFkBSSJJnb2jHDx5EgMeA.mX3xHWyG', 'bb51a85325739fa43791ef372f2d2d43f015fc2a', 'eyJpdiI6InlFRjlzWmo3OG5OQnQ1ak9YS2cxRUE9PSIsInZhbHVlIjoiZ2FtcHcrU1hoVFNSRUpHbUFWcWYrdz09IiwibWFjIjoiOGJjNGY5MWM4NGE1MzIzNjJlYjNkMDljZTY2ODYzN2ZlMzQ2YzA2NDhlNDAwZjg4NmVkMTBhOTI2ZWYxMzZmOCJ9', '2020-11-17 01:32:12', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-16 21:49:27');
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$YFyasgl2.6md2BvMQVEriOhvFkBSSJJnb2jHDx5EgMeA.mX3xHWyG', 'bb51a85325739fa43791ef372f2d2d43f015fc2a', 'eyJpdiI6InlFRjlzWmo3OG5OQnQ1ak9YS2cxRUE9PSIsInZhbHVlIjoiZ2FtcHcrU1hoVFNSRUpHbUFWcWYrdz09IiwibWFjIjoiOGJjNGY5MWM4NGE1MzIzNjJlYjNkMDljZTY2ODYzN2ZlMzQ2YzA2NDhlNDAwZjg4NmVkMTBhOTI2ZWYxMzZmOCJ9', '2020-11-17 01:32:12', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-16 21:49:27'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', 2, 1, '2020-11-19 03:45:15', NULL),
+(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$RJ6egKUu62lac1iPgfC1juOGGt3svWXt38eRe0h9XkcFc.8./rNN6', NULL, NULL, NULL, 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea kabupaten bogor 116620', '08958000000', 'Mau Nikah', 3, 3, '2020-11-19 03:46:34', NULL),
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', NULL, NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 2, 1, '2020-11-19 03:50:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -278,7 +287,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `admin`
@@ -308,7 +317,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
