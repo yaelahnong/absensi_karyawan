@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2020 at 04:50 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Waktu pembuatan: 19 Nov 2020 pada 12.16
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,13 +25,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absen`
+-- Struktur dari tabel `absen`
 --
 
 CREATE TABLE `absen` (
   `id_absen` int(10) NOT NULL,
-  `jam_masuk` time NOT NULL,
-  `jam_keluar` time NOT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `jam_keluar` time DEFAULT NULL,
   `keterangan` text NOT NULL,
   `tanggal` date NOT NULL,
   `id_user` int(10) NOT NULL,
@@ -40,19 +40,32 @@ CREATE TABLE `absen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `absen`
+-- Dumping data untuk tabel `absen`
 --
 
 INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, '08:24:09', '19:28:42', '', '2020-10-28', 32, '2020-11-03 08:27:32', NULL),
-(2, '08:27:46', '19:29:22', '', '2020-10-28', 28, NULL, NULL),
-(3, '08:30:09', '19:30:09', '', '2020-10-28', 31, NULL, NULL),
-(4, '09:01:55', '19:30:55', '', '2020-10-28', 29, NULL, NULL);
+(2, '08:27:46', '19:29:22', '', '2020-10-28', 39, '2020-11-17 17:00:00', NULL),
+(3, '08:30:09', '19:30:09', '', '2020-10-28', 40, '2020-11-17 17:00:00', NULL),
+(4, '09:01:55', '19:30:55', '', '2020-10-28', 41, '2020-11-17 17:00:00', NULL),
+(5, NULL, NULL, 'izin', '2020-10-29', 32, '2020-10-28 23:00:00', NULL),
+(6, NULL, NULL, 'alpa', '2020-10-29', 39, '2020-10-29 00:00:00', NULL),
+(7, '07:22:00', '19:12:05', '', '2020-10-29', 40, '2020-10-28 17:00:00', NULL),
+(8, '07:51:09', '19:08:26', '', '2020-10-29', 41, '2020-10-28 17:00:00', NULL),
+(9, '07:41:30', '19:31:15', '', '2020-10-30', 32, '2020-10-29 17:00:00', NULL),
+(10, '07:53:26', '11:12:05', '', '2020-10-30', 39, '2020-10-29 17:00:00', NULL),
+(11, NULL, NULL, 'izin', '2020-11-30', 40, '2020-10-29 17:00:00', NULL),
+(12, '09:09:00', '18:07:00', '', '2020-12-09', 32, NULL, NULL),
+(13, '07:09:00', '14:00:00', '', '2020-12-17', 39, NULL, NULL),
+(14, '08:08:00', '19:03:00', '', '2020-12-08', 40, NULL, NULL),
+(15, '09:13:00', '19:03:00', '', '2020-11-08', 41, NULL, NULL),
+(16, '09:13:00', '11:12:05', '', '2020-11-16', 39, NULL, NULL),
+(17, '09:13:00', '24:08:00', '', '2020-11-08', 40, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -67,7 +80,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
@@ -77,7 +90,7 @@ INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_ak
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akses`
+-- Struktur dari tabel `akses`
 --
 
 CREATE TABLE `akses` (
@@ -88,7 +101,7 @@ CREATE TABLE `akses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `akses`
+-- Dumping data untuk tabel `akses`
 --
 
 INSERT INTO `akses` (`id_akses`, `ket_akses`, `created_at`, `updated_at`) VALUES
@@ -101,7 +114,7 @@ INSERT INTO `akses` (`id_akses`, `ket_akses`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `department`
+-- Struktur dari tabel `department`
 --
 
 CREATE TABLE `department` (
@@ -112,18 +125,18 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `department`
+-- Dumping data untuk tabel `department`
 --
 
 INSERT INTO `department` (`id_department`, `ket_department`, `created_at`, `updated_at`) VALUES
 (1, 'Software Developement', '2020-11-09 18:41:57', NULL),
 (2, 'Digital Marketing', '2020-11-09 18:42:04', NULL),
-(3, 'Manage Service Provider', '2020-11-09 18:42:12', NULL);
+(3, 'Manage Service Provider', '2020-11-09 18:42:12', '2020-11-19 04:45:01');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `overtime`
+-- Struktur dari tabel `overtime`
 --
 
 CREATE TABLE `overtime` (
@@ -137,7 +150,7 @@ CREATE TABLE `overtime` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `overtime`
+-- Dumping data untuk tabel `overtime`
 --
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `created_at`, `updated_at`) VALUES
@@ -146,7 +159,7 @@ INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Struktur dari tabel `schedule`
 --
 
 CREATE TABLE `schedule` (
@@ -158,16 +171,16 @@ CREATE TABLE `schedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `schedule`
+-- Dumping data untuk tabel `schedule`
 --
 
 INSERT INTO `schedule` (`id_schedule`, `jam_masuk`, `jam_keluar`, `created_at`, `updated_at`) VALUES
-(1, '08:00:00', '19:00:00', '2020-11-09 18:35:29', NULL);
+(1, '08:00:00', '19:00:00', '2020-11-09 18:35:29', '2020-11-19 04:02:05');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -190,97 +203,121 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$YFyasgl2.6md2BvMQVEriOhvFkBSSJJnb2jHDx5EgMeA.mX3xHWyG', 'bb51a85325739fa43791ef372f2d2d43f015fc2a', 'eyJpdiI6InlFRjlzWmo3OG5OQnQ1ak9YS2cxRUE9PSIsInZhbHVlIjoiZ2FtcHcrU1hoVFNSRUpHbUFWcWYrdz09IiwibWFjIjoiOGJjNGY5MWM4NGE1MzIzNjJlYjNkMDljZTY2ODYzN2ZlMzQ2YzA2NDhlNDAwZjg4NmVkMTBhOTI2ZWYxMzZmOCJ9', '2020-11-17 01:32:12', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-16 21:49:27');
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$YFyasgl2.6md2BvMQVEriOhvFkBSSJJnb2jHDx5EgMeA.mX3xHWyG', 'bb51a85325739fa43791ef372f2d2d43f015fc2a', 'eyJpdiI6InlFRjlzWmo3OG5OQnQ1ak9YS2cxRUE9PSIsInZhbHVlIjoiZ2FtcHcrU1hoVFNSRUpHbUFWcWYrdz09IiwibWFjIjoiOGJjNGY5MWM4NGE1MzIzNjJlYjNkMDljZTY2ODYzN2ZlMzQ2YzA2NDhlNDAwZjg4NmVkMTBhOTI2ZWYxMzZmOCJ9', '2020-11-17 01:32:12', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 2, 1, '2020-11-03 02:14:48', '2020-11-16 21:49:27'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', 2, 1, '2020-11-19 03:45:15', NULL),
+(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$RJ6egKUu62lac1iPgfC1juOGGt3svWXt38eRe0h9XkcFc.8./rNN6', NULL, NULL, NULL, 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea kabupaten bogor 116620', '08958000000', 'Mau Nikah', 3, 3, '2020-11-19 03:46:34', NULL),
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', NULL, NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 2, 1, '2020-11-19 03:50:24', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_late`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_late` (
+`datang` time
+,`jadwal` time
+,`cek` int(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_late`
+--
+DROP TABLE IF EXISTS `v_late`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_late`  AS  select `absen`.`jam_masuk` AS `datang`,`schedule`.`jam_masuk` AS `jadwal`,(timediff(`absen`.`jam_masuk`,`schedule`.`jam_masuk`) > 0) AS `cek` from (`absen` join `schedule`) ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `absen`
+-- Indeks untuk tabel `absen`
 --
 ALTER TABLE `absen`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `akses`
+-- Indeks untuk tabel `akses`
 --
 ALTER TABLE `akses`
   ADD PRIMARY KEY (`id_akses`);
 
 --
--- Indexes for table `department`
+-- Indeks untuk tabel `department`
 --
 ALTER TABLE `department`
   ADD PRIMARY KEY (`id_department`);
 
 --
--- Indexes for table `overtime`
+-- Indeks untuk tabel `overtime`
 --
 ALTER TABLE `overtime`
   ADD PRIMARY KEY (`id_overtime`);
 
 --
--- Indexes for table `schedule`
+-- Indeks untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id_schedule`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `absen`
+-- AUTO_INCREMENT untuk tabel `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `department`
+-- AUTO_INCREMENT untuk tabel `department`
 --
 ALTER TABLE `department`
   MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `overtime`
+-- AUTO_INCREMENT untuk tabel `overtime`
 --
 ALTER TABLE `overtime`
   MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `schedule`
+-- AUTO_INCREMENT untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
   MODIFY `id_schedule` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
