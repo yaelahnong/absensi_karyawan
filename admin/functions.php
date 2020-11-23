@@ -26,11 +26,15 @@
         $jenis_kelamin = $_POST['jenis_kelamin'];
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
+        $foto = uploadFoto();        
         $status = $_POST['status'];
         $id_akses = $_POST['akses'];
         $id_department = $_POST['department'];
         $created_at = $_POST['created_at'];
 
+        if( !$foto ) {
+            return false;
+        }
 
         $result = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
         
@@ -57,6 +61,7 @@
                                 no_telp, 
                                 status, 
                                 id_akses,
+                                foto,
                                 id_department,
                                 created_at
                             ) VALUES(
@@ -67,7 +72,8 @@
                                 '$jenis_kelamin', 
                                 '$alamat', 
                                 '$no_telp', 
-                                '$status', 
+                                '$status',
+                                '$foto', 
                                 $id_akses,
                                 $id_department, 
                                 '$created_at'
@@ -90,6 +96,7 @@
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
+        $photo = uploadFoto();
         $id_akses = $_POST['akses'];
         $id_department =$_POST['department'];
         $updated_at = $_POST['updated_at'];
@@ -102,7 +109,8 @@
                         jenis_kelamin = '$jenis_kelamin', 
                         alamat = '$alamat', 
                         no_telp = '$no_telp', 
-                        status = '$status', 
+                        status = '$status',
+                        foto = '$photo', 
                         id_akses = $id_akses,
                         id_department = $id_department,
                         updated_at = '$updated_at'

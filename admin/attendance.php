@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $v_absen = query("SELECT user.nip, user.nama, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
+    $v_absen = query("SELECT user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
                         FROM user, absen, akses, schedule 
                         WHERE user.id_user = absen.id_user
                         AND akses.id_akses = user.id_akses 
@@ -105,7 +105,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div>
-                                            <img class="rounded-circle" width="40px" height="40px" src="assets/images/users/ino.jpg"></img>
+                                            <img class="rounded-circle" width="40px" height="40px" src="assets/images/users/<?= $row['foto'];?>"></img>
                                         </div>
                                         <div class="pl-3">  
                                             <span><b><?= $row['nama']; ?></b></span>

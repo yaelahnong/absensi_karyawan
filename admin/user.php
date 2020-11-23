@@ -102,6 +102,7 @@
                                                 <th>Address</th>
                                                 <th>Gender</th>
                                                 <th>Status</th>
+                                                <th>Image</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -121,6 +122,7 @@
                                                 <td><?= $row['alamat']; ?></td>
                                                 <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
                                                 <td><?= $row['status']; ?></td>
+                                                <td><img src="assets/images/users/<?= $row['foto'];?>" width="50px"></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
