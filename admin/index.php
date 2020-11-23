@@ -169,7 +169,7 @@
                         <!-- end col -->
 
                         <div class="col-xl-4">
-                            <div class="card m-b-30">
+                            <div class="card m-b-20">
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title mb-4">Donut Chart</h4>
 
