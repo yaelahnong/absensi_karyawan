@@ -17,7 +17,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
+        <title>user management</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -102,6 +102,7 @@
                                                 <th>Address</th>
                                                 <th>Gender</th>
                                                 <th>Status</th>
+                                                <th>Image</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -121,6 +122,7 @@
                                                 <td><?= $row['alamat']; ?></td>
                                                 <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
                                                 <td><?= $row['status']; ?></td>
+                                                <td><img src="assets/images/users/<?= $row['foto'];?>" width="50px"></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>

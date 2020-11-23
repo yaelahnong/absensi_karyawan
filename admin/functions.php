@@ -26,11 +26,15 @@
         $jenis_kelamin = $_POST['jenis_kelamin'];
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
+        $foto = uploadFoto();        
         $status = $_POST['status'];
         $id_akses = $_POST['akses'];
         $id_department = $_POST['department'];
         $created_at = $_POST['created_at'];
 
+        if( !$foto ) {
+            return false;
+        }
 
         $result = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
         
@@ -57,7 +61,8 @@
                                 no_telp, 
                                 status, 
                                 id_akses,
-                                id_department, 
+                                foto,
+                                id_department,
                                 created_at
                             ) VALUES(
                                 '$nip', 
@@ -67,7 +72,8 @@
                                 '$jenis_kelamin', 
                                 '$alamat', 
                                 '$no_telp', 
-                                '$status', 
+                                '$status',
+                                '$foto', 
                                 $id_akses,
                                 $id_department, 
                                 '$created_at'
@@ -90,6 +96,7 @@
         $alamat = $_POST['alamat'];
         $no_telp = $_POST['no_telp'];
         $status = $_POST['status'];
+        $photo = uploadFoto();
         $id_akses = $_POST['akses'];
         $id_department =$_POST['department'];
         $updated_at = $_POST['updated_at'];
@@ -102,9 +109,10 @@
                         jenis_kelamin = '$jenis_kelamin', 
                         alamat = '$alamat', 
                         no_telp = '$no_telp', 
-                        status = '$status', 
+                        status = '$status',
+                        foto = '$photo', 
                         id_akses = $id_akses,
-                        id_department ='$id_department',
+                        id_department = $id_department,
                         updated_at = '$updated_at'
                     WHERE id_user = '$id_user'";
         
@@ -195,15 +203,6 @@
     }
     // UPLOAD FOTO END
 
-    // HAPUS DEPARTMENT START
-    function hapus_department($id) {
-        global $conn;
-
-        mysqli_query($conn, "DELETE FROM department WHERE id_department = '$id'");
-        return mysqli_affected_rows($conn);
-    }
-    // HAPUS DEPARTMENT END
-
     // TAMBAH DEPARTMENT START
     function tambah_department($data) {
         global $conn;
@@ -211,16 +210,14 @@
         $ket_department = $_POST['department'];
         $created_at = $_POST['created_at'];
 
-        $result = mysqli_query($conn, "SELECT * FROM department");
-
-        $query = "INSERT INTO department(
-                                ket_department, 
+        $query = "INSERT INTO department( 
+                                ket_department,
                                 created_at
                             ) VALUES(
-                                '$ket_department', 
-                                '$created_at'
+                                '$ket_department',
+                                '$created_at' 
                             )";
-        mysqli_query($conn, $query);
+        $tambah = mysqli_query($conn, $query);
 
         return mysqli_affected_rows($conn);
     }
@@ -233,9 +230,11 @@
         $id_department = $_POST['id_department'];
         $ket_department = $_POST['department'];
         $updated_at = $_POST['updated_at'];
-        
 
         $query = "UPDATE department 
+                    SET 
+                    ket_department = '$ket_department',
+                    updated_at = '$updated_at'
                     SET ket_department = '$ket_department', 
                         updated_at = '$updated_at'
                     WHERE id_department = '$id_department'";
@@ -245,7 +244,16 @@
     } 
     // UBAH DEPARTMENT END
 
-    // TAMBAH DEPARTMENT START
+     // HAPUS DEPARTMENT START
+    function hapus_department($id) {
+        global $conn;
+
+        mysqli_query($conn, "DELETE FROM department WHERE id_department = '$id'");
+        return mysqli_affected_rows($conn);
+    }
+    // HAPUS DEPARTMENT END
+
+     // TAMBAH SCHEDULE START
     function schedule($data) {
         global $conn;
 
@@ -265,7 +273,7 @@
 
         return mysqli_affected_rows($conn);
     }
-    // TAMBAH DEPARTMENT END
+    // TAMBAH SCHEDULE END
 
     // UBAH SCHEDULE START
     function ubah_schedule($data) {
@@ -287,6 +295,5 @@
         return mysqli_affected_rows($conn);
     } 
     // UBAH SCHEDULE END
-
 
 ?>

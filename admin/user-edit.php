@@ -102,7 +102,7 @@
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
         
-                                        <form method="post">
+                                        <form method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
@@ -165,6 +165,11 @@
                                                 <label>Status</label>
                                                 <input type="text" name="status" class="form-control" value="<?= $user['status']; ?>" required placeholder="Status"/>
                                             </div>
+                                            <div class="from-grup">
+                                                <label>Image</label>
+                                                <div class="form-group">
+                                                <input name="photo" type="file" value="<?= $user['foto']; ?>">
+                                            </div>
                                             <div class="form-group">
                                                 <label>Position</label>
                                                 <select class="form-control" name="akses">
@@ -178,7 +183,7 @@
                                                 <select class="form-control" name="department">
                                                     <?php foreach($department as $row): ?> 
                                                     <option value="<?= $row['id_department']; ?>" <?= $user['id_department'] == $row['id_department'] ? 'selected' : '' ?>><?= $row['ket_department']; ?></option>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">

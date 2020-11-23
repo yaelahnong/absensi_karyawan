@@ -95,7 +95,6 @@
                             <div class="col-lg-12">
                                 <div class="card m-b-30">
                                     <div class="card-body">
-        
                                         <!-- <h4 class="mt-0 header-title">Validation type</h4>
                                         <p class="sub-title">Parsley is a javascript form validation
                                             library. It helps you provide your users with feedback on their form

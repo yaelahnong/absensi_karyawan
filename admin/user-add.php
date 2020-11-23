@@ -93,7 +93,7 @@
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
         
-                                        <form method="post">
+                                        <form method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
                                                 <label>Employee ID Number</label>
@@ -161,6 +161,11 @@
                                                 <label>Status</label>
                                                 <input type="text" name="status" class="form-control" required placeholder="Status"/>
                                             </div>
+                                            <div class="from-grup">
+                                                <label>Image</label>
+                                                <div class="form-group">
+                                                    <input name="photo" type="file" multiple="multiple">
+                                                </div>
                                             <div class="form-group">
                                                 <label>Position</label>
                                                 <select class="form-control" name="akses">
@@ -172,9 +177,9 @@
                                             <div class="form-group">
                                                 <label>Department</label>
                                                 <select class="form-control" name="department">
-                                                    <?php  foreach($department as $row) : ?>
+                                                <?php foreach($department as $row) : ?>
                                                     <option value="<?= $row['id_department']; ?>"><?= $row['ket_department']; ?></option>
-                                                    <?php endforeach; ?>
+                                                <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
