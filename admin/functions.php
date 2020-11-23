@@ -195,15 +195,6 @@
     }
     // UPLOAD FOTO END
 
-    // HAPUS DEPARTMENT START
-    function hapus_department($id) {
-        global $conn;
-
-        mysqli_query($conn, "DELETE FROM department WHERE id_department = '$id'");
-        return mysqli_affected_rows($conn);
-    }
-    // HAPUS DEPARTMENT END
-
     // TAMBAH DEPARTMENT START
     function tambah_department($data) {
         global $conn;
