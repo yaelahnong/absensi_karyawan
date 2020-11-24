@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2020 at 12:34 PM
+-- Generation Time: Nov 24, 2020 at 09:45 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -68,7 +68,9 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (23, '08:25:00', NULL, NULL, '2020-11-24', 41, '', '2020-11-23 23:25:16', '2020-11-23 23:25:16'),
 (24, '08:25:00', NULL, NULL, '2020-11-24', 41, '', '2020-11-23 23:25:24', '2020-11-23 23:25:24'),
 (25, '08:25:00', NULL, NULL, '2020-11-24', 41, '', '2020-11-23 23:29:30', '2020-11-23 23:29:30'),
-(26, '07:25:00', '15:00:00', NULL, '2020-11-24', 32, '-6.5646262, 106.7667172', '2020-11-24 00:29:48', '2020-11-24 00:39:17');
+(26, '07:25:00', '15:00:00', NULL, '2020-11-24', 32, '-6.5646262, 106.7667172', '2020-11-24 00:29:48', '2020-11-24 00:39:17'),
+(27, '08:00:00', '15:00:00', NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 12:26:29', '2020-11-24 12:26:57'),
+(28, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 18:26:48', '2020-11-24 18:26:48');
 
 -- --------------------------------------------------------
 
@@ -144,6 +146,25 @@ INSERT INTO `department` (`id_department`, `ket_department`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `location`
+--
+
+CREATE TABLE `location` (
+  `id_location` int(10) NOT NULL,
+  `coordinate` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`id_location`, `coordinate`) VALUES
+(1, '40.689879098597345,-73.62141981562503'),
+(2, '-6.564594775402231,106.76674612024894');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `overtime`
 --
 
@@ -163,6 +184,26 @@ CREATE TABLE `overtime` (
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `created_at`, `updated_at`) VALUES
 (1, '19:00:00', '23:00:00', 'BugFixing', 1, '2020-11-09 18:39:08', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qrcode`
+--
+
+CREATE TABLE `qrcode` (
+  `id_qrcode` int(10) NOT NULL,
+  `png` text NOT NULL,
+  `svg` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `qrcode`
+--
+
+INSERT INTO `qrcode` (`id_qrcode`, `png`, `svg`) VALUES
+(1, '101d677dc110f179c972dfcdd89ef7a7.png', '101d677dc110f179c972dfcdd89ef7a7.svg'),
+(2, '794884f523c36fbfabe9fe0da2cb55a9.png', '794884f523c36fbfabe9fe0da2cb55a9.svg');
 
 -- --------------------------------------------------------
 
@@ -216,10 +257,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$2t4odd.RYIZQsLipKJw5O.XeBaIalE1IAWTgufDRrRzUwr436CkIm', '8e3855f521f7c3222ebbc7efeb87365bcf3e2b2c', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-24 11:29:54'),
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$2t4odd.RYIZQsLipKJw5O.XeBaIalE1IAWTgufDRrRzUwr436CkIm', 'b57e8362532fe2b769e735e69be8b90caac44a68', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-24 18:56:20'),
 (39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', 'lumen-1-logo.png', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
 (40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea kabupaten bogor 116620', '08958000000', 'Mau Nikah', '', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', '2df3afeaf6b0479c5f212d74451b42480696b18c', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-24 03:31:21');
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'a04381e37ec6d5ecebe940545794c9fbe927d66c', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-24 18:24:24');
 
 -- --------------------------------------------------------
 
@@ -317,10 +358,22 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`id_department`);
 
 --
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`id_location`);
+
+--
 -- Indexes for table `overtime`
 --
 ALTER TABLE `overtime`
   ADD PRIMARY KEY (`id_overtime`);
+
+--
+-- Indexes for table `qrcode`
+--
+ALTER TABLE `qrcode`
+  ADD PRIMARY KEY (`id_qrcode`);
 
 --
 -- Indexes for table `schedule`
@@ -351,10 +404,22 @@ ALTER TABLE `department`
   MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `id_location` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
   MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `qrcode`
+--
+ALTER TABLE `qrcode`
+  MODIFY `id_qrcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `schedule`

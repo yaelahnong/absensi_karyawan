@@ -133,8 +133,8 @@
 
                             <div class="form-group col-sm-12">
                                 <div class="custom-control custom-switch">
-                                  <input type="checkbox" class="custom-control-input" id="trans-bg" name="transparent">
-                                  <label class="custom-control-label" for="trans-bg"><?php echo getString('transparent_background'); ?></label>
+                                    <input type="checkbox" class="custom-control-input" id="trans-bg" name="transparent">
+                                    <label class="custom-control-label" for="trans-bg"><?php echo getString('transparent_background'); ?></label>
                                 </div>
                             </div>
 
@@ -243,7 +243,14 @@
                     <div class="placeresult">
                         <div class="form-group text-center wrapresult">
                             <div class="resultholder">
-                                <img class="img-fluid" src="<?php echo $_CONFIG['placeholder']; ?>" />
+                                <?php 
+                                    $conn = mysqli_connect('localhost', 'root', '', 'absensi');
+                                    $qrcode = mysqli_query($conn, "SELECT png FROM qrcode ORDER BY id_qrcode DESC LIMIT 1");
+                                    
+                                    while($row = mysqli_fetch_assoc($qrcode)):
+                                ?>
+                                <img class="img-fluid" src="qrcodes/<?= $row['png']; ?>" />
+                                <?php endwhile; ?>
                                 <div class="infopanel"></div>
                             </div>
                         </div>

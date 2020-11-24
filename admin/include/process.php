@@ -12,6 +12,7 @@
  * @license   item sold on codecanyon https://codecanyon.net/item/qrcdr-responsive-qr-code-generator/9226839
  * @link      http://veno.es/qrcdr/
  */
+require '../functions.php';
 date_default_timezone_set('UTC');
 require dirname(dirname(__FILE__))."/config.php";
 $lang = $_CONFIG['lang'];
@@ -133,7 +134,8 @@ case '#location':
     $lat = filter_input(INPUT_POST, "lat", FILTER_SANITIZE_STRING);
     $lng = filter_input(INPUT_POST, "lng", FILTER_SANITIZE_STRING);
     if ($lat && $lng) {
-        $output_data = "geo:".$lat.",".$lng; 
+        $output_data = $lat.",".$lng; 
+        mysqli_query($conn, "INSERT INTO location(coordinate) VALUES('$output_data')");
     }
     break;
 case '#vcard':
@@ -288,6 +290,8 @@ if ($output_data) {
     if ($otp) {
         $result['otp'] = $otp;
     }
+
+    mysqli_query($conn, "INSERT INTO qrcode(png, svg) VALUES('$finalpng', '$finalsvg')");
 
     $result = json_encode($result);
 } else {
