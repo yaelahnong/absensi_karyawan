@@ -9,8 +9,14 @@
     $v_absen = query("SELECT user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
                         FROM user, absen, akses, schedule 
                         WHERE user.id_user = absen.id_user
+                        AND akses.id_akses = user.id_akses AND absen.tanggal = curdate() 
+                    ");
+    $attendance = query("SELECT user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
+                        FROM user, absen, akses, schedule 
+                        WHERE user.id_user = absen.id_user
                         AND akses.id_akses = user.id_akses 
                     ");
+    $foto = query("SELECT user.foto FROM user, absen WHERE user.id_user = absen.id_user");
 ?>
 
 
@@ -181,7 +187,7 @@
         
         
                                             <tbody>
-                                            <?php foreach($v_absen as $row): ?>
+                                            <?php foreach($attendance as $row): ?>
                                                 <tr>
                                                     <td><?= $row['nip']; ?></td>
                                                     <td><?= $row['nama']; ?></td>
@@ -270,6 +276,14 @@
 
        var marker = L.marker([-6.338117, 106.741689]).addTo(mymap);
 
+    // memasukan poppup marker
+        marker.bindPopup(`
+            <?php foreach($foto as $row): ?>
+                <img src='assets/images/users/<?= $row['foto']; ?>' width='50px' style='clip-path: circle()'>
+            <?php endforeach; ?>
+            `).openPopup();
+        circle.bindPopup("I am a circle.");
+        polygon.bindPopup("I am a polygon.");
 
     </script>
 </body>
