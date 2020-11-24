@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2020 at 04:40 AM
+-- Generation Time: Nov 24, 2020 at 05:24 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -32,7 +32,7 @@ CREATE TABLE `absen` (
   `id_absen` int(10) NOT NULL,
   `jam_masuk` time DEFAULT NULL,
   `jam_keluar` time DEFAULT NULL,
-  `keterangan` text NOT NULL,
+  `keterangan` text DEFAULT NULL,
   `tanggal` date NOT NULL,
   `id_user` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -60,7 +60,14 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (14, '08:08:00', '19:03:00', '', '2020-12-08', 40, NULL, NULL),
 (15, '09:13:00', '19:03:00', '', '2020-11-08', 41, NULL, NULL),
 (16, '09:13:00', '11:12:05', '', '2020-11-16', 39, NULL, NULL),
-(17, '09:13:00', '24:08:00', '', '2020-11-08', 40, NULL, NULL);
+(17, '09:13:00', '24:08:00', '', '2020-11-08', 40, NULL, NULL),
+(20, '08:25:00', NULL, NULL, '2020-11-24', 39, '2020-11-23 23:01:22', '2020-11-23 23:01:22'),
+(21, '08:25:00', NULL, NULL, '2020-11-24', 40, '2020-11-23 23:22:05', '2020-11-23 23:22:05'),
+(22, '08:25:00', NULL, NULL, '2020-11-24', 41, '2020-11-23 23:23:54', '2020-11-23 23:23:54'),
+(23, '08:25:00', NULL, NULL, '2020-11-24', 41, '2020-11-23 23:25:16', '2020-11-23 23:25:16'),
+(24, '08:25:00', NULL, NULL, '2020-11-24', 41, '2020-11-23 23:25:24', '2020-11-23 23:25:24'),
+(25, '08:25:00', NULL, NULL, '2020-11-24', 41, '2020-11-23 23:29:30', '2020-11-23 23:29:30'),
+(26, '07:25:00', '15:00:00', NULL, '2020-11-24', 32, '2020-11-24 00:29:48', '2020-11-24 00:39:17');
 
 -- --------------------------------------------------------
 
@@ -208,10 +215,38 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$lkKmA.H2SZk4fJEb.4mf0esmo1v9E62kaYCsQ.yrHUHkAwcNtpSfy', '97e114cc120952965b1e617db2e1b8babf3b375b', 'eyJpdiI6ImorVzBRL0pZNmVZMUVmcEhXTEs4WWc9PSIsInZhbHVlIjoiRFErdkRmZFYzc0duUXNaY05OV0haQT09IiwibWFjIjoiMmY4MGIzZjA3YWFjNjk1OTU4M2JlYTI4ZDIyYjY0Yjk0YWJiNDQwODE0OTY0YjZjMjhlYzY5Y2ZmMzk0MTk5YyJ9', '2020-11-23 03:02:22', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-22 21:08:25'),
-(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', '', 2, 1, '2020-11-19 03:45:15', NULL),
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$2t4odd.RYIZQsLipKJw5O.XeBaIalE1IAWTgufDRrRzUwr436CkIm', '2a16d8fb505fcbea80a8c6d1a4b6da5b64d9543a', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-24 02:03:29'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', 'lumen-1-logo.png', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
 (40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea kabupaten bogor 116620', '08958000000', 'Mau Nikah', '', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'fd6ab7dc98779dd2a1b9f656bab13ef7fa744dc4', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-21 09:01:32');
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', '2df3afeaf6b0479c5f212d74451b42480696b18c', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-24 03:31:21');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_checkin`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_checkin` (
+`id_absen` int(10)
+,`jam_masuk` time
+,`tanggal` date
+,`id_user` int(10)
+,`status` int(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_checkout`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_checkout` (
+`id_absen` int(10)
+,`jam_keluar` time
+,`tanggal` date
+,`id_user` int(10)
+,`status` int(1)
+);
 
 -- --------------------------------------------------------
 
@@ -224,6 +259,24 @@ CREATE TABLE `v_late` (
 ,`jadwal` time
 ,`cek` int(1)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_checkin`
+--
+DROP TABLE IF EXISTS `v_checkin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_checkin`  AS  select `absen`.`id_absen` AS `id_absen`,`absen`.`jam_masuk` AS `jam_masuk`,`absen`.`tanggal` AS `tanggal`,`absen`.`id_user` AS `id_user`,timediff(`absen`.`jam_masuk`,`schedule`.`jam_masuk`) > 0 AS `status` from (`absen` join `schedule`) where `absen`.`tanggal` = curdate() ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_checkout`
+--
+DROP TABLE IF EXISTS `v_checkout`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_checkout`  AS  select `absen`.`id_absen` AS `id_absen`,`absen`.`jam_keluar` AS `jam_keluar`,`absen`.`tanggal` AS `tanggal`,`absen`.`id_user` AS `id_user`,timediff(`absen`.`jam_keluar`,`schedule`.`jam_keluar`) < 0 AS `status` from (`absen` join `schedule`) where `absen`.`tanggal` = curdate() ;
 
 -- --------------------------------------------------------
 
@@ -283,12 +336,6 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `absen`
---
-ALTER TABLE `absen`
-  MODIFY `id_absen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `admin`
