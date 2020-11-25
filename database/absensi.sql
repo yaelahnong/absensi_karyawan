@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2020 at 09:45 PM
+-- Generation Time: Nov 26, 2020 at 12:51 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -70,7 +70,29 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (25, '08:25:00', NULL, NULL, '2020-11-24', 41, '', '2020-11-23 23:29:30', '2020-11-23 23:29:30'),
 (26, '07:25:00', '15:00:00', NULL, '2020-11-24', 32, '-6.5646262, 106.7667172', '2020-11-24 00:29:48', '2020-11-24 00:39:17'),
 (27, '08:00:00', '15:00:00', NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 12:26:29', '2020-11-24 12:26:57'),
-(28, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 18:26:48', '2020-11-24 18:26:48');
+(28, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 18:26:48', '2020-11-24 18:26:48'),
+(29, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 20:59:57', '2020-11-24 20:59:57'),
+(30, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 21:30:20', '2020-11-24 21:30:20'),
+(31, '09:42:00', NULL, NULL, '2020-11-25', 32, '-6.5646262, 106.7667172', '2020-11-24 21:39:14', '2020-11-24 21:39:14'),
+(32, '07:25:00', NULL, NULL, '2020-11-24', 41, '-6.5646262, 106.7667172', '2020-11-24 21:40:44', '2020-11-24 21:40:44'),
+(33, '04:54:46', NULL, NULL, '2020-11-25', 32, '-6.5646262, 106.7667172', '2020-11-24 21:55:09', '2020-11-24 21:55:09'),
+(34, '05:01:01', NULL, NULL, '2020-11-25', 32, ', ', '2020-11-24 22:01:22', '2020-11-24 22:01:22'),
+(35, '04:07:40', NULL, NULL, '2020-11-25', 32, ', ', '2020-11-25 09:08:02', '2020-11-25 09:08:02'),
+(36, '04:26:02', NULL, NULL, '2020-11-25', 32, ', ', '2020-11-25 09:26:28', '2020-11-25 09:26:28'),
+(37, '04:32:36', NULL, NULL, '2020-11-25', 32, ', ', '2020-11-25 09:32:57', '2020-11-25 09:32:57'),
+(38, '04:36:59', NULL, NULL, '2020-11-25', 32, ', ', '2020-11-25 09:37:42', '2020-11-25 09:37:42'),
+(39, '05:23:15', NULL, NULL, '2020-11-25', 32, '-6.5646278, 106.7667145', '2020-11-25 10:23:35', '2020-11-25 10:23:35'),
+(40, '05:32:26', NULL, NULL, '2020-11-25', 32, '-6.5646267, 106.7667171', '2020-11-25 10:37:20', '2020-11-25 10:37:20'),
+(41, '17:41:00', NULL, NULL, '2020-11-25', 32, '-6.5646252, 106.7667117', '2020-11-25 10:41:29', '2020-11-25 10:41:29'),
+(42, '17:54:55', NULL, NULL, '2020-11-25', 32, '-6.5647517, 106.7667489', '2020-11-25 10:55:28', '2020-11-25 10:55:28'),
+(43, '18:01:13', NULL, NULL, '2020-11-25', 32, '-6.564626, 106.766713', '2020-11-25 11:03:32', '2020-11-25 11:03:32'),
+(44, '18:14:02', NULL, NULL, '2020-11-25', 32, '-6.5646276, 106.7667138', '2020-11-25 11:14:20', '2020-11-25 11:14:20'),
+(45, '18:17:04', NULL, NULL, '2020-11-25', 32, '-6.5646264, 106.7667138', '2020-11-25 11:17:21', '2020-11-25 11:17:21'),
+(46, '18:21:42', NULL, NULL, '2020-11-25', 32, '-6.5646242, 106.7667148', '2020-11-25 11:22:16', '2020-11-25 11:22:16'),
+(47, '18:25:28', '20:05:00', NULL, '2020-11-25', 32, '-6.5646262, 106.7667133', '2020-11-25 11:26:30', '2020-11-25 11:29:58'),
+(48, '18:31:43', NULL, NULL, '2020-11-25', 32, '-6.5646238, 106.7667131', '2020-11-25 11:32:06', '2020-11-25 11:32:06'),
+(49, '18:34:23', '18:34:23', NULL, '2020-11-25', 32, '-6.5646279, 106.7667159', '2020-11-25 11:34:43', '2020-11-25 11:34:54'),
+(50, '06:46:54', '06:48:30', NULL, '2020-11-26', 32, '-6.5647519, 106.76675', '2020-11-25 23:48:01', '2020-11-25 23:49:05');
 
 -- --------------------------------------------------------
 
@@ -160,7 +182,8 @@ CREATE TABLE `location` (
 
 INSERT INTO `location` (`id_location`, `coordinate`) VALUES
 (1, '40.689879098597345,-73.62141981562503'),
-(2, '-6.564594775402231,106.76674612024894');
+(2, '-6.564594775402231,106.76674612024894'),
+(3, '-6.564595774636001,106.76675081411472');
 
 -- --------------------------------------------------------
 
@@ -203,7 +226,8 @@ CREATE TABLE `qrcode` (
 
 INSERT INTO `qrcode` (`id_qrcode`, `png`, `svg`) VALUES
 (1, '101d677dc110f179c972dfcdd89ef7a7.png', '101d677dc110f179c972dfcdd89ef7a7.svg'),
-(2, '794884f523c36fbfabe9fe0da2cb55a9.png', '794884f523c36fbfabe9fe0da2cb55a9.svg');
+(2, '794884f523c36fbfabe9fe0da2cb55a9.png', '794884f523c36fbfabe9fe0da2cb55a9.svg'),
+(3, '5bde88de1cb9579e0370c63f80911c85.png', '5bde88de1cb9579e0370c63f80911c85.svg');
 
 -- --------------------------------------------------------
 
@@ -243,6 +267,8 @@ CREATE TABLE `user` (
   `reset_password_expires` datetime DEFAULT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `alamat` text NOT NULL,
+  `kota` text NOT NULL,
+  `provinsi` text NOT NULL,
   `no_telp` varchar(20) NOT NULL,
   `status` text NOT NULL,
   `foto` text DEFAULT NULL,
@@ -256,11 +282,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$2t4odd.RYIZQsLipKJw5O.XeBaIalE1IAWTgufDRrRzUwr436CkIm', 'b57e8362532fe2b769e735e69be8b90caac44a68', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat Bogor 16113', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-24 18:56:20'),
-(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', '089614224096', 'Jomblo', 'lumen-1-logo.png', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
-(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea kabupaten bogor 116620', '08958000000', 'Mau Nikah', '', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'a04381e37ec6d5ecebe940545794c9fbe927d66c', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug Kab.Sukabumi ', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-24 18:24:24');
+INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `kota`, `provinsi`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$mNh3L97FP3HAPWVlBW2c7OuCZq2zcrvQ8sXoaWlfSh4EhUgTqsXA6', 'a41abcb49469be39a8f317569856ea69acd72dd2', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-25 23:46:53'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'lumen-1-logo.png', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
+(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', '', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'db0c6d575369987aba9efdfc83a3e6a00f98a9af', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-25 22:27:07');
 
 -- --------------------------------------------------------
 
@@ -318,7 +344,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_checkout`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_checkout`  AS  select `absen`.`id_absen` AS `id_absen`,`absen`.`jam_keluar` AS `jam_keluar`,`absen`.`tanggal` AS `tanggal`,`absen`.`id_user` AS `id_user`,timediff(`absen`.`jam_keluar`,`schedule`.`jam_keluar`) < 0 AS `status` from (`absen` join `schedule`) where `absen`.`tanggal` = curdate() ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_checkout`  AS  select `absen`.`id_absen` AS `id_absen`,`absen`.`jam_keluar` AS `jam_keluar`,`absen`.`tanggal` AS `tanggal`,`absen`.`id_user` AS `id_user`,timediff(`absen`.`jam_keluar`,`schedule`.`jam_keluar`) < 0 AS `status` from (`absen` join `schedule`) where `absen`.`tanggal` = curdate() and `absen`.`jam_keluar` > 0 ;
 
 -- --------------------------------------------------------
 
@@ -407,7 +433,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `id_location` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_location` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `overtime`
@@ -419,7 +445,7 @@ ALTER TABLE `overtime`
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id_qrcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_qrcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `schedule`
