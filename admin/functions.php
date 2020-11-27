@@ -296,4 +296,23 @@
     } 
     // UBAH SCHEDULE END
 
+    //APPROVE OVERTIME START
+    function approve_overtime($id){
+         global $conn;
+
+        mysqli_query($conn, "UPDATE overtime SET status = 'approved' WHERE id_overtime = $id");
+        return mysqli_affected_rows($conn);
+    }
+    //APPROVE OVERTIME END
+
+    //REJECT OVERTIME START
+        function reject_overtime($id){
+         global $conn;
+
+        $reject = mysqli_query($conn, "UPDATE overtime SET status = 'rejected' WHERE id_overtime = $id");
+        return mysqli_affected_rows($conn);
+    }
+    //
+
+
 ?>

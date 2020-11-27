@@ -6,11 +6,12 @@
         header("Location: login.php");
     }
 
-    $v_overtime = query("SELECT user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, absen.tanggal 
-                            FROM user, akses, overtime, absen 
-                            WHERE absen.id_absen = overtime.id_absen 
-                            AND user.id_user = absen.id_user 
-                            AND akses.id_akses = user.id_akses");
+    $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
+        FROM user, akses, overtime
+        WHERE user.id_user = overtime.id_user 
+        AND akses.id_akses = user.id_akses
+        ORDER BY id_overtime DESC
+        ");
 ?>
 
 
@@ -29,6 +30,9 @@
     <!-- DataTables -->
     <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Sweetalert CSS -->
+    <link href="../plugins/sweet-alert2/sweetalert2.css" rel="stylesheet" type="text/css">
 
     <!-- Responsive datatable examples -->
     <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -90,6 +94,8 @@
                                                     <th scope="col">Leave</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Date</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
         
@@ -104,6 +110,12 @@
                                                     <td><?= $row['jam_selesai']; ?></td>
                                                     <td><?= $row['ket_overtime']; ?></td>
                                                     <td><?= $row['tanggal']; ?></td>
+                                                    <td><?= $row['status']; ?></td>
+
+                                                    <td>
+                                                        <a onclick="popupApprove()" class="btn btn-success btn-sm rounded-0 text-light">Approve</i></a>
+                                                        <a onclick="popupReject()" class="btn btn-danger btn-sm rounded-0 text-light">Reject</i></a>
+                                                    </td>
                                                 </tr>
 
                                             <?php endforeach; ?>
@@ -159,6 +171,12 @@
     <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
     <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
+    <!-- Sweet-Alert  -->
+    <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <!-- <script src="assets/js/sweetalert2.all.min.js"></script> -->
+    <!-- <script src="assets/pages/sweet-alert.init.js"></script>  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <!--Morris Chart-->
     <!-- <script src="../plugins/morris/morris.min.js"></script> -->
     <!-- <script src="../plugins/raphael/raphael.min.js"></script> -->
@@ -171,6 +189,53 @@
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 
+    <script>
+            function popupApprove() {
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You sure approve with this overtime!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Approve it!',
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        swal.fire({
+                            title:'Approve!',
+                            text: 'File has been Approve.',
+                      }).then((result) => {
+                            if(result.isConfirmed) {
+                                window.location.href="overtime-approve.php?id=<?= $row['id_overtime']; ?>";
+                            }
+                        })
+                    } else if(result.isDismissed) {
+
+                    }
+                });
+            }
+
+            function popupReject() {
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You sure reject with this overtime!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, reject it!',
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        swal.fire({
+                            title:'Reject!',
+                            text: 'File has been Rejectend.',
+                      }).then((result) => {
+                            if(result.isConfirmed) {
+                                window.location.href="overtime-reject.php?id=<?= $row['id_overtime']; ?>";
+                            }
+                        })
+                    } else if(result.isDismissed) {
+
+                    }
+                });
+            }
+        </script>
 </body>
 
 </html>

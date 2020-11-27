@@ -232,7 +232,7 @@
         data: {
             labels: [<?php foreach($bulan as $bln) { echo "'" . $bln['bulan'] . "',"; } ?>],
             datasets: [{
-                label: 'Attendance Count',
+                label: 'Attendance Count<br>',
                 borderColor: "#30419b",
                 data: [<?php foreach($kehadiran as $trs) { echo $trs['jumlah_kehadiran'] . ','; } ?>]
             }]
