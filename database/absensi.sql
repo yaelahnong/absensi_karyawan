@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 08:59 AM
+-- Generation Time: Nov 28, 2020 at 11:48 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -92,7 +92,9 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (47, '18:25:28', '20:05:00', NULL, '2020-11-25', 32, '-6.5646262, 106.7667133', '2020-11-25 11:26:30', '2020-11-25 11:29:58'),
 (48, '18:31:43', NULL, NULL, '2020-11-25', 32, '-6.5646238, 106.7667131', '2020-11-25 11:32:06', '2020-11-25 11:32:06'),
 (49, '18:34:23', '18:34:23', NULL, '2020-11-25', 32, '-6.5646279, 106.7667159', '2020-11-25 11:34:43', '2020-11-25 11:34:54'),
-(50, '20:21:59', '20:21:59', NULL, '2020-11-26', 32, '-6.5647517, 106.7667489', '2020-11-26 13:22:24', '2020-11-26 13:22:32');
+(50, '20:21:59', '20:21:59', NULL, '2020-11-26', 32, '-6.5647517, 106.7667489', '2020-11-26 13:22:24', '2020-11-26 13:22:32'),
+(51, '23:58:16', '23:58:17', NULL, '2020-11-27', 32, '-6.5646247, 106.7667162', '2020-11-27 17:00:17', '2020-11-27 17:00:21'),
+(52, '05:42:04', '05:43:39', NULL, '2020-11-29', 32, '-6.5646266, 106.7667171', '2020-11-28 22:43:38', '2020-11-28 22:43:54');
 
 -- --------------------------------------------------------
 
@@ -166,8 +168,17 @@ CREATE TABLE `cuti` (
 
 INSERT INTO `cuti` (`id_cuti`, `tanggal_mulai`, `tanggal_selesai`, `ket_cuti`, `status`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, '2020-12-30', '2020-12-02', 'Annual Leave', 'pending', 41, NULL, NULL),
-(2, '2020-11-28', '2020-11-29', 'Uji Sertifikasi', 'pending', 41, '2020-11-26 21:48:20', '2020-11-26 21:48:20'),
-(3, '2020-11-28', '2020-11-29', 'Uji Sertifikasi', 'pending', 32, '2020-11-26 22:21:27', '2020-11-26 22:21:27');
+(2, '2020-11-28', '2020-11-29', 'Uji Sertifikasi', 'rejected', 41, '2020-11-26 21:48:20', '2020-11-26 21:48:20'),
+(3, '2020-11-28', '2020-11-29', 'Uji Sertifikasi', 'pending', 32, '2020-11-26 22:21:27', '2020-11-26 22:21:27'),
+(5, '2020-11-28', '2020-11-29', 'Uji Sertifikasi', 'approved', 32, '2020-11-27 14:09:08', '2020-11-27 14:09:08'),
+(6, '2020-11-28', '2020-12-01', 'Liburan Keluarga', 'approved', 41, '2020-11-27 14:31:25', '2020-11-27 14:31:25'),
+(7, '2020-11-27', '2020-11-30', 'Pulang Kampung', 'approved', 41, '2020-11-27 16:10:34', '2020-11-27 16:10:34'),
+(8, '2020-11-28', '2020-11-27', 'liburan', 'approved', 32, '2020-11-27 16:24:35', '2020-11-27 16:24:35'),
+(9, '2016-11-29', '2020-11-30', 'holiday', 'rejected', 41, '2020-11-28 14:55:41', '2020-11-28 14:55:41'),
+(10, '2020-11-29', '2020-12-30', 'Annual Leave', 'approved', 41, '2020-11-28 15:02:00', '2020-11-28 15:02:00'),
+(11, '2020-12-29', '2020-12-31', 'Annual Leave', 'approved', 41, '2020-11-28 15:38:54', '2020-11-28 15:38:54'),
+(12, '2020-12-11', '2020-11-15', 'Pulang Kampung', 'pending', 41, '2020-11-28 15:58:52', '2020-11-28 15:58:52'),
+(13, '2020-11-29', '2020-11-30', 'liburan', 'approved', 41, '2020-11-28 21:05:56', '2020-11-28 21:05:56');
 
 -- --------------------------------------------------------
 
@@ -207,9 +218,7 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`id_location`, `coordinate`) VALUES
-(1, '40.689879098597345,-73.62141981562503'),
-(2, '-6.564594775402231,106.76674612024894'),
-(3, '-6.564595774636001,106.76675081411472');
+(1, '-6.564593110012669,106.76674343803992');
 
 -- --------------------------------------------------------
 
@@ -237,10 +246,16 @@ CREATE TABLE `overtime` (
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `status`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, '19:00:00', '23:00:00', 'Bug Fixing', 1, 'approved', '2020-11-25', 32, '2020-11-09 18:39:08', NULL),
 (2, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'rejected', '2020-11-26', 32, '2020-11-26 14:25:23', '2020-11-26 14:25:23'),
-(3, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'pending', '2020-11-28', 41, '2020-11-26 21:21:47', '2020-11-26 21:21:47'),
-(4, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'pending', '2020-11-28', 41, '2020-11-26 21:22:49', '2020-11-26 21:22:49'),
+(3, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'approved', '2020-11-28', 41, '2020-11-26 21:21:47', '2020-11-26 21:21:47'),
+(4, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'approved', '2020-11-28', 41, '2020-11-26 21:22:49', '2020-11-26 21:22:49'),
 (5, '07:00:43', '01:00:43', 'Begadank', NULL, 'pending', '2018-11-29', 32, '2020-11-26 21:23:59', '2020-11-26 21:23:59'),
-(6, '08:00:44', '11:30:44', 'Debugging', NULL, 'pending', '2020-11-30', 32, '2020-11-26 21:38:40', '2020-11-26 21:38:40');
+(6, '08:00:44', '11:30:44', 'Debugging', NULL, 'pending', '2020-11-30', 32, '2020-11-26 21:38:40', '2020-11-26 21:38:40'),
+(7, '08:00:56', '12:30:56', 'ngerjain projek', NULL, 'pending', '2020-11-29', 32, '2020-11-27 16:25:45', '2020-11-27 16:25:45'),
+(8, '08:00:57', '12:00:57', 'Adding new feature', NULL, 'approved', '2020-11-29', 41, '2020-11-28 15:09:55', '2020-11-28 15:09:55'),
+(9, '08:00:39', '11:40:39', 'adding new menu', NULL, 'approved', '2020-12-01', 41, '2020-11-28 15:37:16', '2020-11-28 15:37:16'),
+(10, '09:00:58', '12:00:58', 'adding new features', NULL, 'rejected', '2020-12-12', 41, '2020-11-28 15:57:44', '2020-11-28 15:57:44'),
+(11, '09:00:20', '12:00:20', 'Layouting', NULL, 'approved', '2020-11-29', 32, '2020-11-28 18:11:31', '2020-11-28 18:11:31'),
+(12, '12:00:51', '06:00:51', 'nginep', NULL, 'approved', '2020-11-30', 41, '2020-11-28 20:26:26', '2020-11-28 20:26:26');
 
 -- --------------------------------------------------------
 
@@ -259,9 +274,7 @@ CREATE TABLE `qrcode` (
 --
 
 INSERT INTO `qrcode` (`id_qrcode`, `png`, `svg`) VALUES
-(1, '101d677dc110f179c972dfcdd89ef7a7.png', '101d677dc110f179c972dfcdd89ef7a7.svg'),
-(2, '794884f523c36fbfabe9fe0da2cb55a9.png', '794884f523c36fbfabe9fe0da2cb55a9.svg'),
-(3, '5bde88de1cb9579e0370c63f80911c85.png', '5bde88de1cb9579e0370c63f80911c85.svg');
+(1, '5394901298a4e6116c3c8fe2644d235b.png', '5394901298a4e6116c3c8fe2644d235b.svg');
 
 -- --------------------------------------------------------
 
@@ -317,10 +330,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `kota`, `provinsi`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$drSkrLMBY9C1hAk8otQCw.rU//O.dP9PKYRMZQo3IpxS0Dp8vyOYy', '14f4db206dc15c928015c99b51043d89a0aba420', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-26 18:50:32'),
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$drSkrLMBY9C1hAk8otQCw.rU//O.dP9PKYRMZQo3IpxS0Dp8vyOYy', '6fd52fa8248997d07821e99ec93544564e78760c', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-28 22:28:47'),
 (39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'lumen-1-logo.png', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
 (40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', '', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', '4b7a1161a6b6020ac07bb5802ec9a0e9f1de60ee', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-26 21:15:57');
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', '017d75c0350b8c550fd8158fc9f857149dbc29e6', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'laku keras', 'damar.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-27 14:09:26');
 
 -- --------------------------------------------------------
 
@@ -365,6 +378,40 @@ CREATE TABLE `v_late` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_leave`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_leave` (
+`id_cuti` int(10)
+,`start_day` varchar(2)
+,`start_month` varchar(3)
+,`end_day` varchar(2)
+,`end_month` varchar(3)
+,`ket_cuti` text
+,`status` enum('pending','approved','rejected')
+,`id_user` int(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_overtime`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_overtime` (
+`id_overtime` int(10)
+,`jam_mulai` varchar(10)
+,`jam_selesai` varchar(10)
+,`ket_overtime` text
+,`day` varchar(2)
+,`month` varchar(3)
+,`status` enum('pending','approved','rejected')
+,`id_user` int(10)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_checkin`
 --
 DROP TABLE IF EXISTS `v_checkin`;
@@ -388,6 +435,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `v_late`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_late`  AS  select `absen`.`jam_masuk` AS `datang`,`schedule`.`jam_masuk` AS `jadwal`,timediff(`absen`.`jam_masuk`,`schedule`.`jam_masuk`) > 0 AS `cek` from (`absen` join `schedule`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_leave`
+--
+DROP TABLE IF EXISTS `v_leave`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_leave`  AS  select `cuti`.`id_cuti` AS `id_cuti`,date_format(`cuti`.`tanggal_mulai`,'%d') AS `start_day`,substr(date_format(`cuti`.`tanggal_mulai`,'%M'),1,3) AS `start_month`,date_format(`cuti`.`tanggal_selesai`,'%d') AS `end_day`,substr(date_format(`cuti`.`tanggal_selesai`,'%M'),1,3) AS `end_month`,`cuti`.`ket_cuti` AS `ket_cuti`,`cuti`.`status` AS `status`,`user`.`id_user` AS `id_user` from (`cuti` join `user`) where `user`.`id_user` = `cuti`.`id_user` order by `cuti`.`id_cuti` desc ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_overtime`
+--
+DROP TABLE IF EXISTS `v_overtime`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_overtime`  AS  select `overtime`.`id_overtime` AS `id_overtime`,date_format(`overtime`.`jam_mulai`,'%H:%i') AS `jam_mulai`,date_format(`overtime`.`jam_selesai`,'%H:%i') AS `jam_selesai`,`overtime`.`ket_overtime` AS `ket_overtime`,date_format(`overtime`.`tanggal`,'%d') AS `day`,substr(date_format(`overtime`.`tanggal`,'%M'),1,3) AS `month`,`overtime`.`status` AS `status`,`user`.`id_user` AS `id_user` from (`user` join `overtime`) where `user`.`id_user` = `overtime`.`id_user` order by `overtime`.`id_overtime` desc ;
 
 --
 -- Indexes for dumped tables
@@ -467,7 +532,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -476,22 +541,16 @@ ALTER TABLE `department`
   MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `location`
---
-ALTER TABLE `location`
-  MODIFY `id_location` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id_qrcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_qrcode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `schedule`
