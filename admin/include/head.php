@@ -83,11 +83,11 @@ if (isset($_SESSION['logo'])) {
     $logo = $_SESSION['logo'];
 }
 
-if ($_CONFIG['delete_old_files'] && !$logo) {
-    $lifetime = $_CONFIG['file_lifetime'];
-    deleteOldFiles($PNG_WEB_DIR, ($lifetime*3600));
-    deleteOldFiles($USER_UPLOADS, ($lifetime*3600));
-}
+// if ($_CONFIG['delete_old_files'] && !$logo) {
+//     $lifetime = $_CONFIG['file_lifetime'];
+//     deleteOldFiles($PNG_WEB_DIR, ($lifetime*3600));
+//     deleteOldFiles($USER_UPLOADS, ($lifetime*3600));
+// }
 
 if ($logo) {
     $thumbsize = $_CONFIG['thumb_size'];

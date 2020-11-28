@@ -86,27 +86,27 @@ function setError($error)
 *
 * @return a clean directory
 */
-function deleteOldFiles($dir = 'temp/', $age = 3600)
-{
-    if (file_exists($dir) && $handle = opendir($dir)) {
-        while (false !== ($file = readdir($handle))) { 
+// function deleteOldFiles($dir = 'temp/', $age = 3600)
+// {
+//     if (file_exists($dir) && $handle = opendir($dir)) {
+//         while (false !== ($file = readdir($handle))) { 
         
-            if (file_exists($dir.$file)) {
+//             if (file_exists($dir.$file)) {
 
-                if (preg_match("/^.*\.(png|svg|gif|jpeg|jpg|eps)$/i", $file)) {
+//                 if (preg_match("/^.*\.(png|svg|gif|jpeg|jpg|eps)$/i", $file)) {
   
-                    $filelastmodified = filemtime($dir.$file);
-                    $now = time();
-                    $life = $now - $filelastmodified;
-                    if ($life > $age) {
-                        unlink($dir.$file);
-                    }
-                }
-            }
-        }
-        closedir($handle); 
-    }
-}
+//                     $filelastmodified = filemtime($dir.$file);
+//                     $now = time();
+//                     $life = $now - $filelastmodified;
+//                     if ($life > $age) {
+//                         unlink($dir.$file);
+//                     }
+//                 }
+//             }
+//         }
+//         closedir($handle); 
+//     }
+// }
 
 /**
 * Language menu

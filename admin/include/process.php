@@ -135,7 +135,7 @@ case '#location':
     $lng = filter_input(INPUT_POST, "lng", FILTER_SANITIZE_STRING);
     if ($lat && $lng) {
         $output_data = $lat.",".$lng; 
-        mysqli_query($conn, "INSERT INTO location(coordinate) VALUES('$output_data')");
+        mysqli_query($conn, "UPDATE location SET coordinate = '$output_data' WHERE id_location = 1");
     }
     break;
 case '#vcard':
@@ -244,7 +244,6 @@ case '#bitcoin':
 
 
 if ($output_data) {
-
     $trasp = (isset($_POST['transparent']) ? true : false);
 
     $filenamepng = $PNG_TEMP_DIR.md5($output_data.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
@@ -291,7 +290,7 @@ if ($output_data) {
         $result['otp'] = $otp;
     }
 
-    mysqli_query($conn, "INSERT INTO qrcode(png, svg) VALUES('$finalpng', '$finalsvg')");
+    mysqli_query($conn, "UPDATE qrcode SET png = '$finalpng', svg = '$finalsvg' WHERE id_qrcode = 1");
 
     $result = json_encode($result);
 } else {
