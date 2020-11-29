@@ -127,7 +127,7 @@
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 </td>
                                             </tr>
 
@@ -196,7 +196,7 @@
         <script src="assets/js/app.js"></script>
 
         <script>
-            function popupDelete() {
+            function popupDelete(id_user) {
                 swal.fire({
                     title: 'Are you sure?',
                     text: 'You won\'t be able to revert this!',
@@ -211,7 +211,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href="user-delete.php?id=<?= $row['id_user']; ?>";
+                                window.location.href=`user-delete.php?id=${id_user}`;
                             }
                         })
                     } else if(result.isDismissed) {

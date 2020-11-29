@@ -17,6 +17,7 @@
                     <ul class="submenu">
                         <li><a href="attendance.php">Attendance</a></li>
                         <li><a href="overtime.php">Overtime</a></li>
+                        <li><a href="Leave.php">Leave</a></li>
                     </ul>
                 </li>
 

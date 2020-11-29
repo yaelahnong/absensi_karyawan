@@ -296,11 +296,36 @@
     } 
     // UBAH SCHEDULE END
 
+    //UBAH OVERTIME START
+    function ubah_overtime($data) {
+        global $conn;
+
+        $id_overtime = $_POST['id_overtime'];
+        $jam_mulai = $_POST['jam_mulai'];
+        $jam_selesai = $_POST['jam_selesai'];
+        $ket_overtime = $_POST['ket_overtime'];
+        $tanggal = $_POST['tanggal'];
+        $updated_at = $_POST['updated_at'];
+        
+
+        $query = "UPDATE overtime 
+                    SET jam_mulai = '$jam_mulai', 
+                        jam_selesai = '$jam_selesai',
+                        ket_overtime = '$ket_overtime',
+                        tanggal = '$tanggal',
+                        updated_at = '$updated_at'
+                    WHERE id_overtime = '$id_overtime'";
+        
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    } 
+    //UBAH OVERTIME END
+
     //APPROVE OVERTIME START
     function approve_overtime($id){
          global $conn;
 
-        mysqli_query($conn, "UPDATE overtime SET status = 'approved' WHERE id_overtime = $id");
+        mysqli_query($conn, "UPDATE overtime SET status='approved' WHERE id_overtime='$id'");
         return mysqli_affected_rows($conn);
     }
     //APPROVE OVERTIME END
@@ -309,10 +334,27 @@
         function reject_overtime($id){
          global $conn;
 
-        $reject = mysqli_query($conn, "UPDATE overtime SET status = 'rejected' WHERE id_overtime = $id");
+        mysqli_query($conn, "UPDATE overtime SET status ='rejected' WHERE id_overtime='$id'");
         return mysqli_affected_rows($conn);
     }
     //
 
+    //APPROVE LEAVE START
+     function approve_leave($id){
+     global $conn;
 
+        mysqli_query($conn, "UPDATE cuti SET status = 'approved' WHERE id_cuti = $id");
+        return mysqli_affected_rows($conn);
+    }
+    //APPROVE LEAVE END
+
+    //APPROVE LEAVE START
+     function reject_leave($id){
+     global $conn;
+
+        mysqli_query($conn, "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
+        return mysqli_affected_rows($conn);
+    }
+    //APPROVE LEAVE END
+        
 ?>

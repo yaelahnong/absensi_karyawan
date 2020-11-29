@@ -6,11 +6,11 @@
         header("Location: login.php");
     }
 
-    $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
-        FROM user, akses, overtime
-        WHERE user.id_user = overtime.id_user 
+    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
+        FROM user, akses, cuti
+        WHERE user.id_user = cuti.id_user 
         AND akses.id_akses = user.id_akses
-        ORDER BY id_overtime DESC
+        ORDER BY id_cuti DESC
         ");
 ?>
 
@@ -71,7 +71,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                    <li class="breadcrumb-item active">Overtime</li>
+                                    <li class="breadcrumb-item active">Leave</li>
                                 </ol>
                             </div>
                         </div>
@@ -90,10 +90,9 @@
                                                     <th scope="col">Employee ID Number</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Start</th>
-                                                    <th scope="col">Leave</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">Leave Date</th>
                                                     <th scope="col">Description</th>
-                                                    <th scope="col">Date</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -101,21 +100,19 @@
         
         
                                             <tbody>
-                                            <?php foreach($v_overtime as $row): ?>
+                                            <?php foreach($v_leave as $row): ?>
                                                 <tr>
                                                     <td><?= $row['nip']; ?></td>
                                                     <td><?= $row['nama']; ?></td>
                                                     <td><?= $row['ket_akses']; ?></td>
-                                                    <td><?= $row['jam_mulai']; ?></td>
-                                                    <td><?= $row['jam_selesai']; ?></td>
-                                                    <td><?= $row['ket_overtime']; ?></td>
-                                                    <td><?= $row['tanggal']; ?></td>
+                                                    <td><?= $row['tanggal_mulai']; ?></td>
+                                                    <td><?= $row['tanggal_selesai']; ?></td>
+                                                    <td><?= $row['ket_cuti']; ?></td>
                                                     <td><?= $row['status']; ?></td>
 
                                                     <td>
-                                                        <a onclick="popupApprove(<?= $row['id_overtime']; ?>)" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
-                                                        <a onclick="popupReject(<?= $row['id_overtime']; ?> )" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit.php?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                       <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
+                                                       <a onclick="popupReject(<?= $row['id_cuti']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -191,10 +188,10 @@
     <script src="assets/js/app.js"></script>
 
     <script>
-            function popupApprove(id_overtime) {
+            function popupApprove(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure approve with this overtime!',
+                    text: 'You sure approve with this leave!',
                     icon: 'info',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, Approve it!',
@@ -205,7 +202,7 @@
                             text: 'File has been Approve.',
                       }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`overtime-approve.php?id=${id_overtime}`;
+                                window.location.href=`leave-approve.php?id=${id_cuti}`;
                             }
                         })
                     } else if(result.isDismissed) {
@@ -214,10 +211,10 @@
                 });
             }
 
-            function popupReject(id_overtime) {
+            function popupReject(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure reject with this overtime!',
+                    text: 'You sure reject with this leave!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, reject it!',
@@ -228,7 +225,7 @@
                             text: 'File has been Rejectend.',
                       }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`overtime-reject.php?id=${id_overtime}`;
+                                window.location.href=`leave-reject.php?id=${id_cuti}`;
                             }
                         })
                     } else if(result.isDismissed) {
