@@ -94,7 +94,9 @@
                                                     <th scope="col">Leave Date</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Status</th>
+                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 ): ?>
                                                     <th scope="col">Action</th>
+                                                    <?php endif; ?>
                                                 </tr>
                                             </thead>
         
@@ -109,11 +111,12 @@
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
                                                     <td><?= $row['status']; ?></td>
-
+                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2): ?>
                                                     <td>
-                                                       <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
-                                                       <a onclick="popupReject(<?= $row['id_cuti']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                        <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
+                                                        <a onclick="popupReject(<?= $row['id_cuti']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
                                                     </td>
+                                                    <?php endif; ?>
                                                 </tr>
 
                                             <?php endforeach; ?>

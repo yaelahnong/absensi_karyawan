@@ -2,8 +2,8 @@
       require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+    if(!$_SESSION['admin']['id_akses'] == 0 || !$_SESSION['admin']['id_akses'] == 3) {
+        header("Location: overtime.php");
     }
      if(isset($_GET['id'])) {
         $id_overtime = $_GET['id'];

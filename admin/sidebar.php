@@ -34,7 +34,8 @@
                         <li><a href="user.php">User List</a></li>
                     </ul>
                 </li>
-
+                
+                <?php if($_SESSION['admin']['id_akses'] == 0): ?>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-setting-2"></i><span> App Settings <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
@@ -42,6 +43,7 @@
                         <li><a href="settings-schedule.php">Schedule</a></li>
                     </ul>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
         <!-- Sidebar -->

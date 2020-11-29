@@ -2,7 +2,11 @@
     require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
+    if(isset($_SESSION['admin'])) {
+        if(!$_SESSION['admin']['id_akses'] == 0 || !$_SESSION['admin']['id_akses'] == 1) {
+            header("Location: user.php");
+        }
+    } else {
         header("Location: login.php");
     }
 

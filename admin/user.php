@@ -81,6 +81,7 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
+                                        <?php if($_SESSION['admin'] == 0 || $_SESSION['admin']['id_akses'] == 1): ?>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
@@ -89,6 +90,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php endif; ?>
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
@@ -130,11 +132,7 @@
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                <?php  endif; ?>
-                                                <?php
-                                                    $level = $_SESSION['admin']['id_akses'];
-                                                    if($level == 0 || $level == 1 ) : ?> 
-                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
                                             </tr>
