@@ -126,8 +126,16 @@
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
+                                                     <?php
+                                                    $level = $_SESSION['admin']['id_akses'];
+                                                    if($level == 0 || $level == 1 ) : ?>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                <?php  endif; ?>
+                                                     <?php
+                                                    $level = $_SESSION['admin']['id_akses'];
+                                                    if($level == 0 || $level == 1 ) : ?> 
+                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
 
