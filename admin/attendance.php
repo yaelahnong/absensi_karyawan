@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
 
-    $v_absen = query("SELECT user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
+    $v_absen = query("SELECT absen.id_absen, user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
                         FROM user, absen, akses, schedule 
                         WHERE user.id_user = absen.id_user
                         AND akses.id_akses = user.id_akses AND absen.tanggal = curdate() 
@@ -16,7 +16,16 @@
                         WHERE user.id_user = absen.id_user
                         AND akses.id_akses = user.id_akses 
                     ");
-    $foto = query("SELECT user.foto FROM user, absen WHERE user.id_user = absen.id_user");
+    $maps = query("SELECT user.foto, absen.koordinat FROM user, absen WHERE user.id_user = absen.id_user");
+
+    if(isset($_GET['id'])) {
+        $id_absen = $_GET['id'];
+        $maps = query("SELECT user.foto, absen.koordinat FROM user, absen WHERE absen.id_absen = $id_absen AND user.id_user = absen.id_user")[0];
+
+        $data = explode(',', $maps['koordinat']);
+    }
+
+
 ?>
 
 
@@ -106,63 +115,67 @@
                     <!-- START ROW -->
                     <div class="row pb-4">
                         <div class="col-xl-3 left-side">
-                            <?php foreach($v_absen as $row): ?>
-                            <div class="card m-b-30">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div>
-                                            <img class="rounded-circle" width="40px" height="40px" src="assets/images/users/<?= $row['foto'];?>"></img>
-                                        </div>
-                                        <div class="pl-3">  
-                                            <span><b><?= $row['nama']; ?></b></span>
-                                            <span class="d-block"><?= $row['ket_akses']; ?></span>
-                                        </div>
-                                    </div>
-                                    <?php
-                                        if($row['keterangan'] == 0):                                    
-                                    ?>
-                                    <div class="alert alert-success mt-3 text-center" role="alert">
-                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                        </svg>
-                                        <span class="pl-2">
-                                        <?php 
-                                            $jam_masuk = strtotime($row['jam_masuk']);
-                                            echo date('H:i A', $jam_masuk);
-                                        ?> 
-                                        </span>                                   
-                                    </div>
-                                    <?php else: ?>
-                                    <div class="alert alert-danger mt-3 text-center" role="alert">
-                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                        </svg>
-                                        <span class="pl-2">
-                                        <?php 
-                                            $jam_masuk = strtotime($row['jam_masuk']);
-                                            echo date('H:i A', $jam_masuk);
-                                        ?> 
-                                        </span>                                   
-                                    </div>
-                                    <?php endif; ?>
-                                    <?php
-                                        if($row['jam_keluar']):
-                                    ?>
-                                    <div class="alert alert-success mt-3 text-center" role="alert">
-                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                        </svg>
-                                        <span class="pl-2">
-                                        <?php 
-                                            $jam_keluar = strtotime($row['jam_keluar']);
-                                            echo date('H:i A', $jam_keluar);
-                                        ?> 
-                                        </span>                                   
-                                    </div>
-                                    <?php endif; ?>
+                            <?php foreach($v_absen as $row): ?> 
+                                <a href="attendance.php?id=<?= $row['id_absen'];?>">
+                                    
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <img class="rounded-circle" width="40px" height="40px" src="assets/images/users/<?= $row['foto'];?>"></img>
+                                                </div>
+                                                <div class="pl-3">  
+                                                    <span><b><?= $row['nama']; ?></b></span>
+                                                    <span class="d-block"><?= $row['ket_akses']; ?></span>
+                                                </div>
+                                            </div>
+                                            <?php
+                                                if($row['keterangan'] == 0):                                    
+                                            ?>
+                                            <div class="alert alert-success mt-3 text-center" role="alert">
+                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                                </svg>
+                                                <span class="pl-2">
+                                                <?php 
+                                                    $jam_masuk = strtotime($row['jam_masuk']);
+                                                    echo date('H:i A', $jam_masuk);
+                                                ?> 
+                                                </span>                                   
+                                            </div>
+                                            <?php else: ?>
+                                            <div class="alert alert-danger mt-3 text-center" role="alert">
+                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                                </svg>
+                                                <span class="pl-2">
+                                                <?php 
+                                                    $jam_masuk = strtotime($row['jam_masuk']);
+                                                    echo date('H:i A', $jam_masuk);
+                                                ?> 
+                                                </span>                                   
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php
+                                                if($row['jam_keluar']):
+                                            ?>
+                                            <div class="alert alert-success mt-3 text-center" role="alert">
+                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-alarm" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                                </svg>
+                                                <span class="pl-2">
+                                                <?php 
+                                                    $jam_keluar = strtotime($row['jam_keluar']);
+                                                    echo date('H:i A', $jam_keluar);
+                                                ?> 
+                                                </span>                                   
+                                            </div>
+                                            <?php endif; ?>
 
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </a>
                             <?php endforeach; ?>
                         </div>
                         <div class="col-xl-9">
@@ -262,8 +275,11 @@
     <script src="assets/js/app.js"></script>
 
     <script type="text/javascript">
-
-        var mymap = L.map('mapid').setView([-6.338117, 106.741689], 13);
+        <?php if(isset($_GET['id'])): ?>
+            var mymap = L.map('mapid').setView([<?= $data[0] . ', ' . $data[1]; ?>], 13);
+        <?php else: ?>
+            var mymap = L.map('mapid').setView([-6.338117, 106.741689], 13);
+        <?php endif; ?>
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -273,17 +289,10 @@
             zoomOffset: -1,
             accessToken: 'pk.eyJ1IjoicHVwdW9rdGF2aWEiLCJhIjoiY2tocHYzdjgwMDNuNjJ0bXNiZzV5ZWUzdiJ9.qB31-A5w3D7Mwq47EaGrXg'
         }).addTo(mymap);
+        <?php if(isset($_GET['id'])): ?>
+           var marker = L.marker([<?= $data[0] . ', ' . $data[1]; ?>]).addTo(mymap);
+       <?php endif; ?>
 
-       var marker = L.marker([-6.338117, 106.741689]).addTo(mymap);
-
-    // memasukan poppup marker
-        marker.bindPopup(`
-            <?php foreach($foto as $row): ?>
-                <img src='assets/images/users/<?= $row['foto']; ?>' width='50px' style='clip-path: circle()'>
-            <?php endforeach; ?>
-            `).openPopup();
-        circle.bindPopup("I am a circle.");
-        polygon.bindPopup("I am a polygon.");
 
     </script>
 </body>
