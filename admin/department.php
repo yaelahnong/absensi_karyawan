@@ -109,8 +109,17 @@
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+
+                                                    <?php
+                                                    $level = $_SESSION['admin']['id_akses']; 
+                                                    if($level == 0  ) : ?>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <?php endif; ?>
+                                                    <?php
+                                                    $level = $_SESSION['admin']['id_akses'];
+                                                    if($level == 0  ) : ?>
+                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
