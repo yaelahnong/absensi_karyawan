@@ -122,7 +122,9 @@
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                         <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3): ?>
+                                                            <?php if($row['status'] == 'approved' || $row['status'] == 'rejected'): ?>
                                                         <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit.php?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                            <?php endif; ?>
                                                         <?php endif; ?>
                                                     </td>
                                                     <?php endif; ?>
