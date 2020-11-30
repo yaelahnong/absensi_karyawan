@@ -226,7 +226,7 @@
     var ctx = document.getElementById('canvas').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'line',
+        type: 'bar',
 
         // The data for our dataset
         data: {
@@ -234,6 +234,7 @@
             datasets: [{
                 label: 'Attendance Count',
                 borderColor: "#30419b",
+                backgroundColor : "#30419b",
                 data: [<?php foreach($kehadiran as $trs) { echo $trs['jumlah_kehadiran'] . ','; } ?>]
             }]
         },
