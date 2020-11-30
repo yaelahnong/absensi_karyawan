@@ -1577,8 +1577,11 @@ dt {
 }
 
 .alert-success {
-  color: #155472;
-  background-color: #d4edda;
+  color: #f8f9fa;
+  /*color: #155472;*/
+  background-color: #02c58d;
+  border: 1px solid #02c58d;
+  /*background-color: #d4edda;*/
   font-weight: bold;
 }
 
@@ -1596,10 +1599,11 @@ dt {
 
 .alert-danger {
   /* color: #ffffff; */
-  color: #721c24;
+  color: #f8f9fa;
   font-weight: bold;
   /* background-color: #fc5454; */
-  background-color: #f8d7da;
+  background-color: #fc5454;
+  border: 1px solid #fc5454;
 }
 
 .alert-danger hr {
