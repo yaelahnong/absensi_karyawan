@@ -113,8 +113,10 @@
                                                     <td><?= $row['status']; ?></td>
                                                     <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2): ?>
                                                     <td>
+                                                        <?php if($row['status'] == 'pending'): ?>
                                                         <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
                                                         <a onclick="popupReject(<?= $row['id_cuti']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                        <?php endif; ?>
                                                     </td>
                                                     <?php endif; ?>
                                                 </tr>

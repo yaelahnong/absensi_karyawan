@@ -95,7 +95,7 @@
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Status</th>
-                                                    <?php if($_SESSION['admin']['id_akses'] == 2 || $_SESSION['admin']['id_akses'] == 3 ): ?>
+                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 || $_SESSION['admin']['id_akses'] == 3 ): ?>
                                                     <th scope="col">Action</th>
                                                     <?php endif; ?>
                                                 </tr>
@@ -116,8 +116,10 @@
                                                     <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 || $_SESSION['admin']['id_akses'] == 3 ): ?>
                                                     <td>
                                                         <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2): ?>
+                                                            <?php if($row['status'] == 'pending'): ?>
                                                         <a onclick="popupApprove(<?= $row['id_overtime']; ?>)" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
                                                         <a onclick="popupReject(<?= $row['id_overtime']; ?> )" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                            <?php endif; ?>
                                                         <?php endif; ?>
                                                         <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3): ?>
                                                         <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit.php?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
