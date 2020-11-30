@@ -1595,8 +1595,11 @@ dt {
 }
 
 .alert-danger {
-  color: #ffffff;
-  background-color: #fc5454;
+  /* color: #ffffff; */
+  color: #721c24;
+  font-weight: bold;
+  /* background-color: #fc5454; */
+  background-color: #f8d7da;
 }
 
 .alert-danger hr {
