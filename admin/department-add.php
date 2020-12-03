@@ -96,7 +96,7 @@
                                             <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
                                                 <label>Department</label>
-                                                <input type="text" name="department" class="form-control" required placeholder="department"/>
+                                                <input type="text" name="department" class="form-control" required/>
                                             </div>
 
                                             <div class="form-group">

@@ -2,11 +2,20 @@
     require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
+    if(isset($_SESSION['admin'])) {
+        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
+        } else {
+            header("Location: index.php");
+            exit;
+        }
+    } else {
         header("Location: login.php");
+        exit;
     }
 
-    $user = query("SELECT user.*, akses.ket_akses, department.ket_department FROM user, akses, department WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department");
+    $user = query("SELECT user.*, akses.ket_akses, department.ket_department 
+                    FROM user, akses, department 
+                    WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department ORDER BY id_user DESC");
 
 ?>
 
@@ -81,7 +90,7 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
-                                        <?php if($_SESSION['admin'] == 0 || $_SESSION['admin']['id_akses'] == 1): ?>
+                                        
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
@@ -90,7 +99,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php endif; ?>
+
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
@@ -132,7 +141,7 @@
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -189,9 +198,7 @@
 
         <!-- Sweet-Alert  -->
         <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
-        <!-- <script src="assets/js/sweetalert2.all.min.js"></script> -->
-        <!-- <script src="assets/pages/sweet-alert.init.js"></script>  -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="assets/js/sweetalert2.all.min.js"></script>
 
         <!-- Datatable init js -->
         <script src="assets/pages/datatables.init.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>   

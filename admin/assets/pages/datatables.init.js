@@ -6,12 +6,15 @@
  */
 
 $(document).ready(function() {
-    $('#datatable').DataTable();
+    $('#datatable').DataTable({
+        "order": false
+    });
 
     //Buttons examples
     var table = $('#datatable-buttons').DataTable({
         lengthChange: false,
-        buttons: ['excel', 'pdf']
+        buttons: ['excel', 'pdf'],
+        order: false
     });
 
     table.buttons().container()

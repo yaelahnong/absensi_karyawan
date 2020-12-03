@@ -21,6 +21,7 @@
                     </ul>
                 </li>
 
+                <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1): ?>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-folder"></i><span> Master <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
@@ -34,6 +35,7 @@
                         <li><a href="user.php">User List</a></li>
                     </ul>
                 </li>
+                <?php endif; ?>
                 
                 <?php if($_SESSION['admin']['id_akses'] == 0): ?>
                 <li>

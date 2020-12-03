@@ -3,11 +3,15 @@
     session_start();
 
     if(isset($_SESSION['admin'])) {
-        if(!$_SESSION['admin']['id_akses'] == 0 || !$_SESSION['admin']['id_akses'] == 1) {
-            header("Location: user.php");
+        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
+
+        } else {
+            header("Location: index.php");
+            exit;
         }
     } else {
         header("Location: login.php");
+        exit;
     }
 
     if(isset($_GET['id'])) {
@@ -123,7 +127,7 @@
                                                 <label>E-Mail</label>
                                                 <div>
                                                     <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" required
-                                                           parsley-type="email" placeholder="Enter a valid e-mail"/>
+                                                    parsley-type="email" placeholder="Enter a valid e-mail"/>
                                                 </div>
                                             </div>
                                             
@@ -182,7 +186,7 @@
                                                     <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
                                                 </select>
                                             </div>
-                                             <div class="form-group">
+                                            <div class="form-group">
                                                 <label>Department</label>
                                                 <select class="form-control" name="department">
                                                     <?php foreach($department as $row): ?> 

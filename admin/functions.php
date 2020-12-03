@@ -60,8 +60,8 @@
                                 alamat, 
                                 no_telp, 
                                 status, 
-                                id_akses,
                                 foto,
+                                id_akses,
                                 id_department,
                                 created_at
                             ) VALUES(

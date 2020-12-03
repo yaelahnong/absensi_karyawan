@@ -98,8 +98,8 @@
                                     <label>User Level</label>
                                     <select class="form-control" name="akses">
                                         <option value="1">Admin</option>
-                                        <option value="2">Project Manager</option>
-                                        <option value="3">Lead Department</option>
+                                        <option value="2">Lead Department</option>
+                                        <option value="3">Project Manager</option>
                                     </select>
                                 </div>
                             </div>

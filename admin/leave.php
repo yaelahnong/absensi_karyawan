@@ -91,7 +91,7 @@
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Position</th>
                                                     <th scope="col">Start Date</th>
-                                                    <th scope="col">Leave Date</th>
+                                                    <th scope="col">Leave</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Status</th>
                                                     <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 ): ?>

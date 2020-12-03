@@ -3,13 +3,18 @@
     session_start();
 
     if(isset($_SESSION['admin'])) {
-        if(!$_SESSION['admin']['id_akses'] == 0 || !$_SESSION['admin']['id_akses'] == 1) {
-            header("Location: user.php");
+        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
+
+        } else {
+            header("Location: index.php");
+            exit;
         }
     } else {
         header("Location: login.php");
+        exit;
     }
-        $department = query("SELECT * FROM department");
+
+    $department = query("SELECT * FROM department");
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +106,7 @@
                                             <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
                                                 <label>Employee ID Number</label>
-                                                <input type="text" name="nip" class="form-control" required placeholder="Employee ID Number"/>
+                                                <input type="number" name="nip" class="form-control" required placeholder="Employee ID Number" data-parsley-minlength="18" />
                                             </div>
 
                                             <div class="form-group">
@@ -113,7 +118,7 @@
                                                 <label>E-Mail</label>
                                                 <div>
                                                     <input type="email" name="email" class="form-control" required
-                                                           parsley-type="email" placeholder="Enter a valid e-mail"/>
+                                                    parsley-type="email" placeholder="Enter a valid e-mail"/>
                                                 </div>
                                             </div>
         

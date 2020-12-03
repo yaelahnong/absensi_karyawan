@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 10:26 AM
+-- Generation Time: Dec 03, 2020 at 10:34 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -55,7 +55,6 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (8, '07:51:09', '19:08:26', '', '2020-10-29', 41, '', '2020-10-28 17:00:00', NULL),
 (9, '07:41:30', '19:31:15', '', '2020-10-30', 32, '', '2020-10-29 17:00:00', NULL),
 (10, '07:53:26', '11:12:05', '', '2020-10-30', 39, '', '2020-10-29 17:00:00', NULL),
-(11, NULL, NULL, 'izin', '2020-11-30', 40, '-6.183668520152172, 106.58876809760712', '2020-10-29 17:00:00', NULL),
 (12, '09:09:00', '18:07:00', '', '2020-12-09', 32, '', NULL, NULL),
 (13, '07:09:00', '14:00:00', '', '2020-12-17', 39, '', NULL, NULL),
 (14, '08:08:00', '19:03:00', '', '2020-12-08', 40, '', NULL, NULL),
@@ -95,7 +94,11 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (50, '20:21:59', '20:21:59', NULL, '2020-11-26', 32, '-6.5647517, 106.7667489', '2020-11-26 13:22:24', '2020-11-26 13:22:32'),
 (51, '23:58:16', '23:58:17', NULL, '2020-11-27', 32, '-6.5646247, 106.7667162', '2020-11-27 17:00:17', '2020-11-27 17:00:21'),
 (52, '19:11:57', '19:12:10', NULL, '2020-11-29', 32, '-6.5650482, 106.7630886', '2020-11-29 12:11:57', '2020-11-29 12:12:10'),
-(53, '03:07:44', '03:07:50', NULL, '2020-11-30', 32, '-6.5646266, 106.7667171', '2020-11-29 20:07:44', '2020-11-29 20:07:50');
+(54, '16:50:34', '16:50:45', NULL, '2020-11-30', 41, '-6.5646237, 106.7667125', '2020-11-30 09:50:34', '2020-11-30 09:50:45'),
+(55, '18:19:29', '18:19:38', NULL, '2020-11-30', 39, '-6.5646284, 106.7667158', '2020-11-30 11:19:29', '2020-11-30 11:19:38'),
+(56, '18:20:25', '18:59:59', NULL, '2020-11-30', 40, '-6.5646235, 106.7667118', '2020-11-30 11:20:25', '2020-11-30 11:59:59'),
+(57, '20:53:25', '20:53:33', NULL, '2020-11-30', 32, '-6.5646284, 106.7667158', '2020-11-30 13:53:25', '2020-11-30 13:53:33'),
+(58, '19:37:52', '19:38:06', NULL, '2020-12-03', 32, '-6.5646285, 106.7667151', '2020-12-03 12:37:52', '2020-12-03 12:38:06');
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,9 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
 (20, 'Administrator', 'admin', '$2y$10$atJfVZK/hDkvAwh3Xm31a.op1RRKlsKe6OWvZMjCVoBWvmFGnEK8a', 'IMG_1089.jpg', 0, '2020-11-09 11:10:37', NULL),
-(21, 'Marino Imola', 'yaelahnong', '$2y$10$E3HaN2qQhmDnrRLAPNKqHudskW70n7mwiVWmBg0oXEzf0GJXV1LKq', 'ino.jpg', 2, '2020-11-09 11:28:38', NULL);
+(21, 'Marino Imola', 'yaelahnong', '$2y$10$E3HaN2qQhmDnrRLAPNKqHudskW70n7mwiVWmBg0oXEzf0GJXV1LKq', 'ino.jpg', 1, '2020-11-09 11:28:38', NULL),
+(22, 'Marino Imola', 'inoo0001', '$2y$10$nqGJXUIaxiE9kqlTmE8FXe2fmyYG27NcGPkcPinVkY7Q.WA/nAm1S', '244551.jpg', 2, '2020-12-03 13:56:23', NULL),
+(23, 'Marino Imola', 'inoo0002', '$2y$10$.pEuO67HJ.vNIsLoaScEuOalogNZSjP2NrKYY01FWY7WwTVH16Rjq', 'user-1.jpg', 3, '2020-12-03 13:57:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,9 @@ INSERT INTO `cuti` (`id_cuti`, `tanggal_mulai`, `tanggal_selesai`, `ket_cuti`, `
 (11, '2020-12-29', '2020-12-31', 'Annual Leave', 'approved', 41, '2020-11-28 15:38:54', '2020-11-28 15:38:54'),
 (12, '2020-12-11', '2020-11-15', 'Pulang Kampung', 'pending', 41, '2020-11-28 15:58:52', '2020-11-28 15:58:52'),
 (13, '2020-11-29', '2020-11-30', 'liburan', 'approved', 41, '2020-11-28 21:05:56', '2020-11-28 21:05:56'),
-(14, '2020-11-29', '2020-12-03', 'Dinas', 'approved', 32, '2020-11-29 12:07:21', '2020-11-29 12:07:21');
+(14, '2020-11-29', '2020-12-03', 'Dinas', 'approved', 32, '2020-11-29 12:07:21', '2020-11-29 12:07:21'),
+(15, '2020-12-31', '2020-12-31', 'sakit', 'approved', 39, '2020-11-30 11:13:32', '2020-11-30 11:13:32'),
+(16, '2020-12-03', '2020-12-06', 'Liburan', 'rejected', 32, '2020-12-03 12:44:21', '2020-12-03 12:44:21');
 
 -- --------------------------------------------------------
 
@@ -253,13 +260,16 @@ INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime
 (5, '07:00:43', '01:00:43', 'Begadank', NULL, 'pending', '2018-11-29', 32, '2020-11-26 21:23:59', '2020-11-26 21:23:59'),
 (6, '08:00:44', '11:30:44', 'Debugging', NULL, 'pending', '2020-11-30', 32, '2020-11-26 21:38:40', '2020-11-26 21:38:40'),
 (7, '08:00:56', '12:30:56', 'ngerjain projek', NULL, 'pending', '2020-11-29', 32, '2020-11-27 16:25:45', '2020-11-27 16:25:45'),
-(8, '08:00:57', '12:00:57', 'Adding new feature', NULL, 'pending', '2020-11-29', 41, '2020-11-28 15:09:55', '2020-11-28 15:09:55'),
+(8, '08:00:57', '12:00:57', 'Adding new feature', NULL, 'rejected', '2020-11-29', 41, '2020-11-28 15:09:55', '2020-11-28 15:09:55'),
 (9, '08:00:39', '11:40:39', 'adding new menu', NULL, 'approved', '2020-12-01', 41, '2020-11-28 15:37:16', '2020-11-28 15:37:16'),
 (10, '09:00:58', '12:00:58', 'adding new features', NULL, 'rejected', '2020-12-12', 41, '2020-11-28 15:57:44', '2020-11-28 15:57:44'),
 (11, '09:00:20', '12:00:20', 'Layouting', NULL, 'approved', '2020-11-29', 32, '2020-11-28 18:11:31', '2020-11-28 18:11:31'),
 (12, '12:00:51', '06:00:51', 'nginep', NULL, 'rejected', '2020-11-30', 41, '2020-11-28 20:26:26', '2020-11-28 20:26:26'),
 (13, '08:30:59', '12:30:59', 'Lembur', NULL, 'rejected', '2020-11-30', 32, '2020-11-29 09:40:39', '2020-11-29 09:40:39'),
-(14, '08:48:01', '12:00:01', 'analisis', NULL, 'pending', '2020-11-30', 32, '2020-11-29 12:05:31', '2020-11-29 12:05:31');
+(14, '08:48:01', '12:00:01', 'analisis', NULL, 'approved', '2020-11-30', 32, '2020-11-29 12:05:31', '2020-11-29 12:05:31'),
+(15, '04:51:54', '04:51:54', 'ngendong', NULL, 'rejected', '2020-11-30', 41, '2020-11-30 09:52:08', '2020-11-30 09:52:08'),
+(16, '12:12:47', '11:05:47', 'gawe', NULL, 'approved', '2020-12-31', 39, '2020-11-30 11:12:38', '2020-11-30 11:12:38'),
+(17, '06:55:32', '12:37:32', 'orang', NULL, 'approved', '2020-12-04', 32, '2020-12-03 12:39:48', '2020-12-03 12:39:48');
 
 -- --------------------------------------------------------
 
@@ -334,10 +344,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `kota`, `provinsi`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$drSkrLMBY9C1hAk8otQCw.rU//O.dP9PKYRMZQo3IpxS0Dp8vyOYy', 'a7aa92098b778d214da9c8f5c0413d129f984983', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-11-29 20:05:25'),
-(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', NULL, NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'ola-small.jpg', 2, 1, '2020-11-19 03:45:15', '2020-11-23 12:53:40'),
-(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$gacKVZ28SBqo25lo.4DrXOBPkH6.PE1d9hXctTEscZu84dhuHb9pi', '3dfa53c8a0a847d40fd6456563bbd6dddcffb4d1', 'eyJpdiI6IlVvdmNIZzd6U3l5VUJTcHprQ3BVTVE9PSIsInZhbHVlIjoiZkplNzdIWW1nbGVlcSt3aGpVQzZOUT09IiwibWFjIjoiYWU3OTMwYmJhYzdlZWY4NTVkMDI3YTIyZGY1YTBjNzI1MGRjOGI0Zjc1OGQwYzBhMzM0MzgzZjY3YWQ2MThlZCJ9', '2020-11-19 19:43:04', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', 'pupu-small.jpg', 3, 3, '2020-11-19 03:46:34', '2020-11-19 12:10:13'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'aaa623e044668e3b8c560dccca4926a0d3bf3e20', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'laku keras', 'damar-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-29 16:41:16');
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$drSkrLMBY9C1hAk8otQCw.rU//O.dP9PKYRMZQo3IpxS0Dp8vyOYy', 'e27f06ce9aa0a2514fd81bfdb68b18f3405df3bc', 'eyJpdiI6InVCTGFnb1N0Rmt0Z2tCc2gxT01WTkE9PSIsInZhbHVlIjoiQXltKzFNWndvTXVjNkRDV2dURGN0UT09IiwibWFjIjoiZjJmZWJiYzFlZDYzMjZlMDVlYTRjNmE0MzcwMTVhN2FiNGE4NTJjNTU1OTBiZWZlODEyZmY1MzVhY2IyY2M3MiJ9', '2020-11-23 20:43:34', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-12-03 13:12:38'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', 'f29e54e46be348a60362c4649d5c6003c578915c', NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'ola-small.jpg', 2, 1, '2020-11-19 03:45:15', '2020-11-30 11:10:23'),
+(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$nIYlB09krRDhRRU7zPTwouX2.99/gX4KlANHaaVPsaIa8F98KJjyy', '30ca92f240287da23b7c15ae630853257a768d88', 'eyJpdiI6InpacS9qazluWmVOVk5neVZ6WDhsM2c9PSIsInZhbHVlIjoibWVkcEY0Lzl4U1VPYkJUczJnV0NUQT09IiwibWFjIjoiOGE0YjEwMjU3MDYxOTQ5ZmRiYTAzZmRmNjFkNDRmOTIyYzAyNTE5YmJlNzMyY2M5ZjUzZDZiZTA5NzMwZDliZCJ9', '2020-11-30 19:04:56', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', 'pupu-small.jpg', 3, 3, '2020-11-19 03:46:34', '2020-12-03 14:40:30'),
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'e9446bf3b85b08222f361b2838942876b2412e06', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'laku keras', 'damar-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-11-30 09:50:05');
 
 -- --------------------------------------------------------
 
@@ -530,25 +540,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_department` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `qrcode`
@@ -566,7 +576,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

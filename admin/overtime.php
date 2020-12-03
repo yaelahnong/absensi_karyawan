@@ -90,8 +90,8 @@
                                                     <th scope="col">Employee ID Number</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Start</th>
-                                                    <th scope="col">Leave</th>
+                                                    <th scope="col">Start Time</th>
+                                                    <th scope="col">Leave Time</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Status</th>
@@ -214,6 +214,7 @@
                         swal.fire({
                             title:'Approve!',
                             text: 'File has been Approve.',
+                            icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`overtime-approve.php?id=${id_overtime}`;
@@ -237,6 +238,7 @@
                         swal.fire({
                             title:'Reject!',
                             text: 'File has been Rejectend.',
+                            icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`overtime-reject.php?id=${id_overtime}`;

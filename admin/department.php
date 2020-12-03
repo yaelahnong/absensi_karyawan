@@ -93,8 +93,8 @@
                                             <thead>
                                             <tr>
                                                 <th>Department</th>
-                                                <th>created_at</th>
-                                                <th>updated_at</th>
+                                                <th>Created at</th>
+                                                <th>Updated at</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -133,7 +133,6 @@
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
 
-                         
 
                         
                     </div>
