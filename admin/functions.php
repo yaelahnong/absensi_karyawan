@@ -207,8 +207,8 @@
     function tambah_department($data) {
         global $conn;
 
-        $ket_department = $_POST['department'];
-        $created_at = $_POST['created_at'];
+        $ket_department = htmlspecialchars($_POST['department']);
+        $created_at = htmlspecialchars($_POST['created_at']);
 
         $query = "INSERT INTO department( 
                                 ket_department,
@@ -227,16 +227,14 @@
     function ubah_department($data) {
         global $conn;
 
-        $id_department = $_POST['id_department'];
-        $ket_department = $_POST['department'];
-        $updated_at = $_POST['updated_at'];
+        $id_department = htmlspecialchars($_POST['id_department']);
+        $ket_department = htmlspecialchars($_POST['department']);
+        $updated_at = htmlspecialchars($_POST['updated_at']);
 
         $query = "UPDATE department 
                     SET 
                     ket_department = '$ket_department',
                     updated_at = '$updated_at'
-                    SET ket_department = '$ket_department', 
-                        updated_at = '$updated_at'
                     WHERE id_department = '$id_department'";
         
         mysqli_query($conn, $query);
@@ -279,10 +277,10 @@
     function ubah_schedule($data) {
         global $conn;
 
-        $id_schedule = $_POST['id_schedule'];
-        $jam_masuk = $_POST['jam_masuk'];
-        $jam_keluar = $_POST['jam_keluar'];
-        $updated_at = $_POST['updated_at'];
+        $id_schedule = htmlspecialchars($_POST['id_schedule']);
+        $jam_masuk = htmlspecialchars($_POST['jam_masuk']);
+        $jam_keluar = htmlspecialchars($_POST['jam_keluar']);
+        $updated_at = htmlspecialchars($_POST['updated_at']);
         
 
         $query = "UPDATE schedule 
@@ -300,12 +298,12 @@
     function ubah_overtime($data) {
         global $conn;
 
-        $id_overtime = $_POST['id_overtime'];
-        $jam_mulai = $_POST['jam_mulai'];
-        $jam_selesai = $_POST['jam_selesai'];
-        $ket_overtime = $_POST['ket_overtime'];
-        $tanggal = $_POST['tanggal'];
-        $updated_at = $_POST['updated_at'];
+        $id_overtime = htmlspecialchars($_POST['id_overtime']);
+        $jam_mulai = htmlspecialchars($_POST['jam_mulai']);
+        $jam_selesai = htmlspecialchars($_POST['jam_selesai']);
+        $ket_overtime = htmlspecialchars($_POST['ket_overtime']);
+        $tanggal = htmlspecialchars($_POST['tanggal']);
+        $updated_at = htmlspecialchars($_POST['updated_at']);
         
 
         $query = "UPDATE overtime 

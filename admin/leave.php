@@ -66,11 +66,12 @@
                     <div class="page-title-box">
                         <div class="row align-items-center">
                             <div class="col-sm-6">
-                                <h4 class="page-title">Dashboard</h4>
+                                <h4 class="page-title">Leave</h4>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
                                     <li class="breadcrumb-item active">Leave</li>
                                 </ol>
                             </div>
@@ -91,7 +92,7 @@
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Position</th>
                                                     <th scope="col">Start Date</th>
-                                                    <th scope="col">Leave</th>
+                                                    <th scope="col">End Date</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Status</th>
                                                     <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 ): ?>
@@ -139,10 +140,8 @@
             </div>
             <!-- content -->
 
-            <footer class="footer">
-                © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-            </footer>
-
+            <?php include 'footer.php'; ?>
+            
         </div>
         <!-- ============================================================== -->
         <!-- End Right content here -->
