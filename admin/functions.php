@@ -36,17 +36,15 @@
             return false;
         }
 
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
+        $cekNip = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
+        $cekEmail = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
         
-
-        if(mysqli_fetch_assoc($result)) {
-            echo "<script>Swal.fire({
-                title: 'Error!',
-                text: 'NIP sudah terdaftar',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            }).then(() => {window.history.back();} )</script>";
+        if(mysqli_fetch_assoc($cekNip)) {
             return false;
+        }
+
+        if (mysqli_fetch_assoc($cekEmail)) {
+            return false;      
         }
 
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -210,6 +208,11 @@
         $ket_department = htmlspecialchars($_POST['department']);
         $created_at = htmlspecialchars($_POST['created_at']);
 
+        $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
+        if (mysqli_fetch_assoc($result)) {
+            return false;
+        }
+
         $query = "INSERT INTO department( 
                                 ket_department,
                                 created_at
@@ -231,6 +234,10 @@
         $ket_department = htmlspecialchars($_POST['department']);
         $updated_at = htmlspecialchars($_POST['updated_at']);
 
+        $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
+        if (mysqli_fetch_assoc($result)) {
+            return false;
+        }
         $query = "UPDATE department 
                     SET 
                     ket_department = '$ket_department',

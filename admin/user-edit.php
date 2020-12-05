@@ -92,7 +92,8 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User List</a></li>>
                                         <li class="breadcrumb-item active">Ubah User</li>
                                     </ol>
                                 </div>
@@ -220,9 +221,7 @@
                 </div>
                 <!-- content -->
 
-                <footer class="footer">
-                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-                </footer>
+                <?php include 'footer.php'; ?>
 
             </div>
             <!-- ============================================================== -->

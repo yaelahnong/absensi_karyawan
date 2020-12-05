@@ -63,7 +63,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Settings</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Apps Settings</a></li>
                                         <li class="breadcrumb-item active">Schedule</li>
                                     </ol>
                                 </div>

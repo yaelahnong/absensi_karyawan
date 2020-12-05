@@ -43,8 +43,8 @@
                     }).then(() => {window.location.href='department.php';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Tambah data gagal',
+                        title: 'Failed!',
+                        text: 'Department sudah ada',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -74,6 +74,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Master</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Department</a></li>
                                         <li class="breadcrumb-item active">Tambah Department</li>
                                     </ol>
@@ -125,9 +126,7 @@
                 </div>
                 <!-- content -->
 
-                <footer class="footer">
-                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-                </footer>
+                <?php include 'footer.php'; ?>
 
             </div>
             <!-- ============================================================== -->

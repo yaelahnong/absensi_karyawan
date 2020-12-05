@@ -72,7 +72,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Managent</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
                                         <li class="breadcrumb-item active">User List</li>
                                     </ol>
                                 </div>
