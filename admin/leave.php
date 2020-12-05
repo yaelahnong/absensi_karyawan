@@ -71,7 +71,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
+                                    <li class="breadcrumb-item"><a href="leave.php">Transaction</a></li>
                                     <li class="breadcrumb-item active">Leave</li>
                                 </ol>
                             </div>

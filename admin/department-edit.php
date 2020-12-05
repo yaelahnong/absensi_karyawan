@@ -84,7 +84,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Master</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Department</a></li>
+                                        <li class="breadcrumb-item"><a href="department.php">Department</a></li>
                                         <li class="breadcrumb-item active">Ubah Department</li>
                                     </ol>
                                 </div>

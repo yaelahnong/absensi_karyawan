@@ -93,7 +93,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User List</a></li>>
+                                        <li class="breadcrumb-item"><a href="user.php">User List</a></li>>
                                         <li class="breadcrumb-item active">Ubah User</li>
                                     </ol>
                                 </div>
@@ -101,17 +101,17 @@
                         </div>
                         <!-- end page-title -->
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card m-b-30">
-                                    <div class="card-body">
+                     <form method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
         
                                         <!-- <h4 class="mt-0 header-title">Validation type</h4>
                                         <p class="sub-title">Parsley is a javascript form validation
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
         
-                                        <form method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
@@ -131,12 +131,17 @@
                                                     parsley-type="email" placeholder="Enter a valid e-mail"/>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <div>
+                                                    <textarea required name="alamat" class="form-control" rows="5"><?= $user['alamat']; ?></textarea>
+                                                    </div>
+                                                </div>
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <div class="form-check">
                                                 <div class="row">
-                                                    <div class="col-sm-2 col-md-1">
+                                                    <div class="col-sm-2 col-md-2">
                                                         <?php if($user['jenis_kelamin'] == 'laki-laki'): ?>
                                                             <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
                                                         <?php else: ?>
@@ -146,7 +151,7 @@
                                                             Male
                                                         </label>
                                                     </div>
-                                                    <div class="col-sm-2 col-md-1">
+                                                    <div class="col-sm-2 col-md-2">
                                                         <?php if($user['jenis_kelamin'] == 'perempuan'): ?>
                                                             <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan" checked>
                                                         <?php else: ?>
@@ -159,12 +164,14 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <div>
-                                                    <textarea required name="alamat" class="form-control" rows="5"><?= $user['alamat']; ?></textarea>
-                                                </div>
+                                                    
+                                                        
                                             </div>
+                                        </div>
+                                    </div>
+                                      <div class="col-lg-6">
+                                        <div class="card m-b-30">
+                                            <div class="card-body">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
                                                 <input data-parsley-type="number" required name="no_telp" value="<?= $user['no_telp']; ?>"
