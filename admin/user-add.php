@@ -167,7 +167,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
-                                                    <input data-parsley-type="number" required name="no_telp"
+                                                    <input type="number" required name="no_telp"
                                                     class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
                                                 </div>
                                                 <div class="form-group">
