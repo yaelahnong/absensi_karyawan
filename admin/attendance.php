@@ -37,16 +37,16 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
+    <title>ABSENSI | Attendance</title>
     <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 
     <!-- DataTables -->
     <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -172,7 +172,7 @@
                         <div class="col-xl-12">
                             <div class="card m-b-30">
                                 <div class="card-body">
-                                   <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                     <th scope="col">Employee ID Number</th>
@@ -260,9 +260,9 @@
 
     <script type="text/javascript">
         <?php if(isset($_GET['id'])): ?>
-            var mymap = L.map('mapid').setView([<?= $data[0] . ', ' . $data[1]; ?>], 13);
+            var mymap = L.map('mapid', { zoomControl: false }).setView([<?= $data[0] . ', ' . $data[1]; ?>], 13);
         <?php else: ?>
-            var mymap = L.map('mapid').setView([-6.338117, 106.741689], 13);
+            var mymap = L.map('mapid', { zoomControl: false }).setView([-6.338117, 106.741689], 13);
         <?php endif; ?>
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -274,8 +274,8 @@
             accessToken: 'pk.eyJ1IjoicHVwdW9rdGF2aWEiLCJhIjoiY2tocHYzdjgwMDNuNjJ0bXNiZzV5ZWUzdiJ9.qB31-A5w3D7Mwq47EaGrXg'
         }).addTo(mymap);
         <?php if(isset($_GET['id'])): ?>
-           var marker = L.marker([<?= $data[0] . ', ' . $data[1]; ?>]).addTo(mymap);
-       <?php endif; ?>
+            var marker = L.marker([<?= $data[0] . ', ' . $data[1]; ?>]).addTo(mymap);
+        <?php endif; ?>
 
 
     </script>

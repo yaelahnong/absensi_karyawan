@@ -13,7 +13,21 @@ $(document).ready(function() {
     //Buttons examples
     var table = $('#datatable-buttons').DataTable({
         lengthChange: false,
-        buttons: ['excel', 'pdf'],
+        buttons: [{
+            extend: 'excelHtml5'
+            // customize: function ( xlsx ){
+            //     var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                
+            //     // jQuery selector to add a border
+            //     $('row c[r*="10"]', sheet).attr( 's', '25' );
+            // }
+        }, {
+            extend: 'pdfHtml5',
+            customize: function(doc) {
+                console.dir(doc)
+                doc.content[1].margin = [ 30, 0, 30, 0 ] //left, top, right, bottom
+            }
+        }],
         order: false
     });
 

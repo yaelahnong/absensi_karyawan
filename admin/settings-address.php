@@ -42,7 +42,7 @@ require dirname(__FILE__)."/lib/countrycodes.php";
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <title><?php echo getString('title'); ?></title>
+        <title>ABSENSI | Address Settings</title>
         <meta name="description" content="<?php echo getString('description'); ?>">
         <meta name="keywords" content="<?php echo getString('tags'); ?>">
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -87,7 +87,7 @@ require dirname(__FILE__)."/lib/countrycodes.php";
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Apps Settings</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">App Settings</a></li>
                                         <li class="breadcrumb-item active">Àddress</li>
                                     </ol>
                                 </div>
