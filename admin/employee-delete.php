@@ -17,13 +17,13 @@
     if(isset($_GET['id'])) {
         $id_user = $_GET['id'];
     } else {
-        header("Location: user.php");
+        header("Location: employee.php");
     }
 
-    if(hapus_user($id_user) > 0) {
-        header("Location: user.php");
+    if(hapus_employee($id_user) > 0) {
+        header("Location: employee.php");
     } else {
-        header("Location: user.php");
+        header("Location: employee.php");
     }
 
 

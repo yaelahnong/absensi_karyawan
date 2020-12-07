@@ -26,7 +26,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>user management</title>
+        <title>Employee management</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -67,12 +67,12 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">User List</h4>
+                                    <h4 class="page-title">Employee List</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item active">User List</li>
+                                        <li class="breadcrumb-item active">Employee List</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -95,7 +95,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="user-add.php">[+] Add User</a>
+                                                    <a class="btn btn-primary text-light" href="employee-add.php">[+] Add Employee</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                                 <?php
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="employee-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
@@ -222,7 +222,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`user-delete.php?id=${id_user}`;
+                                window.location.href=`employee-delete.php?id=${id_user}`;
                             }
                         })
                     } else if(result.isDismissed) {

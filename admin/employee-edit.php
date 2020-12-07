@@ -1,4 +1,4 @@
-<?php 
+   <?php 
     require 'functions.php';
     session_start();
 
@@ -17,7 +17,7 @@
     if(isset($_GET['id'])) {
         $id_user = $_GET['id'];
     } else {
-        header("user.php");
+        header("employee.php");
     }
 
     $user = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
@@ -51,14 +51,14 @@
     <body>
 
         <?php 
-            if(isset($_POST['ubah_user'])) {
-                if(ubah_user($_POST) > 0) {
+            if(isset($_POST['ubah_employee'])) {
+                if(ubah_employee($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='user.php';} )</script>";
+                    }).then(() => {window.location.href='employee.php';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -87,13 +87,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Ubah User</h4>
+                                    <h4 class="page-title">Edit employee</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
-                                        <li class="breadcrumb-item active">Ubah User</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Employee</a></li>
+                                        <li class="breadcrumb-item active">Edit Employee</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -112,6 +112,7 @@
         
                                         <form method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
+                                            <input type="hidden" name="gambarLama" value="<?= $user['foto']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
                                                 <label>Employee ID Number</label>
@@ -174,9 +175,10 @@
                                                 <input type="text" name="status" class="form-control" value="<?= $user['status']; ?>" required placeholder="Status"/>
                                             </div>
                                             <div class="from-grup">
-                                                <label>Image</label>
-                                                <div class="form-group">
-                                                <input name="photo" type="file" value="<?= $user['foto']; ?>">
+                                                <label>Image</label><br>
+                                                <img src="assets/images/users/<?= $user['foto'];?>" width="50px"><br>
+                                                <div class="form-group"><br>
+                                                <input name="photo" type="file">
                                             </div>
                                             <div class="form-group">
                                                 <label>Position</label>
@@ -196,10 +198,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" name="ubah_user" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" name="ubah_employee" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="user.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="employee.php" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

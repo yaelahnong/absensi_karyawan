@@ -32,7 +32,8 @@
                 <li>
                 <a href="javascript:void(0);" class="waves-effect"><i class="icon-profile"></i><span> User Management <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="user.php">User List</a></li>
+                        <li><a href="admin.php">User List</a></li>
+                        <li><a href="employee.php">Employee</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>

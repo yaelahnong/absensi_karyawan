@@ -1,4 +1,17 @@
 <?php 
+    session_start();
+
+    if(isset($_SESSION['admin'])) {
+        if($_SESSION['admin']['id_akses'] == 0) {
+
+        } else {
+            header("Location: index.php");
+            exit;
+        }
+    } else {
+        header("Location: login.php");
+        exit;
+    }
 
     require 'functions.php';
     // session_start();
