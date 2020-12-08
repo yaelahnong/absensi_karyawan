@@ -5,15 +5,15 @@ session_start();
 if(isset($_SESSION['admin'])) {
 	if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
 	} else {
-		header("Location: index.php");
+		header("Location: index");
 		exit;
 	}
 } else {
-	header("Location: login.php");
+	header("Location: login");
 	exit;
 }
 
-	$admin = query ("SELECT *FROM admin");
+	$user = query ("SELECT *FROM admin");
 
 
  ?>
@@ -95,7 +95,7 @@ if(isset($_SESSION['admin'])) {
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="register.php">[+] Add User</a>
+                                                    <a class="btn btn-primary text-light" href="register">[+] Add User</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@ if(isset($_SESSION['admin'])) {
         
         
                                             <tbody>
-                                            <?php foreach($admin as $row) : ?>
+                                            <?php foreach($user as $row) : ?>
                                             <tr>
                                                 <td><?= $row['nama']; ?></td>
                                                 <td><img src="assets/images/users/<?= $row['photo'];?>" width="50px"></td>
@@ -125,7 +125,7 @@ if(isset($_SESSION['admin'])) {
                                                 <?php
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="admin-edit.php?id=<?= $row['id_admin']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit?id=<?= $row['id_admin']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <a onclick="popupDelete(<?= $row['id_admin']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
@@ -148,7 +148,7 @@ if(isset($_SESSION['admin'])) {
                 </div>
                 <!-- content -->
 
-                <?php include('footer.php'); ?>
+                <?php include('footer'); ?>
 
             </div>
             <!-- ============================================================== -->
@@ -207,7 +207,7 @@ if(isset($_SESSION['admin'])) {
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`admin-delete.php?id=${id_admin}`;
+                                window.location.href=`user-delete?id=${id_admin}`;
                             }
                         })
                     } else if(result.isDismissed) {

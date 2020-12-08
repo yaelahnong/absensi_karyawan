@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 ?>
 
@@ -40,7 +40,7 @@
                         text: 'Tambah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='department.php';} )</script>";
+                    }).then(() => {window.location.href='department';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -104,7 +104,7 @@
                                                     <button type="submit" name="tambah_department" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="department.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="department" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

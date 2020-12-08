@@ -5,13 +5,13 @@
     if(isset($_GET['id'])) {
         $id_cuti = $_GET['id'];
     } else {
-        header("Location: leave.php");
+        header("Location: leave");
     }
 
     if(reject_leave($id_cuti) > 0) {
-        header("Location: leave.php");
+        header("Location: leave");
     } else {
-        header("Location: leave.php");
+        header("Location: leave");
     }
 ?>
 

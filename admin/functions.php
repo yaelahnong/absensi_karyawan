@@ -242,11 +242,10 @@
                     SET 
                     ket_department = '$ket_department',
                     updated_at = '$updated_at'
-                    SET ket_department = '$ket_department', 
-                        updated_at = '$updated_at'
                     WHERE id_department = '$id_department'";
         
-        mysqli_query($conn, $query);
+       mysqli_query($conn, $query);
+
         return mysqli_affected_rows($conn);
     } 
     // UBAH DEPARTMENT END
@@ -366,7 +365,7 @@
 
 
     // UBAH ADMIN START
-    function ubah_admin($data) {
+    function ubah_user($data) {
         global $conn;
 
         $id_admin =  htmlspecialchars($data['id_admin']);
@@ -394,7 +393,7 @@
     // UBAH ADMIN END
 
     // HAPUS ADMIN START
-    function hapus_admin($id) {
+    function hapus_user($id) {
         global $conn;
 
         mysqli_query($conn, "DELETE FROM admin WHERE id_admin = '$id'");

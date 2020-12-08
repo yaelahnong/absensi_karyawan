@@ -6,18 +6,18 @@
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
 
         } else {
-            header("Location: index.php");
+            header("Location: index");
             exit;
         }
     } else {
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 
     if(isset($_GET['id'])) {
         $id_user = $_GET['id'];
     } else {
-        header("employee.php");
+        header("employee");
     }
 
     $user = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
@@ -58,7 +58,7 @@
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='employee.php';} )</script>";
+                    }).then(() => {window.location.href='employee';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -201,7 +201,7 @@
                                                     <button type="submit" name="ubah_employee" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="employee.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

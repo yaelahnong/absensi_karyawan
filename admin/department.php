@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     $department = query("SELECT * FROM department");
@@ -84,7 +84,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="department-add.php">[+] Add department</a>
+                                                    <a class="btn btn-primary text-light" href="department-add">[+] Add department</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +113,7 @@
                                                     <?php
                                                     $level = $_SESSION['admin']['id_akses']; 
                                                     if($level == 0  ) : ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <?php endif; ?>
                                                     <?php
                                                     $level = $_SESSION['admin']['id_akses'];
@@ -202,7 +202,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href="department-delete.php?id=<?= $row['id_department']; ?>";
+                                window.location.href="department-delete?id=<?= $row['id_department']; ?>";
                             }
                         })
                     } else if(result.isDismissed) {

@@ -3,14 +3,14 @@
 session_start();
 
 if(!isset($_SESSION['admin'])) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 error_reporting(E_ALL ^ E_NOTICE);
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
-require dirname(__FILE__)."/config.php";
+require dirname(__FILE__)."/config";
 
 global $_ERROR;
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
-require dirname(__FILE__)."/include/functions.php";
+require dirname(__FILE__)."/include/functions";
 
 $browserDetect = array_key_exists('detect_browser_lang', $_CONFIG) ? $_CONFIG['detect_browser_lang'] : false;
 $defaultlang = array_key_exists('lang', $_CONFIG) ? $_CONFIG['lang'] : 'en';
@@ -27,12 +27,12 @@ $color_primary = array_key_exists('color_primary', $_CONFIG) ? $_CONFIG['color_p
 
 $lang = getLang($defaultlang, $browserDetect);
 
-if (file_exists(dirname(__FILE__)."/translations/".$lang.".php")) {
-    include dirname(__FILE__)."/translations/".$lang.".php";
+if (file_exists(dirname(__FILE__)."/translations/".$lang."")) {
+    include dirname(__FILE__)."/translations/".$lang."";
 }
 
-require dirname(__FILE__)."/include/head.php";
-require dirname(__FILE__)."/lib/countrycodes.php";
+require dirname(__FILE__)."/include/head";
+require dirname(__FILE__)."/lib/countrycodes";
 
 ?>
 
@@ -107,8 +107,8 @@ require dirname(__FILE__)."/lib/countrycodes.php";
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
                                         <?php 
-                                            if (file_exists(dirname(__FILE__).'/include/generator.php')) {
-                                                include dirname(__FILE__).'/include/generator.php';
+                                            if (file_exists(dirname(__FILE__).'/include/generator')) {
+                                                include dirname(__FILE__).'/include/generator';
                                             }
                                         ?>
         

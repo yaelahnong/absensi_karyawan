@@ -5,11 +5,11 @@
     if(isset($_SESSION['admin'])) {
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
         } else {
-            header("Location: index.php");
+            header("Location: index");
             exit;
         }
     } else {
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 
@@ -95,7 +95,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="employee-add.php">[+] Add Employee</a>
+                                                    <a class="btn btn-primary text-light" href="employee-add">[+] Add Employee</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                                 <?php
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="employee-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="employee-edit?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
@@ -222,7 +222,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`employee-delete.php?id=${id_user}`;
+                                window.location.href=`employee-delete?id=${id_user}`;
                             }
                         })
                     } else if(result.isDismissed) {

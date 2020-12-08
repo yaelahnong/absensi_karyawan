@@ -3,13 +3,13 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     if(isset($_GET['id'])) {
         $id_schedule = $_GET['id'];
     } else {
-        header("settings-schedule.php");
+        header("settings-schedule");
     }
 
     $schedule = query("SELECT * FROM schedule WHERE id_schedule = '$id_schedule'")[0];
@@ -49,7 +49,7 @@
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='settings-schedule.php';} )</script>";
+                    }).then(() => {window.location.href='settings-schedule';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -117,7 +117,7 @@
                                                     <button type="submit" name="ubah_schedule" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="settings-schedule.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="settings-schedule" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

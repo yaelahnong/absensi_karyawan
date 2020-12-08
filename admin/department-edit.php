@@ -3,13 +3,13 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     if(isset($_GET['id'])) {
         $id_department = $_GET['id'];
     } else {
-        header("department.php");
+        header("department");
     }
 
     $department = query("SELECT * FROM department WHERE id_department = '$id_department'")[0];
@@ -49,7 +49,7 @@
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='department.php';} )</script>";
+                    }).then(() => {window.location.href='department';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -112,7 +112,7 @@
                                                     <button type="submit" name="ubah_department" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="department.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="department" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

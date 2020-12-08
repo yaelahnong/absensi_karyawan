@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
     $jml_kehadiran = query("SELECT COUNT(tanggal) AS jumlah_kehadiran FROM absen")[0];
     $karyawan = query("SELECT COUNT(*) AS jumlah_karyawan FROM user")[0];

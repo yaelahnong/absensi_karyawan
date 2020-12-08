@@ -6,11 +6,11 @@
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
 
         } else {
-            header("Location: index.php");
+            header("Location: index");
             exit;
         }
     } else {
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 
@@ -50,7 +50,7 @@
                         text: 'Tambah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='employee.php';} )</script>";
+                    }).then(() => {window.location.href='employee';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -196,7 +196,7 @@
                                                     <button type="submit" name="tambah_employee" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="employee.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

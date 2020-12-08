@@ -8,16 +8,16 @@
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">Menu</li>
                 <li>
-                    <a href="index.php" class="waves-effect">
+                    <a href="index" class="waves-effect">
                         <i class="icon-accelerator"></i><!-- <span class="badge badge-success badge-pill float-right">9+</span> --> <span> Dashboard </span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-squares"></i><span> Transaction <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="attendance.php">Attendance</a></li>
-                        <li><a href="overtime.php">Overtime</a></li>
-                        <li><a href="Leave.php">Leave</a></li>
+                        <li><a href="attendance">Attendance</a></li>
+                        <li><a href="overtime">Overtime</a></li>
+                        <li><a href="Leave">Leave</a></li>
                     </ul>
                 </li>
 
@@ -25,15 +25,21 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-folder"></i><span> Master <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="department.php">Department</a></li>
+                        <li><a href="department">Department</a></li>
                     </ul>
                 </li>
 
                 <li>
                 <a href="javascript:void(0);" class="waves-effect"><i class="icon-profile"></i><span> User Management <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="admin.php">User List</a></li>
-                        <li><a href="employee.php">Employee</a></li>
+                        <li><a href="user">User List</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-card-details"></i><span> Employee <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                    <ul class="submenu">
+                        <li><a href="employee">Employee List</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -42,8 +48,8 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-setting-2"></i><span> App Settings <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="settings-address.php">Address</a></li>
-                        <li><a href="settings-schedule.php">Schedule</a></li>
+                        <li><a href="settings-address">Address</a></li>
+                        <li><a href="settings-schedule">Schedule</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>

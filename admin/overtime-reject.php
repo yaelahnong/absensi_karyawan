@@ -5,16 +5,16 @@
         if(isset($_GET['id'])) {
             $id_overtime = $_GET['id'];
         } else {
-            header("Location: overtime.php");
+            header("Location: overtime");
         }
     
         if(reject_overtime($id_overtime) > 0) {
-            header("Location: overtime.php");
+            header("Location: overtime");
         } else {
-            header("Location: overtime.php");
+            header("Location: overtime");
         }
     } else {
-        header("Location: overtime.php");
+        header("Location: overtime");
     }
 
 ?>

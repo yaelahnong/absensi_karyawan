@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
@@ -123,7 +123,7 @@
                                                         <?php endif; ?>
                                                         <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3): ?>
                                                             <?php if($row['status'] == 'approved' || $row['status'] == 'rejected'): ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit.php?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </td>
@@ -217,7 +217,7 @@
                             icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`overtime-approve.php?id=${id_overtime}`;
+                                window.location.href=`overtime-approve?id=${id_overtime}`;
                             }
                         })
                     } else if(result.isDismissed) {
@@ -241,7 +241,7 @@
                             icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`overtime-reject.php?id=${id_overtime}`;
+                                window.location.href=`overtime-reject?id=${id_overtime}`;
                             }
                         })
                     } else if(result.isDismissed) {

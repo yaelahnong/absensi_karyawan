@@ -6,21 +6,21 @@
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
 
         } else {
-            header("Location: index.php");
+            header("Location: index");
             exit;
         }
     } else {
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 
     if(isset($_GET['id'])) {
         $id_admin = $_GET['id'];
     } else {
-        header("admin.php");
+        header("user");
     }
 
-    $admin = query("SELECT * FROM admin WHERE id_admin = '$id_admin'")[0];
+    $user = query("SELECT * FROM admin WHERE id_admin = '$id_admin'")[0];
 
 ?>
 
@@ -50,14 +50,14 @@
     <body>
 
         <?php 
-            if(isset($_POST['ubah_admin'])) {
-                if(ubah_admin($_POST) > 0) {
+            if(isset($_POST['ubah_user'])) {
+                if(ubah_user($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='admin.php';} )</script>";
+                    }).then(() => {window.location.href='user';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -110,26 +110,26 @@
                                             submission before sending it to your server.</p> -->
         
                                         <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id_admin" value="<?= $admin['id_admin']; ?>">
-                                            <input type="hidden" name="gambarLama" value="<?= $admin['photo']; ?>">
+                                            <input type="hidden" name="id_admin" value="<?= $user['id_admin']; ?>">
+                                            <input type="hidden" name="gambarLama" value="<?= $user['photo']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
 
                                             <div class="form-group">
                                                 <label>Full Name</label>
-                                                <input type="text" name="nama" value="<?= $admin['nama']; ?>" class="form-control" required placeholder="Full Name"/>
+                                                <input type="text" name="nama" value="<?= $user['nama']; ?>" class="form-control" required placeholder="Full Name"/>
                                             </div>
                                             <div class="from-grup">
                                                 <label>Image</label><br>
-                                                <img src="assets/images/users/<?= $admin['photo'];?>" width="50px"><br>
+                                                <img src="assets/images/users/<?= $user['photo'];?>" width="50px"><br>
                                                 <div class="form-group"><br>
                                                 <input name="photo" type="file">
                                             </div>
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" name="ubah_admin" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" name="ubah_user" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="employee.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>
