@@ -1,21 +1,20 @@
 <?php 
-    require 'functions.php';
-    session_start();
+require 'functions.php';
+session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-        } else {
-            header("Location: index.php");
-            exit;
-        }
-    } else {
-        header("Location: login.php");
-        exit;
-    }
+if(isset($_SESSION['admin'])) {
+	if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
+	} else {
+		header("Location: index");
+		exit;
+	}
+} else {
+	header("Location: login");
+	exit;
+}
 
-    $user = query("SELECT user.*, akses.ket_akses, department.ket_department 
-                    FROM user, akses, department 
-                    WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department ORDER BY id_user DESC");
+	$user = query ("SELECT *FROM admin");
+
 
 ?>
 
@@ -92,28 +91,22 @@
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
                                         
+                                        <?php if($_SESSION['admin']['id_akses'] == 0): ?>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="user-add.php">[+] Add User</a>
+                                                    <a class="btn btn-primary text-light" href="register">[+] Add User</a>
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php endif; ?>
 
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Employee ID Number</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Department</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                                <th>Address</th>
-                                                <th>Gender</th>
-                                                <th>Status</th>
+                                                <th>Name</th>	
                                                 <th>Image</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
@@ -125,24 +118,16 @@
                                             <tbody>
                                             <?php foreach($user as $row) : ?>
                                             <tr>
-                                                <td><?= $row['nip']; ?></td>
                                                 <td><?= $row['nama']; ?></td>
-                                                <td><?= $row['ket_akses']; ?></td>
-                                                <td><?= $row['ket_department']; ?></td>
-                                                <td><?= $row['email']; ?></td>
-                                                <td><?= $row['no_telp']; ?></td>
-                                                <td><?= $row['alamat']; ?></td>
-                                                <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
-                                                <td><?= $row['status']; ?></td>
-                                                <td><img src="assets/images/users/<?= $row['foto'];?>" width="50px"></td>
+                                                <td><img src="assets/images/users/<?= $row['photo'];?>" width="50px"></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
                                                 <?php
                                                     $level = $_SESSION['admin']['id_akses'];
                                                     if($level == 0 || $level == 1 ) : ?>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit?id=<?= $row['id_admin']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a onclick="popupDelete(<?= $row['id_admin']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -164,7 +149,7 @@
                 </div>
                 <!-- content -->
 
-                <?php include('footer.php'); ?>
+                <?php include('footer'); ?>
 
             </div>
             <!-- ============================================================== -->
@@ -208,7 +193,7 @@
         <script src="assets/js/app.js"></script>
 
         <script>
-            function popupDelete(id_user) {
+            function popupDelete(id_admin) {
                 swal.fire({
                     title: 'Are you sure?',
                     text: 'You won\'t be able to revert this!',
@@ -223,7 +208,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`user-delete.php?id=${id_user}`;
+                                window.location.href=`user-delete?id=${id_admin}`;
                             }
                         })
                     } else if(result.isDismissed) {

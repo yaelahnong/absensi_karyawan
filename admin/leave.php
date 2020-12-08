@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
@@ -206,7 +206,7 @@
                             text: 'File has been Approve.',
                       }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`leave-approve.php?id=${id_cuti}`;
+                                window.location.href=`leave-approve?id=${id_cuti}`;
                             }
                         })
                     } else if(result.isDismissed) {
@@ -229,7 +229,7 @@
                             text: 'File has been Rejectend.',
                       }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`leave-reject.php?id=${id_cuti}`;
+                                window.location.href=`leave-reject?id=${id_cuti}`;
                             }
                         })
                     } else if(result.isDismissed) {

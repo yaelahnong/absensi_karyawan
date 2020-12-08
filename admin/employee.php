@@ -2,11 +2,21 @@
     require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
+    if(isset($_SESSION['admin'])) {
+        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
+        } else {
+            header("Location: index");
+            exit;
+        }
+    } else {
         header("Location: login");
+        exit;
     }
 
-    $department = query("SELECT * FROM department");
+    $user = query("SELECT user.*, akses.ket_akses, department.ket_department 
+                    FROM user, akses, department 
+                    WHERE akses.id_akses = user.id_akses AND department.id_department = user.id_department ORDER BY id_user DESC");
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +26,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>ABSENSI | Department</title>
+        <title>Employee management</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -57,13 +67,12 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Department</h4>
+                                    <h4 class="page-title">Employee List</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Master</a></li>
-                                        <li class="breadcrumb-item active">Department</li>
+                                        <li class="breadcrumb-item active">Employee List</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -81,19 +90,30 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
+                                        
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="department-add">[+] Add department</a>
+                                                    <a class="btn btn-primary text-light" href="employee-add">[+] Add Employee</a>
                                                 </div>
                                             </div>
                                         </div>
+
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
+                                                <th>Employee ID Number</th>
+                                                <th>Name</th>
+                                                <th>Position</th>
                                                 <th>Department</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Address</th>
+                                                <th>Gender</th>
+                                                <th>Status</th>
+                                                <th>Image</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -102,28 +122,30 @@
         
         
                                             <tbody>
-                                                <?php $i= 1; ?> 
-                                                <?php foreach($department as $row) : ?>
+                                            <?php foreach($user as $row) : ?>
                                             <tr>
-
+                                                <td><?= $row['nip']; ?></td>
+                                                <td><?= $row['nama']; ?></td>
+                                                <td><?= $row['ket_akses']; ?></td>
                                                 <td><?= $row['ket_department']; ?></td>
+                                                <td><?= $row['email']; ?></td>
+                                                <td><?= $row['no_telp']; ?></td>
+                                                <td><?= $row['alamat']; ?></td>
+                                                <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
+                                                <td><?= $row['status']; ?></td>
+                                                <td><img src="assets/images/users/<?= $row['foto'];?>" width="50px"></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
-
-                                                    <?php
-                                                    $level = $_SESSION['admin']['id_akses']; 
-                                                    if($level == 0  ) : ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <?php endif; ?>
-                                                    <?php
+                                                <?php
                                                     $level = $_SESSION['admin']['id_akses'];
-                                                    if($level == 0  ) : ?>
-                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                    <?php endif; ?>
+                                                    if($level == 0 || $level == 1 ) : ?>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="employee-edit?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                <?php endif; ?>
                                                 </td>
                                             </tr>
-                                            <?php $i++; ?>
+
                                             <?php endforeach; ?>
                                             
                                             </tbody>
@@ -133,7 +155,6 @@
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
-
 
                         
                     </div>
@@ -177,9 +198,7 @@
 
         <!-- Sweet-Alert  -->
         <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
-        <!-- <script src="assets/js/sweetalert2.all.min.js"></script> -->
-        <!-- <script src="assets/pages/sweet-alert.init.js"></script>  -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="assets/js/sweetalert2.all.min.js"></script>
 
         <!-- Datatable init js -->
         <script src="assets/pages/datatables.init.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>   
@@ -188,7 +207,7 @@
         <script src="assets/js/app.js"></script>
 
         <script>
-            function popupDelete() {
+            function popupDelete(id_user) {
                 swal.fire({
                     title: 'Are you sure?',
                     text: 'You won\'t be able to revert this!',
@@ -203,7 +222,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href="department-delete?id=<?= $row['id_department']; ?>";
+                                window.location.href=`employee-delete?id=${id_user}`;
                             }
                         })
                     } else if(result.isDismissed) {

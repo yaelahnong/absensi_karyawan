@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     $schedule = query("SELECT * FROM schedule");
@@ -103,7 +103,7 @@
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="schedule-edit.php?id=<?= $row['id_schedule']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <a class="btn btn-warning btn-sm rounded-0 text-light" href="schedule-edit?id=<?= $row['id_schedule']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

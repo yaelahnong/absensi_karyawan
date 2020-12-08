@@ -3,7 +3,7 @@
 session_start();
 
 if(!isset($_SESSION['admin'])) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 error_reporting(E_ALL ^ E_NOTICE);
@@ -27,8 +27,8 @@ $color_primary = array_key_exists('color_primary', $_CONFIG) ? $_CONFIG['color_p
 
 $lang = getLang($defaultlang, $browserDetect);
 
-if (file_exists(dirname(__FILE__)."/translations/".$lang.".php")) {
-    include dirname(__FILE__)."/translations/".$lang.".php";
+if (file_exists(dirname(__FILE__)."/translations/".$lang."")) {
+    include dirname(__FILE__)."/translations/".$lang."";
 }
 
 require dirname(__FILE__)."/include/head.php";
@@ -117,7 +117,6 @@ require dirname(__FILE__)."/lib/countrycodes.php";
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
 
-                         
 
                         
                     </div>

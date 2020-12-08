@@ -6,22 +6,21 @@
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
 
         } else {
-            header("Location: index.php");
+            header("Location: index");
             exit;
         }
     } else {
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 
     if(isset($_GET['id'])) {
-        $id_user = $_GET['id'];
+        $id_admin = $_GET['id'];
     } else {
-        header("user.php");
+        header("user");
     }
 
-    $user = query("SELECT * FROM user WHERE id_user = '$id_user'")[0];
-    $department = query("SELECT * FROM department");
+    $user = query("SELECT * FROM admin WHERE id_admin = '$id_admin'")[0];
 
 ?>
 
@@ -58,7 +57,7 @@
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='user.php';} )</script>";
+                    }).then(() => {window.location.href='user';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -87,14 +86,14 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Ubah User</h4>
+                                    <h4 class="page-title">Edit User</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
                                         <li class="breadcrumb-item"><a href="user.php">User List</a></li>
-                                        <li class="breadcrumb-item active">Ubah User</li>
+                                        <li class="breadcrumb-item active">Edit User</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -112,102 +111,27 @@
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
         
-                                            <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
+                                        <form method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="id_admin" value="<?= $user['id_admin']; ?>">
+                                            <input type="hidden" name="gambarLama" value="<?= $user['photo']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
-                                            <div class="form-group">
-                                                <label>Employee ID Number</label>
-                                                <input type="text" name="nip" value="<?= $user['nip']; ?>" class="form-control" required placeholder="Nomor Induk Pegawai"/>
-                                            </div>
 
                                             <div class="form-group">
                                                 <label>Full Name</label>
                                                 <input type="text" name="nama" value="<?= $user['nama']; ?>" class="form-control" required placeholder="Full Name"/>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label>E-Mail</label>
-                                                <div>
-                                                    <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" required
-                                                    parsley-type="email" placeholder="Enter a valid e-mail"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <div>
-                                                    <textarea required name="alamat" class="form-control" rows="5"><?= $user['alamat']; ?></textarea>
-                                                    </div>
-                                                </div>
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <div class="form-check">
-                                                <div class="row">
-                                                    <div class="col-sm-2 col-md-2">
-                                                        <?php if($user['jenis_kelamin'] == 'laki-laki'): ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
-                                                        <?php else: ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki">
-                                                        <?php endif; ?>
-                                                        <label class="form-check-label" for="laki-laki">
-                                                            Male
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-sm-2 col-md-2">
-                                                        <?php if($user['jenis_kelamin'] == 'perempuan'): ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan" checked>
-                                                        <?php else: ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
-                                                        <?php endif; ?>
-                                                        <label class="form-check-label" for="perempuan">
-                                                            Female
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                                    
-                                                        
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="card m-b-30">
-                                            <div class="card-body">
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input data-parsley-type="number" required name="no_telp" value="<?= $user['no_telp']; ?>"
-                                                class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <input type="text" name="status" class="form-control" value="<?= $user['status']; ?>" required placeholder="Status"/>
-                                            </div>
                                             <div class="from-grup">
-                                                <label>Image</label>
-                                                <div class="form-group">
-                                                <input name="photo" type="file" value="<?= $user['foto']; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <select class="form-control" name="akses">
-                                                    <option value="2" <?= $user['id_akses'] == 2 ? 'selected' : '' ?>>Lead Department</option>
-                                                    <option value="3" <?= $user['id_akses'] == 3 ? 'selected' : '' ?>>Project Manager</option>
-                                                    <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Department</label>
-                                                <select class="form-control" name="department">
-                                                    <?php foreach($department as $row): ?> 
-                                                    <option value="<?= $row['id_department']; ?>" <?= $user['id_department'] == $row['id_department'] ? 'selected' : '' ?>><?= $row['ket_department']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                                <label>Image</label><br>
+                                                <img src="assets/images/users/<?= $user['photo'];?>" width="50px"><br>
+                                                <div class="form-group"><br>
+                                                <input name="photo" type="file">
                                             </div>
                                             <div class="form-group">
                                                 <div>
                                                     <button type="submit" name="ubah_user" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="user.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

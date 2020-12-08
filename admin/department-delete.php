@@ -5,13 +5,13 @@
     if(isset($_GET['id'])) {
         $id_department = $_GET['id'];
     } else {
-        header("Location: department.php");
+        header("Location: department");
     }
 
     if(hapus_department($id_department) > 0) {
-        header("Location: department.php");
+        header("Location: department");
     } else {
-        header("Location: department.php");
+        header("Location: department");
     }
 ?>
 

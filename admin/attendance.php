@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+        header("Location: login");
     }
 
     $v_absen = query("SELECT absen.id_absen, user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, 
@@ -118,7 +118,7 @@
                     <div class="row pb-4">
                         <div class="col-xl-3 left-side">
                             <?php foreach($v_absen as $row): ?> 
-                                <a href="attendance.php?id=<?= $row['id_absen'];?>">
+                                <a href="attendance?id=<?= $row['id_absen'];?>">
                                     
                                     <div class="card m-b-30">
                                         <div class="card-body">

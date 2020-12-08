@@ -1,0 +1,12 @@
+Options -Multiviews
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+#menampilkan 404 apabila url berekstensi .php
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+RewriteRule .* - [L,R=404] 
+
+ErrorDocument 404 http://localhost/PRAKERIN/absensi_karyawan/admin/pages-404.html

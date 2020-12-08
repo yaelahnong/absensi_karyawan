@@ -15,15 +15,15 @@
     }
     
     if(isset($_GET['id'])) {
-        $id_admin = $_GET['id'];
+        $id_user = $_GET['id'];
     } else {
-        header("Location: user");
+        header("Location: employee");
     }
 
-    if(hapus_user($id_admin) > 0) {
-        header("Location: user");
+    if(hapus_employee($id_user) > 0) {
+        header("Location: employee");
     } else {
-        header("Location: user");
+        header("Location: employee");
     }
 
 

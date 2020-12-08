@@ -3,6 +3,10 @@
     require 'functions.php';
     session_start();
 
+    if(isset($_SESSION['admin'])) {
+        header("Location: index");
+    }
+
     if(isset($_POST['login'])) {
 
         $username = $_POST['username'];
@@ -17,7 +21,7 @@
             if(password_verify($password, $row['password'])) {
                 $_SESSION['admin'] = $row;
 
-                header("Location: index.php");
+                header("Location: index");
                 exit;
             }
         }
@@ -50,7 +54,7 @@
         <!-- Begin page -->
         <div class="accountbg"></div>
         <!-- <div class="home-btn d-none d-sm-block">
-            <a href="index.php" class="text-white"><i class="fas fa-home h2"></i></a>
+            <a href="index" class="text-white"><i class="fas fa-home h2"></i></a>
         </div> -->
         <div class="wrapper-page">
                 <div class="card card-pages shadow-none">

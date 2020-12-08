@@ -5,16 +5,16 @@
     if(isset($_SESSION['admin'])) {
         if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3) {
         } else {
-            header("Location: overtime.php"); 
+            header("Location: overtime"); 
         }
     } else {
-        header("Location: login.php"); 
+        header("Location: login"); 
     }
 
     if(isset($_GET['id'])) {
         $id_overtime = $_GET['id'];
     } else {
-        header("overtime.php");
+        header("overtime");
     }
 
     $overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
@@ -58,7 +58,7 @@
                         text: 'Ubah data berhasil',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='overtime.php';} )</script>";
+                    }).then(() => {window.location.href='overtime';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
@@ -163,7 +163,7 @@
                                                     <button type="submit" name="ubah_overtime" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="overtime.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="overtime" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

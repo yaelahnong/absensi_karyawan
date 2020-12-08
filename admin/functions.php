@@ -15,22 +15,22 @@
     }
     // QUERY END
 
-    // TAMBAH USER START
-    function tambah_user($data) {
+    // TAMBAH EMPLOYEE START
+    function tambah_employee($data) {
         global $conn;
 
-        $nip = $_POST['nip'];
-        $nama = $_POST['nama'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $alamat = $_POST['alamat'];
-        $no_telp = $_POST['no_telp'];
+        $nip = htmlspecialchars($data['nip']);
+        $nama = htmlspecialchars($data['nama']);
+        $email = htmlspecialchars($data['email']);
+        $password = htmlspecialchars($data['password']);
+        $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
+        $alamat = htmlspecialchars($data['alamat']);
+        $no_telp = htmlspecialchars($data['no_telp']);
         $foto = uploadFoto();        
-        $status = $_POST['status'];
-        $id_akses = $_POST['akses'];
-        $id_department = $_POST['department'];
-        $created_at = $_POST['created_at'];
+        $status = htmlspecialchars($data['status']);
+        $id_akses = htmlspecialchars($data['akses']);
+        $id_department = htmlspecialchars($data['department']);
+        $created_at = htmlspecialchars($data['created_at']);
 
         if( !$foto ) {
             return false;
@@ -83,22 +83,29 @@
     // TAMBAH USER END
 
     // UBAH USER START
-    function ubah_user($data) {
+    function ubah_employee($data) {
         global $conn;
 
-        $id_user = $_POST['id_user'];
-        $nip = $_POST['nip'];
-        $nama = $_POST['nama'];
-        $email = $_POST['email'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $alamat = $_POST['alamat'];
-        $no_telp = $_POST['no_telp'];
-        $status = $_POST['status'];
-        $photo = uploadFoto();
-        $id_akses = $_POST['akses'];
-        $id_department =$_POST['department'];
-        $updated_at = $_POST['updated_at'];
+        $id_user =  htmlspecialchars($data['id_user']);
+        $nip =  htmlspecialchars($data['nip']);
+        $nama =  htmlspecialchars($data['nama']);
+        $email =  htmlspecialchars($data['email']);
+        $jenis_kelamin =  htmlspecialchars($data['jenis_kelamin']);
+        $alamat =  htmlspecialchars($data['alamat']);
+        $no_telp =  htmlspecialchars($data['no_telp']);
+        $status =  htmlspecialchars($data['status']);
+        $id_akses =  htmlspecialchars($data['akses']);
+        $id_department = htmlspecialchars($data['department']);
+        $updated_at =  htmlspecialchars($data['updated_at']);
+        $gambarLama = htmlspecialchars($data['gambarLama']);
         
+
+        //CEK APAKAH USER PILIH GAMBAR ATAU TIDAK
+        if( $_FILES['photo'] ['error'] === 4) {
+            $photo = $gambarLama;
+        } else {
+             $photo = uploadFoto();
+        }
 
         $query = "UPDATE user 
                     SET nip = '$nip', 
@@ -120,7 +127,7 @@
     // UBAH USER END
 
     // HAPUS USER START
-    function hapus_user($id) {
+    function hapus_employee($id) {
         global $conn;
 
         mysqli_query($conn, "DELETE FROM user WHERE id_user = '$id'");
@@ -132,11 +139,11 @@
     function registrasi($data) {
         global $conn;
 
-        $nama = $_POST['nama'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $created_at = $_POST['created_at'];
-        $akses = $_POST['akses'];
+        $nama =  htmlspecialchars($data['nama']);
+        $username =  htmlspecialchars($data['username']);
+        $password =  htmlspecialchars($data['password']);
+        $created_at =  htmlspecialchars($data['created_at']);
+        $akses =  htmlspecialchars($data['akses']);
         $photo = uploadFoto();
 
         if( !$photo ) {
@@ -181,7 +188,7 @@
             echo "<script>
                 alert('Yang anda upload bukan gambar!');
             </script>";
-            return false;
+            return false; 
         }
         
         // cek ukuran gambar (byte)
@@ -205,8 +212,8 @@
     function tambah_department($data) {
         global $conn;
 
-        $ket_department = htmlspecialchars($_POST['department']);
-        $created_at = htmlspecialchars($_POST['created_at']);
+        $ket_department =  htmlspecialchars($data['department']);
+        $created_at =  htmlspecialchars($data['created_at']);
 
         $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
         if (mysqli_fetch_assoc($result)) {
@@ -230,9 +237,9 @@
     function ubah_department($data) {
         global $conn;
 
-        $id_department = htmlspecialchars($_POST['id_department']);
-        $ket_department = htmlspecialchars($_POST['department']);
-        $updated_at = htmlspecialchars($_POST['updated_at']);
+        $id_department = htmlspecialchars($data['id_department']);
+        $ket_department = htmlspecialchars($data['department']);
+        $updated_at =  htmlspecialchars($data['updated_at']);
 
         $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
         if (mysqli_fetch_assoc($result)) {
@@ -245,6 +252,7 @@
                     WHERE id_department = '$id_department'";
         
         mysqli_query($conn, $query);
+
         return mysqli_affected_rows($conn);
     } 
     // UBAH DEPARTMENT END
@@ -262,8 +270,8 @@
     function schedule($data) {
         global $conn;
 
-        $ket_department = $_POST['department'];
-        $created_at = $_POST['created_at'];
+        $ket_department =  htmlspecialchars($data['department']);
+        $created_at =  htmlspecialchars($data['created_at']);
 
         $result = mysqli_query($conn, "SELECT * FROM department");
 
@@ -284,10 +292,10 @@
     function ubah_schedule($data) {
         global $conn;
 
-        $id_schedule = htmlspecialchars($_POST['id_schedule']);
-        $jam_masuk = htmlspecialchars($_POST['jam_masuk']);
-        $jam_keluar = htmlspecialchars($_POST['jam_keluar']);
-        $updated_at = htmlspecialchars($_POST['updated_at']);
+        $id_schedule =  htmlspecialchars($data['id_schedule']);
+        $jam_masuk =  htmlspecialchars($data['jam_masuk']);
+        $jam_keluar =  htmlspecialchars($data['jam_keluar']);
+        $updated_at =  htmlspecialchars($data['updated_at']);
         
 
         $query = "UPDATE schedule 
@@ -305,12 +313,12 @@
     function ubah_overtime($data) {
         global $conn;
 
-        $id_overtime = htmlspecialchars($_POST['id_overtime']);
-        $jam_mulai = htmlspecialchars($_POST['jam_mulai']);
-        $jam_selesai = htmlspecialchars($_POST['jam_selesai']);
-        $ket_overtime = htmlspecialchars($_POST['ket_overtime']);
-        $tanggal = htmlspecialchars($_POST['tanggal']);
-        $updated_at = htmlspecialchars($_POST['updated_at']);
+        $id_overtime =  htmlspecialchars($data['id_overtime']);
+        $jam_mulai =  htmlspecialchars($data['jam_mulai']);
+        $jam_selesai =  htmlspecialchars($data['jam_selesai']);
+        $ket_overtime =  htmlspecialchars($data['ket_overtime']);
+        $tanggal =  htmlspecialchars($data['tanggal']);
+        $updated_at =  htmlspecialchars($data['updated_at']);
         
 
         $query = "UPDATE overtime 
@@ -328,7 +336,7 @@
 
     //APPROVE OVERTIME START
     function approve_overtime($id){
-         global $conn;
+        global $conn;
 
         mysqli_query($conn, "UPDATE overtime SET status='approved' WHERE id_overtime='$id'");
         return mysqli_affected_rows($conn);
@@ -337,7 +345,7 @@
 
     //REJECT OVERTIME START
         function reject_overtime($id){
-         global $conn;
+        global $conn;
 
         mysqli_query($conn, "UPDATE overtime SET status ='rejected' WHERE id_overtime='$id'");
         return mysqli_affected_rows($conn);
@@ -345,8 +353,8 @@
     //
 
     //APPROVE LEAVE START
-     function approve_leave($id){
-     global $conn;
+    function approve_leave($id){
+    global $conn;
 
         mysqli_query($conn, "UPDATE cuti SET status = 'approved' WHERE id_cuti = $id");
         return mysqli_affected_rows($conn);
@@ -354,12 +362,51 @@
     //APPROVE LEAVE END
 
     //APPROVE LEAVE START
-     function reject_leave($id){
-     global $conn;
+    function reject_leave($id){
+    global $conn;
 
         mysqli_query($conn, "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
         return mysqli_affected_rows($conn);
     }
     //APPROVE LEAVE END
+
+
+    // UBAH ADMIN START
+    function ubah_user($data) {
+        global $conn;
+
+        $id_admin =  htmlspecialchars($data['id_admin']);
+        $nama =  htmlspecialchars($data['nama']);
+        $updated_at =  htmlspecialchars($data['updated_at']);
+        $gambarLama = htmlspecialchars($data['gambarLama']);
+        
+
+        //CEK APAKAH USER PILIH GAMBAR ATAU TIDAK
+        if( $_FILES['photo'] ['error'] === 4) {
+            $photo = $gambarLama;
+        } else {
+            $photo = uploadFoto();
+        }
+
+        $query = "UPDATE admin
+                    SET nama = '$nama', 
+                        photo = '$photo', 
+                        updated_at = '$updated_at'
+                    WHERE id_admin = '$id_admin'";
+        
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    } 
+    // UBAH ADMIN END
+
+    // HAPUS ADMIN START
+    function hapus_user($id) {
+        global $conn;
+
+        mysqli_query($conn, "DELETE FROM admin WHERE id_admin = '$id'");
+        return mysqli_affected_rows($conn);
+    }
+    // HAPUS ADMIN END
+
         
 ?>

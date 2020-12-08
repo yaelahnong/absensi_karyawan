@@ -3,7 +3,7 @@
 
 <!-- LOGO -->
 <div class="topbar-left">
-    <a href="index.php" class="logo">
+    <a href="index" class="logo">
         <span class="logo-light">
             <i class="mdi mdi-qrcode-scan"></i> Absensi
         </span>
@@ -104,7 +104,7 @@
                     confirmButtonText: 'Logout',
                 }).then((result) => {
                     if(result.isConfirmed) {
-                        window.location.href = 'logout.php';
+                        window.location.href = 'logout';
                     }
                 });
         })

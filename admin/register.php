@@ -1,20 +1,33 @@
 <?php 
+    session_start();
+
+    if(isset($_SESSION['admin'])) {
+        if($_SESSION['admin']['id_akses'] == 0) {
+
+        } else {
+            header("Location: index");
+            exit;
+        }
+    } else {
+        header("Location: login");
+        exit;
+    }
 
     require 'functions.php';
     // session_start();
 
     // if(!isset($_SESSION['admin'])) {
-    //     header("Location: login.php");
+    //     header("Location: login");
     // }
 
     if(isset($_POST['register'])) {
         
         if(registrasi($_POST) > 0) {
             echo "<script>alert('Success!');</script>";
-            echo "<script>window.location.href='login.php'</script>";
+            echo "<script>window.location.href='user'</script>";
         } else {
             echo "<script>alert('Failed!');</script>";
-            echo "<script>window.location.href='login.php'</script>";
+            echo "<script>window.location.href='user'</script>";
         }
 
     }
@@ -45,7 +58,7 @@
         <!-- Begin page -->
         <div class="accountbg"></div>
         <!-- <div class="home-btn d-none d-sm-block">
-            <a href="index.php" class="text-white"><i class="fas fa-home h2"></i></a>
+            <a href="index" class="text-white"><i class="fas fa-home h2"></i></a>
         </div> -->
         <div class="wrapper-page custom-register-page">
                 <div class="card card-pages shadow-none">
