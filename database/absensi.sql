@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2020 at 08:48 PM
+-- Generation Time: Dec 08, 2020 at 10:45 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -182,8 +182,11 @@ INSERT INTO `cuti` (`id_cuti`, `tanggal_mulai`, `tanggal_selesai`, `ket_cuti`, `
 (14, '2020-11-29', '2020-12-03', 'Dinas', 'approved', 32, '2020-11-29 12:07:21', '2020-11-29 12:07:21'),
 (15, '2020-12-31', '2020-12-31', 'sakit', 'approved', 39, '2020-11-30 11:13:32', '2020-11-30 11:13:32'),
 (16, '2020-12-03', '2020-12-06', 'Liburan', 'rejected', 32, '2020-12-03 12:44:21', '2020-12-03 12:44:21'),
-(20, '2018-09-19', '2018-09-21', 'pilkada serentak', 'pending', 41, '2018-09-18 13:56:00', NULL),
-(24, '2020-12-15', '2020-12-16', 'Liburaaaaaannnnaaaaaaaaaaaaaa', 'pending', 41, '2020-12-08 19:03:54', '2020-12-08 19:03:54');
+(35, '2020-12-29', '2020-12-31', 'cuti akhir tahun', 'approved', 41, '2020-12-08 20:11:42', '2020-12-08 20:11:42'),
+(36, '2021-01-01', '2021-01-02', 'cuti awal tahun', 'pending', 41, '2020-12-08 21:06:38', '2020-12-08 21:06:38'),
+(37, '2021-01-08', '2021-01-09', 'Acara Nikahan Sepupu', 'pending', 41, '2020-12-08 21:39:59', '2020-12-08 21:39:59'),
+(38, '2021-01-10', '2021-01-11', 'Acara Nikahan Kakak', 'pending', 41, '2020-12-08 21:40:56', '2020-12-08 21:40:56'),
+(39, '2021-01-11', '2021-01-12', 'Acara Nikahan Teman', 'pending', 41, '2020-12-08 21:44:48', '2020-12-08 21:44:48');
 
 -- --------------------------------------------------------
 
@@ -249,13 +252,10 @@ CREATE TABLE `overtime` (
 --
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `id_absen`, `status`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, '19:00:00', '23:00:00', 'Bug Fixing', 1, 'approved', '2020-11-25', 32, '2020-11-09 18:39:08', NULL),
-(2, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'rejected', '2020-11-26', 32, '2020-11-26 14:25:23', '2020-11-26 14:25:23'),
-(3, '20:00:00', '23:00:00', 'Bug Fixing', NULL, 'approved', '2020-11-28', 41, '2020-11-26 21:21:47', '2020-11-26 21:21:47'),
-(29, '19:00:00', '21:00:00', 'Lemburrrrrrrrrrrrrrrrr', NULL, 'approved', '2020-12-07', 32, '2020-12-07 12:27:10', '2020-12-07 12:27:10'),
-(38, '19:00:00', '22:00:00', 'lemburrrrrrrrrrrrrrrrrrrrrrrrrrrrr', NULL, 'pending', '2020-12-08', 41, '2020-12-07 19:29:20', '2020-12-07 19:29:20'),
+(38, '19:00:00', '22:00:00', 'lemburrrrrrrrrrrrrrrrrrrrrrrrrrrrr', NULL, 'rejected', '2020-12-08', 41, '2020-12-07 19:29:20', '2020-12-07 19:29:20'),
 (39, '19:00:00', '22:00:00', 'Lemburrrrrrrrrrrrrrrr', NULL, 'pending', '2020-12-08', 32, '2020-12-08 11:05:12', '2020-12-08 11:05:12'),
-(40, '20:00:20', '21:00:00', 'Lemburrrrrrrrrrr lembur lembur', 6, 'pending', '2020-12-08', 32, '2020-12-07 17:00:00', NULL);
+(40, '20:00:20', '21:00:00', 'Lemburrrrrrrrrrr lembur lembur', 6, 'pending', '2020-12-08', 32, '2020-12-07 17:00:00', NULL),
+(43, '19:00:00', '20:00:00', 'Lemburrrrrrrrr', NULL, 'rejected', '2020-12-09', 41, '2020-12-08 20:43:36', '2020-12-08 20:43:36');
 
 -- --------------------------------------------------------
 
@@ -532,7 +532,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -544,7 +544,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `qrcode`
