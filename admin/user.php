@@ -2,15 +2,20 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-        } else {
-            header("Location: index.php");
-            exit;
-        }
-    } else {
+   if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
-        exit;
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$user_list_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    @$user_list_hapus = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_hapus' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    @$user_list_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    if(!$user_list_menu) {
+        header("Location: index.php");
     }
 
     $user = query("SELECT user.*, akses.ket_akses, department.ket_department 
@@ -138,10 +143,11 @@
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
-                                                <?php
-                                                    $level = $_SESSION['admin']['id_akses'];
-                                                    if($level == 0 || $level == 1 ) : ?>
+                                                
+                                                <?php if($user_list_edit) : ?>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit.php?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                <?php   endif; ?>
+                                                <?php if($user_list_hapus) : ?>
                                                     <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>

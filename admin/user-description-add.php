@@ -3,28 +3,23 @@
     session_start();
 
     if(!isset($_SESSION['admin'])) {
-        header("Location: login.php");
+           header("Location: login.php");
     } else {
-        $id_akses = $_SESSION['admin']['id_akses'];
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
+    }
 
     if(isset($_GET['id'])) {
-        $id_overtime = $_GET['id'];
+        $id_akses = $_GET['id'];
     } else {
-        header("overtime.php");
+        header("Location: user-description.php");
     }
 
-    @$overtime_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
+    @$user_description_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'user_description_add' AND akses.id_akses = hak_akses.id_akses")[0];
 
-     if(!$overtime_edit) {
+    
+    if(!$user_description_add) {
         header("Location: index.php");
     }
-
-    $overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
-        FROM user, akses, overtime
-        WHERE user.id_user = overtime.id_user 
-        AND akses.id_akses = user.id_akses
-        ORDER BY id_overtime DESC")[0];
-}
 ?>
 
 <!DOCTYPE html>
@@ -53,18 +48,18 @@
     <body>
 
         <?php 
-            if(isset($_POST['ubah_overtime'])) {
-                if(ubah_overtime($_POST) > 0) {
+            if(isset($_POST['tambah_user_level'])) {
+                if(tambah_user_level($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Change data is successful',
+                        text: 'Add data was successful',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='overtime.php';} )</script>";
+                    }).then(() => {window.location.href='user-description.php?id=$id_akses'} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Change data failed',
+                        title: 'Failed!',
+                        text: 'The data already exists',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -73,7 +68,7 @@
         ?>
 
         <!-- Begin page -->
-         <div id="wrapper">
+        <div id="wrapper">
 
             <?php include 'topbar.php'; ?>
 
@@ -89,14 +84,14 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Ubah Overtime</h4>
+                                    <h4 class="page-title">Tambah User Level</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
-                                        <li class="breadcrumb-item"><a href="overtime.php">Overtime</a></li>
-                                        <li class="breadcrumb-item active">Ubah Overtime</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
+                                        <li class="breadcrumb-item"><a href="user-level.php">User Level</a></li>
+                                        <li class="breadcrumb-item active">Tambah User Level</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -113,59 +108,20 @@
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
         
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id_overtime" value="<?= $overtime['id_overtime']; ?>">
-                                            <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
+                                        <form method="post">
+                                            <input type="hidden" name="id_akses" value="<?= $id_akses ?>">
+                                            <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
-                                                <label>Employee ID Number</label>
-                                                <input type="text" name="nip" value="<?= $overtime['nip']; ?>" class="form-control" required placeholder="Nomor Induk Pegawai" readonly/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Full Name</label>
-                                                <input type="text" name="nama" value="<?= $overtime['nama']; ?>" class="form-control" required placeholder="Full Name" readonly />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <input type="text" name="akses" value="<?= $overtime['ket_akses']; ?>" class="form-control" required placeholder="Full Name" readonly />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Start Time</label>
-                                                <div>
-                                                    <input type="time" name="jam_mulai" value="<?= $overtime['jam_mulai']; ?>" class="form-control" required
-                                                    placeholder=""/>
-                                                </div>
-                                            </div>
-
-                                             <div class="form-group">
-                                                <label>Start End</label>
-                                                <div>
-                                                    <input type="time" name="jam_selesai" value="<?= $overtime['jam_selesai']; ?>" class="form-control" required placeholder=""/>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <div>
-                                                    <textarea required name="ket_overtime" class="form-control" rows="5"><?= $overtime['ket_overtime']; ?></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Date</label>
-                                                <div>
-                                                    <input type="date" name="tanggal" value="<?= $overtime['tanggal']; ?>" class="form-control" required placeholder=""/>
-                                                </div>
+                                                <label>Deskripsi</label>
+                                                <input type="text" name="deskripsi" class="form-control" required/>
                                             </div>
 
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" name="ubah_overtime" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" name="tambah_user_level" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="overtime.php" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="user-description.php?id=<?= $id_akses ?>" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>
@@ -186,7 +142,7 @@
                 </div>
                 <!-- content -->
 
-               <?php include 'footer.php'; ?>
+                <?php include 'footer.php'; ?>
 
             </div>
             <!-- ============================================================== -->

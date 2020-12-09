@@ -361,5 +361,67 @@
         return mysqli_affected_rows($conn);
     }
     //APPROVE LEAVE END
+    
+     // UBAH DEPARTMENT START
+    // function ubah_hak_akses($data) {
+    //     global $conn;
+
+    //     $id_hak_akses = htmlspecialchars($_POST['id_hak_akses']);
+    //     $deskripsi = htmlspecialchars($_POST['deskripsi']);
+    //     $updated_at = htmlspecialchars($_POST['updated_at']);
+
+    //     $result = mysqli_query($conn, "SELECT * FROM hak_akses WHERE deskripsi = '$deskripsi' ");
+    //     if (mysqli_fetch_assoc($result)) {
+    //         return false;
+    //     }
+    //     $query = "UPDATE hak_akses 
+    //                 SET 
+    //                 deskripsi = '$ket_deskripsi',
+    //                 updated_at = '$updated_at'
+    //                 WHERE id_hak_akses = '$id_hak_akses'";
         
+    //     mysqli_query($conn, $query);
+    //     return mysqli_affected_rows($conn);
+    // } 
+    // UBAH DEPARTMENT END
+
+    // TAMBAH DEPARTMENT START
+    function tambah_user_level($data) {
+        global $conn;
+
+        $id_akses = htmlspecialchars($_POST['id_akses']);
+        $deskripsi = htmlspecialchars($_POST['deskripsi']);
+        $created_at = htmlspecialchars($_POST['created_at']);
+
+
+
+        $result = mysqli_query($conn, "SELECT * FROM hak_akses WHERE id_akses = $id_akses AND deskripsi = '$deskripsi' ");
+        
+        if (mysqli_fetch_assoc($result)) {
+            return false;
+        }
+
+        $query = "INSERT INTO hak_akses( 
+                                deskripsi,
+                                id_akses,
+                                created_at
+                            ) VALUES(
+                                '$deskripsi',
+                                $id_akses,
+                                '$created_at' 
+                            )";
+        $tambah = mysqli_query($conn, $query);
+
+        return mysqli_affected_rows($conn);
+    }
+    // TAMBAH DEPARTMENT END
+
+     // HAPUS DEPARTMENT START
+    function hapus_hak_akses($id) {
+        global $conn;
+
+        $p = mysqli_query($conn, "DELETE FROM hak_akses WHERE id_hak_akses = '$id'");
+        return mysqli_affected_rows($conn);
+    }
+    // HAPUS DEPARTMENT END
 ?>

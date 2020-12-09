@@ -8,18 +8,14 @@
         $id_akses = $_SESSION['admin']['id_akses'];
     }
 
-    @$department_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$user_level_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$user_level_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level_edit' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    @$department_hapus_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_hapus_page' AND akses.id_akses = hak_akses.id_akses")[0];
-
-    @$department_edit_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_edit_page' AND akses.id_akses = hak_akses.id_akses")[0];
-
-
-    if(!$department_page) {
+     if(!$user_level_menu) {
         header("Location: index.php");
     }
-    
-    $department = query("SELECT * FROM department");
+
+    $akses = query("SELECT * FROM akses");
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +66,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Department</h4>
+                                    <h4 class="page-title">User Level</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Master</a></li>
-                                        <li class="breadcrumb-item active">Department</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
+                                        <li class="breadcrumb-item active">User Level</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -98,7 +94,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="department-add.php">[+] Add department</a>
+                                                    <!-- <a class="btn btn-primary text-light" href="department-add.php">[+] Add User Level</a> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +102,7 @@
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Department</th>
+                                                <th>Position</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -116,21 +112,23 @@
         
                                             <tbody>
                                                 <?php $i= 1; ?> 
-                                                <?php foreach($department as $row) : ?>
+                                                <?php foreach($akses as $row) : ?>
                                             <tr>
-
-                                                <td><?= $row['ket_department']; ?></td>
+                                                <td><?= $row['ket_akses']; ?></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
 
-                                                    <?php if($department_edit_page) : ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit.php?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></i></a>
+                                                    <?php
+                                                    $level = $_SESSION['admin']['id_akses']; 
+                                                    if($level == 0  ) : ?>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-description.php?id=<?= $row['id_akses']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <?php endif; ?>
-                                                    
-                                                    <?php if($department_hapus_page) : ?>
+                                                    <!-- <?php
+                                                    $level = $_SESSION['admin']['id_akses'];
+                                                    if($level == 0  ) : ?>
                                                         <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
-                                                    <?php endif; ?>
+                                                    <?php endif; ?> -->
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

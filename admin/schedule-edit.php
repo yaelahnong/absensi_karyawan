@@ -2,8 +2,10 @@
     require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
+   if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
     }
 
     if(isset($_GET['id'])) {
@@ -11,6 +13,13 @@
     } else {
         header("settings-schedule.php");
     }
+
+    @$schedule_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'schedule_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
+     if(!$schedule_edit) {
+        header("Location: index.php");
+    }
+
 
     $schedule = query("SELECT * FROM schedule WHERE id_schedule = '$id_schedule'")[0];
 
@@ -46,14 +55,14 @@
                 if(ubah_schedule($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Ubah data berhasil',
+                        text: 'Change data is successful',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='settings-schedule.php';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
-                        text: 'Ubah data gagal',
+                        text: 'Change data failed',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";

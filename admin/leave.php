@@ -4,8 +4,16 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
     }
 
+    @$leave_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
+    if(!$leave_menu) {
+        header("Location: index.php");
+    }
+      
     $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
         FROM user, akses, cuti
         WHERE user.id_user = cuti.id_user 

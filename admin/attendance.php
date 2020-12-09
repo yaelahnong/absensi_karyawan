@@ -1,9 +1,17 @@
 <?php 
     require 'functions.php';
     session_start();
-
-    if(!isset($_SESSION['admin'])) {
+    
+   if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$attendance_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'attendance' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    if(!$attendance_page) {
+        header("Location: index.php");
     }
 
     $v_absen = query("SELECT absen.id_absen, user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, 

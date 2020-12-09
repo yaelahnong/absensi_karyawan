@@ -2,16 +2,17 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-
-        } else {
-            header("Location: index.php");
-            exit;
-        }
-    } else {
+        if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
-        exit;
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$user_list_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_add' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    
+    if(!$user_list_add) {
+        header("Location: index.php");
     }
 
     $department = query("SELECT * FROM department");
@@ -47,14 +48,14 @@
                 if(tambah_user($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Tambah data berhasil',
+                        text: 'Add data was successful',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='user.php';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Failed!',
-                        text: 'NIP atau Email sudah terdaftar',
+                        text: 'NIP or Email is already registered',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";

@@ -2,6 +2,14 @@
     require 'functions.php';
     session_start();
 
+    // $cek_akses = query("SELECT akses.ket_akses, hak_akses.deskripsi FROM akses, hak_akses, admin WHERE akses.id_akses = 0 AND deskripsi = 'dashboard' AND akses.id_akses = admin.id_akses AND akses.id_akses = hak_akses.id_akses");
+    
+    // if($cek_akses) {
+
+    // } else {
+    //     header("Location: overtime.php");
+    // }
+
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
     }

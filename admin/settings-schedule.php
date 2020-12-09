@@ -4,6 +4,14 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login.php");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$schedule_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'schedule' AND akses.id_akses = hak_akses.id_akses")[0];
+
+      if(!$schedule_menu) {
+        header("Location: index.php");
     }
 
     $schedule = query("SELECT * FROM schedule");
