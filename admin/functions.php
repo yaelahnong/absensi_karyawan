@@ -419,7 +419,7 @@
     // HAPUS ADMIN START
     function hapus_user($id) {
         global $conn;
-
+        
         mysqli_query($conn, "DELETE FROM admin WHERE id_admin = '$id'");
         return mysqli_affected_rows($conn);
     }

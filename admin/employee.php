@@ -31,7 +31,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Employee management</title>
+        <title>ABSENSI | Employee List</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -77,6 +77,7 @@
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Employee</a></li>
                                         <li class="breadcrumb-item active">Employee List</li>
                                     </ol>
                                 </div>

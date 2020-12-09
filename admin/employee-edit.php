@@ -95,6 +95,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Employee</a></li>
+                                        <li class="breadcrumb-item"><a href="employee">Employee</a></li>
                                         <li class="breadcrumb-item active">Edit Employee</li>
                                     </ol>
                                 </div>

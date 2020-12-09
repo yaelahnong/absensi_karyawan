@@ -11,12 +11,13 @@
     } else {
         header("Location: user");
     }
-    @$user_list_hapus = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_hapus' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    if(!$user_list_hapus) {
+    @$user_delete = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_delete' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    if(!$user_delete) {
         header("Location: index");
     } else {
-        if(hapus_user($id_user) > 0) {
+        if(hapus_user($id_admin) > 0) {
             header("Location: user");
         } else {
             header("Location: user");

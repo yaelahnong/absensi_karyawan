@@ -10,9 +10,13 @@
 
     @$user_list_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    @$user_list_hapus = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_hapus' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$user_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_add' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    @$user_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    @$user_delete = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_delete' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    @$user_list_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+    
 
     if(!$user_list_menu) {
         header("Location: index");
@@ -95,7 +99,7 @@
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
                                         
-                                        <?php if($_SESSION['admin']['id_akses'] == 0): ?>
+                                        <?php if($user_add):  ?>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
@@ -128,10 +132,10 @@
                                                     <td><?= $row['updated_at']; ?></td>
                                                     <td>
                                                     
-                                                    <?php if($user_list_edit) : ?>
+                                                    <?php if($user_edit) : ?>
                                                         <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit?id=<?= $row['id_admin']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <?php   endif; ?>
-                                                    <?php if($user_list_hapus) : ?>
+                                                    <?php if($user_delete) : ?>
                                                         <a onclick="popupDelete(<?= $row['id_admin']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                     <?php endif; ?>
                                                     </td>

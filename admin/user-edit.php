@@ -5,7 +5,7 @@
     if(!isset($_SESSION['admin'])) {
         header("Location: login");     
     } else {
-        $id_akses = $_SESSION['admin']['id_akses'];
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
 
     if(isset($_GET['id'])) {
@@ -14,10 +14,10 @@
         header("user");
     }
 
-     @$user_list_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+     @$user_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'user_edit' AND akses.id_akses = hak_akses.id_akses")[0];
 
     
-    if(!$user_list_edit) {
+    if(!$user_edit) {
         header("Location: index");
     }
 
@@ -133,7 +133,7 @@
                                                     <button type="submit" name="ubah_user" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="user" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>

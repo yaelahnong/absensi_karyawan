@@ -3,16 +3,19 @@
     session_start();
 
     if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0) {
-
-        } else {
-            header("Location: index");
-            exit;
-        }
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     } else {
         header("Location: login");
         exit;
     }
+
+    @$user_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'user_add' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    if(!$user_add) {
+        header("Location: index.php");
+    }
+
+
 
     // session_start();
 
