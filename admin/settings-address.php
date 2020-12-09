@@ -27,8 +27,8 @@ $color_primary = array_key_exists('color_primary', $_CONFIG) ? $_CONFIG['color_p
 
 $lang = getLang($defaultlang, $browserDetect);
 
-if (file_exists(dirname(__FILE__)."/translations/".$lang."")) {
-    include dirname(__FILE__)."/translations/".$lang."";
+if (file_exists(dirname(__FILE__)."/translations/".$lang.".php")) {
+    include dirname(__FILE__)."/translations/".$lang.".php";
 }
 
 require dirname(__FILE__)."/include/head.php";
