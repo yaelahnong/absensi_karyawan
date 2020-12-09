@@ -2,6 +2,8 @@
     require 'functions.php';
     session_start();
 
+    date_default_timezone_set("Asia/Jakarta");
+
     if(isset($_SESSION['admin'])) {
         $id_akses_admin = $_SESSION['admin']['id_akses'];
     } else {

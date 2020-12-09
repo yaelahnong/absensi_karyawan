@@ -2,7 +2,9 @@
     require 'functions.php';
     session_start();
 
-   if(!isset($_SESSION['admin'])) {
+    date_default_timezone_set("Asia/Jakarta");
+
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
         $id_akses = $_SESSION['admin']['id_akses'];
@@ -16,7 +18,7 @@
 
     @$schedule_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'schedule_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
 
-     if(!$schedule_edit) {
+    if(!$schedule_edit) {
         header("Location: index");
     }
 
@@ -109,7 +111,7 @@
                                         <p class="sub-title">Parsley is a javascript form validation
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
-         
+                                            
                                         <form method="post">
                                             <input type="hidden" name="id_schedule" value="<?= $schedule['id_schedule']; ?>">
                                             <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">

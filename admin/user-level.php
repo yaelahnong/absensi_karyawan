@@ -11,7 +11,7 @@
     @$user_level_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level' AND akses.id_akses = hak_akses.id_akses")[0];
     @$user_level_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level_edit' AND akses.id_akses = hak_akses.id_akses")[0];
 
-     if(!$user_level_menu) {
+    if(!$user_level_menu) {
         header("Location: index");
     }
 
@@ -101,12 +101,12 @@
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
-                                            <tr>
-                                                <th>Position</th>
-                                                <th>Created at</th>
-                                                <th>Updated at</th>
-                                                <th>Action</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>Position</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </thead>
         
         

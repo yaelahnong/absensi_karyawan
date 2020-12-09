@@ -2,10 +2,12 @@
     require 'functions.php';
     session_start();
 
+    date_default_timezone_set("Asia/Jakarta");
+
     if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
-        $id_akses = $_SESSION['admin']['id_akses'];
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
 
     if(isset($_GET['id'])) {
@@ -14,11 +16,12 @@
         header("department");
     }
 
-    @$department_edit_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_edit_page' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$department_edit_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'department_edit' AND akses.id_akses = hak_akses.id_akses")[0];
 
     
     if(!$department_edit_page) {
         header("Location: index");
+        exit;
     }
     $department = query("SELECT * FROM department WHERE id_department = '$id_department'")[0];
 

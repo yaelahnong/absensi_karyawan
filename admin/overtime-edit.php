@@ -2,6 +2,8 @@
     require 'functions.php';
     session_start();
 
+    date_default_timezone_set("Asia/Jakarta");
+
     if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
@@ -15,7 +17,7 @@
 
     @$overtime_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
 
-     if(!$overtime_edit) {
+    if(!$overtime_edit) {
         header("Location: index");
     }
 

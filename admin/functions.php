@@ -396,6 +396,9 @@
         $nama =  htmlspecialchars($data['nama']);
         $updated_at =  htmlspecialchars($data['updated_at']);
         $gambarLama = htmlspecialchars($data['gambarLama']);
+
+        var_dump($data);
+        exit;
         
 
         //CEK APAKAH USER PILIH GAMBAR ATAU TIDAK

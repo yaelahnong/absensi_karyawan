@@ -9,14 +9,17 @@
     }
 
     @$department_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    @$department_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_add' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    @$department_hapus_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_hapus_page' AND akses.id_akses = hak_akses.id_akses")[0];
-
-    @$department_edit_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_edit_page' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$department_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    @$department_delete = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_delete' AND akses.id_akses = hak_akses.id_akses")[0];
 
 
     if(!$department_page) {
         header("Location: index");
+        exit;
     }
     
     $department = query("SELECT * FROM department");
@@ -94,6 +97,8 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
+
+                                        <?php if($department_add): ?>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
@@ -102,6 +107,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php endif; ?>
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
@@ -124,11 +130,11 @@
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
 
-                                                    <?php if($department_edit_page) : ?>
+                                                    <?php if($department_edit) : ?>
                                                         <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></i></a>
                                                     <?php endif; ?>
                                                     
-                                                    <?php if($department_hapus_page) : ?>
+                                                    <?php if($department_delete) : ?>
                                                         <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                     <?php endif; ?>
                                                 </td>

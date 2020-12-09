@@ -2,16 +2,18 @@
     require 'functions.php';
     session_start();
 
+    date_default_timezone_set("Asia/Jakarta");
+
     if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
-        $id_akses = $_SESSION['admin']['id_akses'];
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
 
-    @$department_add_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_add_page' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$department_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'department_add' AND akses.id_akses = hak_akses.id_akses")[0];
 
     
-    if(!$department_add_page) {
+    if(!$department_add) {
         header("Location: index");
     }
 ?>

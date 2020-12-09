@@ -1,8 +1,8 @@
 
 /*
- Template Name: Stexo - Responsive Bootstrap 4 Admin Dashboard
- Author: Themesdesign
- File:  Table responsive Init
+    Template Name: Stexo - Responsive Bootstrap 4 Admin Dashboard
+    Author: Themesdesign
+    File:  Table responsive Init
  */
 
 $(function() {

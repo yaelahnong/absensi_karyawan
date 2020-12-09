@@ -22,7 +22,7 @@
     }
 
 
-    $h_akses = query("SELECT * FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND akses.id_akses = hak_akses.id_akses");
+    $h_akses = query("SELECT * FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND akses.id_akses = hak_akses.id_akses ORDER BY hak_akses.id_hak_akses DESC");
 
 ?>
 
@@ -33,7 +33,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
+        <title>ABSENSI | User Description</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -41,6 +41,13 @@
         <!-- Sweetalert -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
         <script src="assets/js/sweetalert2.all.min.js"></script>
+
+        <!-- DataTables -->
+        <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Responsive datatable examples -->
+        <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
@@ -96,7 +103,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="user-description-add?id=<?= $id_akses ?>">[+] Add User Description</a>
+                                                    <a class="btn btn-primary text-light" href="user-description-add?id=<?= $id_akses ?>">[+] Add Description</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,7 +152,7 @@
                 </div>
                 <!-- content -->
 
-              <?php include 'footer.php'; ?>
+            <?php include 'footer.php'; ?>
 
             </div>
             <!-- ============================================================== -->
@@ -168,6 +175,10 @@
         <!-- Sweet-Alert  -->
         <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
         <script src="assets/js/sweetalert2.all.min.js"></script>
+
+        <!-- Required datatable js -->
+        <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
 
         <!-- Datatable init js -->
         <script src="assets/pages/datatables.init.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>   

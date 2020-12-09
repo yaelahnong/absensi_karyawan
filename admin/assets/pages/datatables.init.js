@@ -1,13 +1,14 @@
 /*
- Template Name: Stexo - Responsive Bootstrap 4 Admin Dashboard
- Author: Themesdesign
- Website: www.themesdesign.in
- File: Datatable js
+    Template Name: Stexo - Responsive Bootstrap 4 Admin Dashboard
+    Author: Themesdesign
+    Website: www.themesdesign.in
+    File: Datatable js
  */
 
 $(document).ready(function() {
     $('#datatable').DataTable({
-        "order": false
+        "order": false,
+        "lengthChange": false
     });
 
     //Buttons examples
@@ -25,7 +26,7 @@ $(document).ready(function() {
             extend: 'pdfHtml5',
             customize: function(doc) {
                 console.dir(doc)
-                doc.content[1].margin = [ 30, 0, 30, 0 ] //left, top, right, bottom
+                doc.content[1].margin = [ 50, 0, 50, 0 ] //left, top, right, bottom
             }
         }],
         order: false

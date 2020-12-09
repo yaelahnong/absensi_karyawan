@@ -2,8 +2,10 @@
     require 'functions.php';
     session_start();
 
+    date_default_timezone_set("Asia/Jakarta");
+
     if(!isset($_SESSION['admin'])) {
-           header("Location: login");
+        header("Location: login");
     } else {
         $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
@@ -29,7 +31,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
+        <title>ABSENSI | Add Description</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -84,14 +86,14 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Tambah User Level</h4>
+                                    <h4 class="page-title">Add Description</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
                                         <li class="breadcrumb-item"><a href="user-level">User Level</a></li>
-                                        <li class="breadcrumb-item active">Tambah User Level</li>
+                                        <li class="breadcrumb-item active">Add Description</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
