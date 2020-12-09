@@ -2,17 +2,19 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-
-        } else {
-            header("Location: index");
-            exit;
-        }
-    } else {
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
         exit;
+    } else {
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
+
+    @$employee_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_add' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    if(!$employee_add) {
+        header("Location: index");
+    }
+
 
     $department = query("SELECT * FROM department");
 ?>
@@ -47,14 +49,14 @@
                 if(tambah_employee($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Tambah data berhasil',
+                        text: 'Add employee success',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='employee';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Error!',
-                        text: 'Tambah data gagal',
+                        text: 'Employee ID Number or Email Address is already exist',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -92,123 +94,146 @@
                         </div>
                         <!-- end page-title -->
 
+                        <form method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card m-b-30">
-                                    <div class="card-body">
-        
-                                        <!-- <h4 class="mt-0 header-title">Validation type</h4>
-                                        <p class="sub-title">Parsley is a javascript form validation
-                                            library. It helps you provide your users with feedback on their form
-                                            submission before sending it to your server.</p> -->
-        
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
-                                            <div class="form-group">
-                                                <label>Employee ID Number</label>
-                                                <input type="number" name="nip" class="form-control" required placeholder="Employee ID Number" data-parsley-minlength="18" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Full Name</label>
-                                                <input type="text" name="nama" class="form-control" required placeholder="Full Name"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>E-Mail</label>
-                                                <div>
-                                                    <input type="email" name="email" class="form-control" required
-                                                    parsley-type="email" placeholder="Enter a valid e-mail"/>
-                                                </div>
-                                            </div>
-        
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <div>
-                                                    <input type="password" name="password" id="pass2" class="form-control" required
-                                                    data-parsley-minlength="6"   placeholder="Password"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Confirm Password</label>
-                                                <input type="password" name="password2" class="form-control" required
-                                                data-parsley-minlength="6" data-parsley-equalto="#pass2"
-                                                placeholder="Re-Type Password"/>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <div class="form-check">
-                                                <div class="row">
-                                                    <div class="col-sm-2 col-md-1">
-                                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
-                                                        <label class="form-check-label" for="laki-laki">
-                                                            Male
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-sm-2 col-md-1">
-                                                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
-                                                        <label class="form-check-label" for="perempuan">
-                                                            Female
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <div>
-                                                    <textarea required name="alamat" class="form-control" rows="5"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input data-parsley-type="number" required name="no_telp"
-                                                class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <input type="text" name="status" class="form-control" required placeholder="Status"/>
-                                            </div>
-                                            <div class="from-grup">
-                                                <label>Image</label>
+                                <div class="col-lg-6">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+            
+                                            <!-- <h4 class="mt-0 header-title">Validation type</h4>
+                                            <p class="sub-title">Parsley is a javascript form validation
+                                                library. It helps you provide your users with feedback on their form
+                                                submission before sending it to your server.</p> -->
+            
+                                                <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                                 <div class="form-group">
-                                                    <input name="photo" type="file" multiple="multiple">
+                                                    <label>Employee ID Number</label>
+                                                    <input type="number" name="nip" class="form-control" required placeholder="Employee ID Number" data-parsley-minlength="18" />
                                                 </div>
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <select class="form-control" name="akses">
-                                                    <option value="4">Employee</option>
-                                                    <option value="3">Project Manager</option>
-                                                    <option value="2">Lead Department</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Department</label>
-                                                <select class="form-control" name="department">
-                                                <?php foreach($department as $row) : ?>
-                                                    <option value="<?= $row['id_department']; ?>"><?= $row['ket_department']; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="submit" name="tambah_employee" class="btn btn-primary waves-effect waves-light">
-                                                        Submit
-                                                    </button>
-                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
-                                                        Cancel
-                                                    </a>
+
+                                                <div class="form-group">
+                                                    <label>Full Name</label>
+                                                    <input type="text" name="nama" class="form-control" required placeholder="Full Name"/>
                                                 </div>
-                                            </div>
-                                        </form>
+
+                                                <div class="form-group">
+                                                    <label>E-Mail</label>
+                                                    <div>
+                                                        <input type="email" name="email" class="form-control" required
+                                                        parsley-type="email" placeholder="Enter a valid e-mail"/>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <div>
+                                                        <input type="password" name="password" id="pass2" class="form-control" required
+                                                        data-parsley-minlength="6"   placeholder="Password"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Confirm Password</label>
+                                                    <input type="password" name="password2" class="form-control" required
+                                                    data-parsley-minlength="6" data-parsley-equalto="#pass2"
+                                                    placeholder="Re-Type Password"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <div>
+                                                        <textarea required name="alamat" class="form-control" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>City / District</label>
+                                                    <input type="text" name="city" class="form-control" required placeholder="City or district" />
+                                                </div>
                                                 
+                                            
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- end col -->
-        
-                            
-                        </div> <!-- end row -->      
+                                </div> <!-- end col -->
+                                
+                                <div class="col-lg-6">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+                                            
+                                            <!-- <h4 class="mt-0 header-title">Validation type</h4>
+                                            <p class="sub-title">Parsley is a javascript form validation
+                                                library. It helps you provide your users with feedback on their form
+                                                submission before sending it to your server.</p> -->
+                                                
+                                                <div class="form-group">
+                                                    <label>Province</label>
+                                                    <input type="text" name="province" class="form-control" required placeholder="Province" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <div class="form-check">
+                                                        <div class="row">
+                                                        <div class="col-sm-2 col-md-2">
+                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
+                                                            <label class="form-check-label" for="laki-laki">
+                                                                Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-2 col-md-2">
+                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
+                                                            <label class="form-check-label" for="perempuan">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input data-parsley-type="number" required name="no_telp"
+                                                    class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <input type="text" name="status" class="form-control" required placeholder="Status"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <div class="form-group">
+                                                        <input name="photo" type="file" multiple="multiple" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Position</label>
+                                                    <select class="form-control" name="akses">
+                                                        <option value="4">Employee</option>
+                                                        <option value="3">Project Manager</option>
+                                                        <option value="2">Lead Department</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Department</label>
+                                                    <select class="form-control" name="department">
+                                                    <?php foreach($department as $row) : ?>
+                                                        <option value="<?= $row['id_department']; ?>"><?= $row['ket_department']; ?></option>
+                                                    <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <button type="submit" name="tambah_employee" class="btn btn-primary waves-effect waves-light">
+                                                            Submit
+                                                        </button>
+                                                        <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                            Cancel
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                    
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                                
+                                
+                            </div> <!-- end row -->      
+                        </form>
 
                         
                     </div>

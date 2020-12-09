@@ -2,16 +2,10 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-
-        } else {
-            header("Location: index");
-            exit;
-        }
+    if(!isset($_SESSION['admin'])) {
+        header("Location: login");     
     } else {
-        header("Location: login");
-        exit;
+        $id_akses = $_SESSION['admin']['id_akses'];
     }
 
     if(isset($_GET['id'])) {
@@ -20,7 +14,15 @@
         header("user");
     }
 
+     @$user_list_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    
+    if(!$user_list_edit) {
+        header("Location: index");
+    }
+
     $user = query("SELECT * FROM admin WHERE id_admin = '$id_admin'")[0];
+    $department = query("SELECT * FROM department");
 
 ?>
 
@@ -54,14 +56,14 @@
                 if(ubah_user($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Ubah data berhasil',
+                        text: 'Edit user success',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='user';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Ubah data gagal',
+                        title: 'Failed!',
+                        text: 'Edit user failed',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -92,7 +94,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
-                                        <li class="breadcrumb-item"><a href="user.php">User List</a></li>
+                                        <li class="breadcrumb-item"><a href="user">User List</a></li>
                                         <li class="breadcrumb-item active">Edit User</li>
                                     </ol>
                                 </div>

@@ -2,15 +2,20 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-        } else {
-            header("Location: index");
-            exit;
-        }
-    } else {
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
         exit;
+    } else {
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
+    }
+
+    @$employee_list = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_list' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$employee_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_add' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$employee_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$employee_delete = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_delete' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    if(!$employee_list) {
+        header("Location: index");
     }
 
     $user = query("SELECT user.*, akses.ket_akses, department.ket_department 
@@ -91,14 +96,16 @@
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
                                         
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-6"></div>
-                                                <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="employee-add">[+] Add Employee</a>
+                                        <?php if($employee_add): ?>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6"></div>
+                                                    <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
+                                                        <a class="btn btn-primary text-light" href="employee-add">[+] Add Employee</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php endif; ?>
 
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -111,6 +118,8 @@
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                                 <th>Address</th>
+                                                <th>City</th>
+                                                <th>Province</th>
                                                 <th>Gender</th>
                                                 <th>Status</th>
                                                 <th>Image</th>
@@ -131,16 +140,18 @@
                                                 <td><?= $row['email']; ?></td>
                                                 <td><?= $row['no_telp']; ?></td>
                                                 <td><?= $row['alamat']; ?></td>
+                                                <td><?= $row['kota']; ?></td>
+                                                <td><?= $row['provinsi']; ?></td>
                                                 <td><?= $row['jenis_kelamin'] == 'laki-laki' ? 'Male' : 'Female'; ?></td>
                                                 <td><?= $row['status']; ?></td>
                                                 <td><img src="assets/images/users/<?= $row['foto'];?>" width="50px"></td>
                                                 <td><?= $row['created_at']; ?></td>
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
-                                                <?php
-                                                    $level = $_SESSION['admin']['id_akses'];
-                                                    if($level == 0 || $level == 1 ) : ?>
+                                                <?php if($employee_edit): ?>
                                                     <a class="btn btn-warning btn-sm rounded-0 text-light" href="employee-edit?id=<?= $row['id_user']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                <?php endif; ?>
+                                                <?php if($employee_delete): ?>
                                                     <a onclick="popupDelete(<?= $row['id_user']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                 <?php endif; ?>
                                                 </td>
@@ -218,7 +229,7 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title: 'Deleted!',
-                            text: 'Your file has been deleted.',
+                            text: 'Employee has been deleted.',
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {

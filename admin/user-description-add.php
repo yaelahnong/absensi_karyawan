@@ -2,27 +2,24 @@
     require 'functions.php';
     session_start();
 
-   if(!isset($_SESSION['admin'])) {
-        header("Location: login");
+    if(!isset($_SESSION['admin'])) {
+           header("Location: login");
     } else {
-        $id_akses = $_SESSION['admin']['id_akses'];
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
 
     if(isset($_GET['id'])) {
-        $id_schedule = $_GET['id'];
+        $id_akses = $_GET['id'];
     } else {
-        header("settings-schedule");
+        header("Location: user-description");
     }
 
-    @$schedule_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'schedule_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
+    @$user_description_add = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'user_description_add' AND akses.id_akses = hak_akses.id_akses")[0];
 
-     if(!$schedule_edit) {
+    
+    if(!$user_description_add) {
         header("Location: index");
     }
-
-
-    $schedule = query("SELECT * FROM schedule WHERE id_schedule = '$id_schedule'")[0];
-
 ?>
 
 <!DOCTYPE html>
@@ -51,18 +48,18 @@
     <body>
 
         <?php 
-            if(isset($_POST['ubah_schedule'])) {
-                if(ubah_schedule($_POST) > 0) {
+            if(isset($_POST['tambah_user_level'])) {
+                if(tambah_user_level($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Change data is successful',
+                        text: 'Add description success',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {window.location.href='settings-schedule';} )</script>";
+                    }).then(() => {window.location.href='user-description?id=$id_akses'} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Change data failed',
+                        title: 'Failed!',
+                        text: 'The data already exists',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -87,13 +84,14 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Ubah Schedule</h4>
+                                    <h4 class="page-title">Tambah User Level</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                        <li class="breadcrumb-item"><a href="settings-schedule.php">Schedule</a></li>
-                                        <li class="breadcrumb-item active">Ubah Schedule</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
+                                        <li class="breadcrumb-item"><a href="user-level">User Level</a></li>
+                                        <li class="breadcrumb-item active">Tambah User Level</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -102,31 +100,28 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card m-b-30">   
+                                <div class="card m-b-30">
                                     <div class="card-body">
         
                                         <!-- <h4 class="mt-0 header-title">Validation type</h4>
                                         <p class="sub-title">Parsley is a javascript form validation
                                             library. It helps you provide your users with feedback on their form
                                             submission before sending it to your server.</p> -->
-         
+        
                                         <form method="post">
-                                            <input type="hidden" name="id_schedule" value="<?= $schedule['id_schedule']; ?>">
-                                            <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
+                                            <input type="hidden" name="id_akses" value="<?= $id_akses ?>">
+                                            <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
-                                                <label>Check-in</label>
-                                                <input type="time" name="jam_masuk" value="<?= $schedule['jam_masuk']; ?>" class="form-control" required placeholder="Check-in"/>
+                                                <label>Deskripsi</label>
+                                                <input type="text" name="deskripsi" class="form-control" required/>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Check-out</label>
-                                                <input type="time" name="jam_keluar" value="<?= $schedule['jam_keluar']; ?>" class="form-control" required placeholder="Check-out"/>
-                                            </div>
+
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" name="ubah_schedule" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" name="tambah_user_level" class="btn btn-primary waves-effect waves-light">
                                                         Submit
                                                     </button>
-                                                    <a href="settings-schedule" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                    <a href="user-description?id=<?= $id_akses ?>" class="btn btn-secondary waves-effect m-l-5 text-light">
                                                         Cancel
                                                     </a>
                                                 </div>
@@ -147,9 +142,7 @@
                 </div>
                 <!-- content -->
 
-                <footer class="footer">
-                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-                </footer>
+                <?php include 'footer.php'; ?>
 
             </div>
             <!-- ============================================================== -->

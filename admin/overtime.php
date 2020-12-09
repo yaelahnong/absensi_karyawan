@@ -2,8 +2,21 @@
     require 'functions.php';
     session_start();
 
-    if(!isset($_SESSION['admin'])) {
+   if(!isset($_SESSION['admin'])) {
         header("Location: login");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$overtime_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime' AND akses.id_akses = hak_akses.id_akses")[0]; 
+    @$overtime_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
+    @$overtime_reject = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_reject' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    @$overtime_approve = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_approve' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+     if(!$overtime_menu) {
+        header("Location: index");
     }
 
     $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
@@ -96,9 +109,9 @@
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Status</th>
-                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 || $_SESSION['admin']['id_akses'] == 3 ): ?>
+                                                    <?php if ($overtime_approve || $overtime_reject || $overtime_edit): ?>
                                                     <th scope="col">Action</th>
-                                                    <?php endif; ?>
+                                                    <?php endif ?>
                                                 </tr>
                                             </thead>
         
@@ -114,21 +127,28 @@
                                                     <td><?= $row['ket_overtime']; ?></td>
                                                     <td><?= $row['tanggal']; ?></td>
                                                     <td><?= $row['status']; ?></td>
-                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 || $_SESSION['admin']['id_akses'] == 3 ): ?>
-                                                    <td>
-                                                        <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2): ?>
-                                                            <?php if($row['status'] == 'pending'): ?>
-                                                        <a onclick="popupApprove(<?= $row['id_overtime']; ?>)" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
-                                                        <a onclick="popupReject(<?= $row['id_overtime']; ?> )" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-                                                        <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3): ?>
-                                                            <?php if($row['status'] == 'approved' || $row['status'] == 'rejected'): ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                    <?php endif; ?>
+                                                    <?php if ($overtime_approve || $overtime_reject || $overtime_edit): ?>
+                                                        <td>
+                                                            <?php if ($overtime_approve): ?>
+                                                                
+                                                                <?php if($row['status'] == 'pending'): ?>
+                                                                <a onclick="popupApprove(<?= $row['id_overtime']; ?>)" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
+                                                                <?php endif; ?>
+                                                            <?php endif ?>
+                                                            <?php if ($overtime_reject): ?>
+                                                                
+                                                                <?php if($row['status'] == 'pending'): ?>
+                                                                <a onclick="popupReject(<?= $row['id_overtime']; ?> )" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                                <?php endif; ?>
+                                                            <?php endif ?>
+                                                            <?php if ($overtime_edit): ?>
+                                                                
+                                                                <?php if($row['status'] == 'approved' || $row['status'] == 'rejected'): ?>
+                                                                <a class="btn btn-warning btn-sm rounded-0 text-light" href="overtime-edit?id=<?= $row['id_overtime']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                                <?php endif; ?>
+                                                            <?php endif ?>
+                                                        </td>
+                                                    <?php endif ?>
                                                 </tr>
 
                                             <?php endforeach; ?>
@@ -212,7 +232,7 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title:'Approve!',
-                            text: 'File has been Approve.',
+                            text: 'Overtime has been Approved.',
                             icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {
@@ -236,7 +256,7 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title:'Reject!',
-                            text: 'File has been Rejectend.',
+                            text: 'Overtime has been Rejectend.',
                             icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {

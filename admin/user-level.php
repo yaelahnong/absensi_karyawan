@@ -2,24 +2,20 @@
     require 'functions.php';
     session_start();
 
-   if(!isset($_SESSION['admin'])) {
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
         $id_akses = $_SESSION['admin']['id_akses'];
     }
 
-    @$user_list_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$user_level_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level' AND akses.id_akses = hak_akses.id_akses")[0];
+    @$user_level_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_level_edit' AND akses.id_akses = hak_akses.id_akses")[0];
 
-    @$user_list_hapus = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_hapus' AND akses.id_akses = hak_akses.id_akses")[0];
-
-    @$user_list_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'user_list_edit' AND akses.id_akses = hak_akses.id_akses")[0];
-
-    if(!$user_list_menu) {
+     if(!$user_level_menu) {
         header("Location: index");
     }
 
-    $user = query("SELECT * FROM admin");
-
+    $akses = query("SELECT * FROM akses");
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +25,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>ABSENSI | User List</title>
+        <title>Stexo - Responsive Admin & Dashboard Template | Themesdesign</title>
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -70,13 +66,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">User List</h4>
+                                    <h4 class="page-title">User Level</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">User Management</a></li>
-                                        <li class="breadcrumb-item active">User List</li>
+                                        <li class="breadcrumb-item active">User Level</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -94,24 +90,19 @@
                                             buttons on a page that will interact with a DataTable. The core library
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
-                                        
-                                        <?php if($_SESSION['admin']['id_akses'] == 0): ?>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6"></div>
                                                 <div class="col-sm-12 col-md-6 text-right mb-2 pb-1">
-                                                    <a class="btn btn-primary text-light" href="register">[+] Add User</a>
+                                                    <!-- <a class="btn btn-primary text-light" href="#">[+] Add User Level</a> -->
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php endif; ?>
-
         
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Name</th>	
-                                                <th>Photo</th>
+                                                <th>Position</th>
                                                 <th>Created at</th>
                                                 <th>Updated at</th>
                                                 <th>Action</th>
@@ -120,25 +111,29 @@
         
         
                                             <tbody>
-                                                <?php foreach($user as $row) : ?>
-                                                <tr>
-                                                    <td><?= $row['nama']; ?></td>
-                                                    <td><img src="assets/images/users/<?= $row['photo'];?>" width="50px"></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['updated_at']; ?></td>
-                                                    <td>
-                                                    
-                                                    <?php if($user_list_edit) : ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-edit?id=<?= $row['id_admin']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
-                                                    <?php   endif; ?>
-                                                    <?php if($user_list_hapus) : ?>
-                                                        <a onclick="popupDelete(<?= $row['id_admin']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                <?php $i= 1; ?> 
+                                                <?php foreach($akses as $row) : ?>
+                                            <tr>
+                                                <td><?= $row['ket_akses']; ?></td>
+                                                <td><?= $row['created_at']; ?></td>
+                                                <td><?= $row['updated_at']; ?></td>
+                                                <td>
+
+                                                    <?php
+                                                    $level = $_SESSION['admin']['id_akses']; 
+                                                    if($level == 0  ) : ?>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="user-description?id=<?= $row['id_akses']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
                                                     <?php endif; ?>
-                                                    </td>
-                                                </tr>
-
-                                                <?php endforeach; ?>
-
+                                                    <!-- <?php
+                                                    $level = $_SESSION['admin']['id_akses'];
+                                                    if($level == 0  ) : ?>
+                                                        <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
+                                                    <?php endif; ?> -->
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                            
                                             </tbody>
                                         </table>
         
@@ -146,6 +141,7 @@
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->    
+
 
                         
                     </div>
@@ -189,7 +185,9 @@
 
         <!-- Sweet-Alert  -->
         <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
-        <script src="assets/js/sweetalert2.all.min.js"></script>
+        <!-- <script src="assets/js/sweetalert2.all.min.js"></script> -->
+        <!-- <script src="assets/pages/sweet-alert.init.js"></script>  -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <!-- Datatable init js -->
         <script src="assets/pages/datatables.init.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>   
@@ -198,7 +196,7 @@
         <script src="assets/js/app.js"></script>
 
         <script>
-            function popupDelete(id_admin) {
+            function popupDelete() {
                 swal.fire({
                     title: 'Are you sure?',
                     text: 'You won\'t be able to revert this!',
@@ -213,7 +211,7 @@
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {
-                                window.location.href=`user-delete?id=${id_admin}`;
+                                window.location.href="department-delete?id=<?= $row['id_department']; ?>";
                             }
                         })
                     } else if(result.isDismissed) {

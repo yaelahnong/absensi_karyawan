@@ -4,8 +4,16 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
     }
 
+    @$leave_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
+    if(!$leave_menu) {
+        header("Location: index");
+    }
+      
     $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
         FROM user, akses, cuti
         WHERE user.id_user = cuti.id_user 
@@ -71,7 +79,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-right">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
-                                    <li class="breadcrumb-item"><a href="leave.php">Transaction</a></li>
+                                    <li class="breadcrumb-item"><a href="leave">Transaction</a></li>
                                     <li class="breadcrumb-item active">Leave</li>
                                 </ol>
                             </div>
@@ -195,7 +203,7 @@
             function popupApprove(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure approve with this leave!',
+                    text: 'You sure approve with this leave',
                     icon: 'info',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, Approve it!',
@@ -203,7 +211,8 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title:'Approve!',
-                            text: 'File has been Approve.',
+                            text: 'Leave has been Approved.',
+                            icon: 'success'
                       }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`leave-approve?id=${id_cuti}`;
@@ -218,7 +227,7 @@
             function popupReject(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure reject with this leave!',
+                    text: 'You sure reject with this leave',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, reject it!',
@@ -226,7 +235,8 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title:'Reject!',
-                            text: 'File has been Rejectend.',
+                            text: 'Leave has been Rejectend.',
+                            icon: 'success'
                       }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`leave-reject?id=${id_cuti}`;

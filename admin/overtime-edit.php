@@ -2,14 +2,10 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 3) {
-        } else {
-            header("Location: overtime"); 
-        }
+    if(!isset($_SESSION['admin'])) {
+        header("Location: login");
     } else {
-        header("Location: login"); 
-    }
+        $id_akses = $_SESSION['admin']['id_akses'];
 
     if(isset($_GET['id'])) {
         $id_overtime = $_GET['id'];
@@ -17,12 +13,18 @@
         header("overtime");
     }
 
+    @$overtime_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_edit' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
+     if(!$overtime_edit) {
+        header("Location: index");
+    }
+
     $overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
         FROM user, akses, overtime
         WHERE user.id_user = overtime.id_user 
         AND akses.id_akses = user.id_akses
         ORDER BY id_overtime DESC")[0];
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +57,14 @@
                 if(ubah_overtime($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Ubah data berhasil',
+                        text: 'Edit overtime success',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='overtime';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Ubah data gagal',
+                        title: 'Failed!',
+                        text: 'Edit data failed',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -93,7 +95,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
-                                        <li class="breadcrumb-item"><a href="overtime.php">Overtime</a></li>
+                                        <li class="breadcrumb-item"><a href="overtime">Overtime</a></li>
                                         <li class="breadcrumb-item active">Ubah Overtime</li>
                                     </ol>
                                 </div>

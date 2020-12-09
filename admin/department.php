@@ -4,8 +4,21 @@
 
     if(!isset($_SESSION['admin'])) {
         header("Location: login");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
     }
 
+    @$department_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    @$department_hapus_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_hapus_page' AND akses.id_akses = hak_akses.id_akses")[0];
+
+    @$department_edit_page = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'department_edit_page' AND akses.id_akses = hak_akses.id_akses")[0];
+
+
+    if(!$department_page) {
+        header("Location: index");
+    }
+    
     $department = query("SELECT * FROM department");
 ?>
 
@@ -111,14 +124,11 @@
                                                 <td><?= $row['updated_at']; ?></td>
                                                 <td>
 
-                                                    <?php
-                                                    $level = $_SESSION['admin']['id_akses']; 
-                                                    if($level == 0  ) : ?>
-                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></a></i>
+                                                    <?php if($department_edit_page) : ?>
+                                                        <a class="btn btn-warning btn-sm rounded-0 text-light" href="department-edit?id=<?= $row['id_department']; ?>"><i class="mdi mdi-square-edit-outline mdi-18px"></i></a>
                                                     <?php endif; ?>
-                                                    <?php
-                                                    $level = $_SESSION['admin']['id_akses'];
-                                                    if($level == 0  ) : ?>
+                                                    
+                                                    <?php if($department_hapus_page) : ?>
                                                         <a onclick="popupDelete()" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-trash-can-outline mdi-18px"></i></a>
                                                     <?php endif; ?>
                                                 </td>
@@ -199,7 +209,7 @@
                     if(result.isConfirmed) {
                         swal.fire({
                             title: 'Deleted!',
-                            text: 'Your file has been deleted.',
+                            text: 'Department has been deleted.',
                             icon: 'success'
                         }).then((result) => {
                             if(result.isConfirmed) {

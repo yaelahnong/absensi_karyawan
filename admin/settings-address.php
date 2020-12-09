@@ -1,10 +1,19 @@
 <?php
 
 session_start();
+require 'functions.php';
 
-if(!isset($_SESSION['admin'])) {
-    header("Location: login");
-}
+ if(!isset($_SESSION['admin'])) {
+        header("Location: login");
+    } else {
+        $id_akses = $_SESSION['admin']['id_akses'];
+    }
+
+    @$address_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'address' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+     if(!$address_menu) {
+        header("Location: index");
+    }
 
 error_reporting(E_ALL ^ E_NOTICE);
 // error_reporting(E_ALL);

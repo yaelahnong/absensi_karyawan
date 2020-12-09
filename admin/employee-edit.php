@@ -2,17 +2,19 @@
     require 'functions.php';
     session_start();
 
-    if(isset($_SESSION['admin'])) {
-        if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 1) {
-
-        } else {
-            header("Location: index");
-            exit;
-        }
-    } else {
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
         exit;
+    } else {
+        $id_akses_admin = $_SESSION['admin']['id_akses'];
     }
+
+    @$employee_edit = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses_admin AND deskripsi = 'employee_edit' AND akses.id_akses = hak_akses.id_akses")[0];
+    
+    if(!$employee_edit) {
+        header("Location: index");
+    }
+
 
     if(isset($_GET['id'])) {
         $id_user = $_GET['id'];
@@ -55,14 +57,14 @@
                 if(ubah_employee($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Ubah data berhasil',
+                        text: 'Edit employee success',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='employee';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Ubah data gagal',
+                        title: 'Failed!',
+                        text: 'Employee ID Number or Email Address is already exist',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -100,120 +102,143 @@
                         </div>
                         <!-- end page-title -->
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card m-b-30">
-                                    <div class="card-body">
-        
-                                        <!-- <h4 class="mt-0 header-title">Validation type</h4>
-                                        <p class="sub-title">Parsley is a javascript form validation
-                                            library. It helps you provide your users with feedback on their form
-                                            submission before sending it to your server.</p> -->
-        
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
-                                            <input type="hidden" name="gambarLama" value="<?= $user['foto']; ?>">
-                                            <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
-                                            <div class="form-group">
-                                                <label>Employee ID Number</label>
-                                                <input type="text" name="nip" value="<?= $user['nip']; ?>" class="form-control" required placeholder="Nomor Induk Pegawai"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Full Name</label>
-                                                <input type="text" name="nama" value="<?= $user['nama']; ?>" class="form-control" required placeholder="Full Name"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>E-Mail</label>
-                                                <div>
-                                                    <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" required
-                                                    parsley-type="email" placeholder="Enter a valid e-mail"/>
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+            
+                                            <!-- <h4 class="mt-0 header-title">Validation type</h4>
+                                            <p class="sub-title">Parsley is a javascript form validation
+                                                library. It helps you provide your users with feedback on their form
+                                                submission before sending it to your server.</p> -->
+            
+                                                <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
+                                                <input type="hidden" name="gambarLama" value="<?= $user['foto']; ?>">
+                                                <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
+                                                <div class="form-group">
+                                                    <label>Employee ID Number</label>
+                                                    <input type="text" name="nip" value="<?= $user['nip']; ?>" class="form-control" required placeholder="Nomor Induk Pegawai"/>
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <div class="form-check">
-                                                <div class="row">
-                                                    <div class="col-sm-2 col-md-1">
-                                                        <?php if($user['jenis_kelamin'] == 'laki-laki'): ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
-                                                        <?php else: ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki">
-                                                        <?php endif; ?>
-                                                        <label class="form-check-label" for="laki-laki">
-                                                            Male
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-sm-2 col-md-1">
-                                                        <?php if($user['jenis_kelamin'] == 'perempuan'): ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan" checked>
-                                                        <?php else: ?>
-                                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
-                                                        <?php endif; ?>
-                                                        <label class="form-check-label" for="perempuan">
-                                                            Female
-                                                        </label>
+
+                                                <div class="form-group">
+                                                    <label>Full Name</label>
+                                                    <input type="text" name="nama" value="<?= $user['nama']; ?>" class="form-control" required placeholder="Full Name"/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>E-Mail</label>
+                                                    <div>
+                                                        <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" required
+                                                        parsley-type="email" placeholder="Enter a valid e-mail"/>
                                                     </div>
                                                 </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <div>
-                                                    <textarea required name="alamat" class="form-control" rows="5"><?= $user['alamat']; ?></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input data-parsley-type="number" required name="no_telp" value="<?= $user['no_telp']; ?>"
-                                                class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <input type="text" name="status" class="form-control" value="<?= $user['status']; ?>" required placeholder="Status"/>
-                                            </div>
-                                            <div class="from-grup">
-                                                <label>Image</label><br>
-                                                <img src="assets/images/users/<?= $user['foto'];?>" width="50px"><br>
-                                                <div class="form-group"><br>
-                                                <input name="photo" type="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Position</label>
-                                                <select class="form-control" name="akses">
-                                                    <option value="2" <?= $user['id_akses'] == 2 ? 'selected' : '' ?>>Lead Department</option>
-                                                    <option value="3" <?= $user['id_akses'] == 3 ? 'selected' : '' ?>>Project Manager</option>
-                                                    <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Department</label>
-                                                <select class="form-control" name="department">
-                                                    <?php foreach($department as $row): ?> 
-                                                    <option value="<?= $row['id_department']; ?>" <?= $user['id_department'] == $row['id_department'] ? 'selected' : '' ?>><?= $row['ket_department']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="submit" name="ubah_employee" class="btn btn-primary waves-effect waves-light">
-                                                        Submit
-                                                    </button>
-                                                    <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
-                                                        Cancel
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </form>
                                                 
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <div>
+                                                        <textarea required name="alamat" class="form-control" rows="3"><?= $user['alamat']; ?></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>City / District</label>
+                                                    <input type="text" name="city" class="form-control" value="<?= $user['kota']; ?>" required placeholder="City or district" />
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>Province</label>
+                                                    <input type="text" name="province" class="form-control" value="<?= $user['provinsi']; ?>" required placeholder="Province" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                </div> <!-- end col -->
+
+                                <div class="col-lg-6">
+                                    <div class="card m-b-30">
+                                        <div class="card-body">
+                                            
+                                            <!-- <h4 class="mt-0 header-title">Validation type</h4>
+                                            <p class="sub-title">Parsley is a javascript form validation
+                                                library. It helps you provide your users with feedback on their form
+                                                submission before sending it to your server.</p> -->
+
+                                                
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <div class="form-check">
+                                                    <div class="row">
+                                                        <div class="col-sm-2 col-md-2">
+                                                            <?php if($user['jenis_kelamin'] == 'laki-laki'): ?>
+                                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki" checked>
+                                                            <?php else: ?>
+                                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="laki-laki">
+                                                            <?php endif; ?>
+                                                            <label class="form-check-label" for="laki-laki">
+                                                                Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-2 col-md-2">
+                                                            <?php if($user['jenis_kelamin'] == 'perempuan'): ?>
+                                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan" checked>
+                                                            <?php else: ?>
+                                                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
+                                                            <?php endif; ?>
+                                                            <label class="form-check-label" for="perempuan">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input data-parsley-type="number" required name="no_telp" value="<?= $user['no_telp']; ?>"
+                                                    class="form-control" type="tel" placeholder="08xxx" id="example-tel-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <input type="text" name="status" class="form-control" value="<?= $user['status']; ?>" required placeholder="Status"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Image</label><br>
+                                                    <input name="photo" type="file">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Position</label>
+                                                    <select class="form-control" name="akses">
+                                                        <option value="2" <?= $user['id_akses'] == 2 ? 'selected' : '' ?>>Lead Department</option>
+                                                        <option value="3" <?= $user['id_akses'] == 3 ? 'selected' : '' ?>>Project Manager</option>
+                                                        <option value="4" <?= $user['id_akses'] == 4 ? 'selected' : '' ?>>Employee</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Department</label>
+                                                    <select class="form-control" name="department">
+                                                        <?php foreach($department as $row): ?> 
+                                                        <option value="<?= $row['id_department']; ?>" <?= $user['id_department'] == $row['id_department'] ? 'selected' : '' ?>><?= $row['ket_department']; ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <button type="submit" name="ubah_employee" class="btn btn-primary waves-effect waves-light">
+                                                            Submit
+                                                        </button>
+                                                        <a href="employee" class="btn btn-secondary waves-effect m-l-5 text-light">
+                                                            Cancel
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                    
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- end col -->
-        
-                            
-                        </div> <!-- end row -->      
+                                </div> <!-- end col -->
+            
+                                
+                            </div> <!-- end row -->      
+                        </form>
 
                         
                     </div>

@@ -25,37 +25,42 @@
         $password = htmlspecialchars($data['password']);
         $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
         $alamat = htmlspecialchars($data['alamat']);
+        $kota = htmlspecialchars($data['city']);
+        $provinsi = htmlspecialchars($data['province']);
         $no_telp = htmlspecialchars($data['no_telp']);
         $foto = uploadFoto();        
         $status = htmlspecialchars($data['status']);
         $id_akses = htmlspecialchars($data['akses']);
         $id_department = htmlspecialchars($data['department']);
         $created_at = htmlspecialchars($data['created_at']);
-
+        
+        
         if( !$foto ) {
             return false;
         }
-
+        
         $cekNip = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
         $cekEmail = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
         
         if(mysqli_fetch_assoc($cekNip)) {
             return false;
         }
-
+        
         if (mysqli_fetch_assoc($cekEmail)) {
             return false;      
         }
-
+        
         $password = password_hash($password, PASSWORD_DEFAULT);
-
+        
         $query = "INSERT INTO user(
-                                nip, 
+            nip, 
                                 nama, 
                                 email, 
                                 password, 
                                 jenis_kelamin, 
-                                alamat, 
+                                alamat,
+                                kota,
+                                provinsi,
                                 no_telp, 
                                 status, 
                                 foto,
@@ -68,7 +73,9 @@
                                 '$email', 
                                 '$password', 
                                 '$jenis_kelamin', 
-                                '$alamat', 
+                                '$alamat',
+                                '$kota',
+                                '$provinsi', 
                                 '$no_telp', 
                                 '$status',
                                 '$foto', 
@@ -76,8 +83,8 @@
                                 $id_department, 
                                 '$created_at'
                             )";
-        $tambah = mysqli_query($conn, $query);
-
+        mysqli_query($conn, $query);
+        
         return mysqli_affected_rows($conn);
     }
     // TAMBAH USER END
@@ -85,13 +92,15 @@
     // UBAH USER START
     function ubah_employee($data) {
         global $conn;
-
+        
         $id_user =  htmlspecialchars($data['id_user']);
         $nip =  htmlspecialchars($data['nip']);
         $nama =  htmlspecialchars($data['nama']);
         $email =  htmlspecialchars($data['email']);
         $jenis_kelamin =  htmlspecialchars($data['jenis_kelamin']);
         $alamat =  htmlspecialchars($data['alamat']);
+        $kota =  htmlspecialchars($data['city']);
+        $provinsi =  htmlspecialchars($data['province']);
         $no_telp =  htmlspecialchars($data['no_telp']);
         $status =  htmlspecialchars($data['status']);
         $id_akses =  htmlspecialchars($data['akses']);
@@ -113,6 +122,8 @@
                         email = '$email', 
                         jenis_kelamin = '$jenis_kelamin', 
                         alamat = '$alamat', 
+                        kota = '$kota', 
+                        provinsi = '$provinsi', 
                         no_telp = '$no_telp', 
                         status = '$status',
                         foto = '$photo', 
@@ -415,4 +426,48 @@
     // HAPUS ADMIN END
 
         
+    //     mysqli_query($conn, $query);
+    //     return mysqli_affected_rows($conn);
+    // } 
+    // UBAH DEPARTMENT END
+
+    // TAMBAH DEPARTMENT START
+    function tambah_user_level($data) {
+        global $conn;
+
+        $id_akses = htmlspecialchars($_POST['id_akses']);
+        $deskripsi = htmlspecialchars($_POST['deskripsi']);
+        $created_at = htmlspecialchars($_POST['created_at']);
+
+
+
+        $result = mysqli_query($conn, "SELECT * FROM hak_akses WHERE id_akses = $id_akses AND deskripsi = '$deskripsi' ");
+        
+        if (mysqli_fetch_assoc($result)) {
+            return false;
+        }
+
+        $query = "INSERT INTO hak_akses( 
+                                deskripsi,
+                                id_akses,
+                                created_at
+                            ) VALUES(
+                                '$deskripsi',
+                                $id_akses,
+                                '$created_at' 
+                            )";
+        $tambah = mysqli_query($conn, $query);
+
+        return mysqli_affected_rows($conn);
+    }
+    // TAMBAH DEPARTMENT END
+
+     // HAPUS DEPARTMENT START
+    function hapus_hak_akses($id) {
+        global $conn;
+
+        $p = mysqli_query($conn, "DELETE FROM hak_akses WHERE id_hak_akses = '$id'");
+        return mysqli_affected_rows($conn);
+    }
+    // HAPUS DEPARTMENT END
 ?>
