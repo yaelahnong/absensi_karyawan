@@ -1,13 +1,13 @@
 <?php 
     session_start();
     require_once('functions.php');
-  
-     if(isset($_SESSION['admin'])) {
+
+    if(isset($_SESSION['admin'])) {
         $id_akses = $_SESSION['admin']['id_akses'];
     }
         if(isset($_GET['id'])) {
             $id_overtime = $_GET['id'];
-      } else {
+    } else {
             header("Location: overtime");
         }
 

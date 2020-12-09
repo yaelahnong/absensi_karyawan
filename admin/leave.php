@@ -10,10 +10,14 @@
 
     @$leave_menu = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave' AND akses.id_akses = hak_akses.id_akses")[0]; 
 
+    @$leave_approve = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave_approve' AND akses.id_akses = hak_akses.id_akses")[0]; 
+    
+    @$leave_reject = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave_reject' AND akses.id_akses = hak_akses.id_akses")[0]; 
+
     if(!$leave_menu) {
         header("Location: index");
     }
-      
+
     $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
         FROM user, akses, cuti
         WHERE user.id_user = cuti.id_user 
@@ -103,7 +107,7 @@
                                                     <th scope="col">End Date</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Status</th>
-                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2 ): ?>
+                                                    <?php if($leave_approve || $leave_reject): ?>
                                                     <th scope="col">Action</th>
                                                     <?php endif; ?>
                                                 </tr>
@@ -120,7 +124,7 @@
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
                                                     <td><?= $row['status']; ?></td>
-                                                    <?php if($_SESSION['admin']['id_akses'] == 0 || $_SESSION['admin']['id_akses'] == 2): ?>
+                                                    <?php if($leave_approve || $leave_reject): ?>
                                                     <td>
                                                         <?php if($row['status'] == 'pending'): ?>
                                                         <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>

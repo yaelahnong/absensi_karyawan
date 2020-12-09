@@ -2,7 +2,7 @@
     require 'functions.php';
     session_start();
 
-   if(!isset($_SESSION['admin'])) {
+    if(!isset($_SESSION['admin'])) {
         header("Location: login");
     } else {
         $id_akses = $_SESSION['admin']['id_akses'];
@@ -15,7 +15,7 @@
 
     @$overtime_approve = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'overtime_approve' AND akses.id_akses = hak_akses.id_akses")[0];
     
-     if(!$overtime_menu) {
+    if(!$overtime_menu) {
         header("Location: index");
     }
 

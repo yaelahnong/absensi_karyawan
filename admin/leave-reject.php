@@ -7,9 +7,9 @@
     }
         if(isset($_GET['id'])) {
             $id_cuti = $_GET['id'];
-     }  else {
-             header("Location: leave");
-     }
+    }  else {
+        header("Location: leave");
+    }
 
     @$leave_reject = query("SELECT hak_akses.deskripsi FROM akses, hak_akses WHERE akses.id_akses = $id_akses AND deskripsi = 'leave_reject' AND akses.id_akses = hak_akses.id_akses")[0];
 

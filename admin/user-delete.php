@@ -2,7 +2,7 @@
     session_start();
     require_once('functions.php');
     
-     if (isset($_SESSION['admin'])) {
+    if (isset($_SESSION['admin'])) {
         $id_akses = $_SESSION['admin']['id_akses'];
     }
 
