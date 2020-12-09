@@ -1,4 +1,5 @@
 <?php 
+    require 'functions.php';
     session_start();
 
     if(isset($_SESSION['admin'])) {
@@ -13,24 +14,11 @@
         exit;
     }
 
-    require 'functions.php';
     // session_start();
 
     // if(!isset($_SESSION['admin'])) {
     //     header("Location: login");
     // }
-
-    if(isset($_POST['register'])) {
-        
-        if(registrasi($_POST) > 0) {
-            echo "<script>alert('Success!');</script>";
-            echo "<script>window.location.href='user'</script>";
-        } else {
-            echo "<script>alert('Failed!');</script>";
-            echo "<script>window.location.href='user'</script>";
-        }
-
-    }
 ?>
 
 
@@ -46,6 +34,10 @@
         <meta content="Themesdesign" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+        <!-- Sweetalert -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
+        <script src="assets/js/sweetalert2.all.min.js"></script>
+
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
@@ -54,6 +46,26 @@
     </head>
 
     <body>
+
+         <?php 
+            if(isset($_POST['register'])) {
+                if(registrasi($_POST) > 0) {
+                    echo "<script>Swal.fire({
+                        title: 'Success!',
+                        text: 'Register was successful',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {window.location.href='user';} )</script>";
+                } else {
+                    echo "<script>Swal.fire({
+                        title: 'Error!',
+                        text: 'Username already exist',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then(() => {window.history.back();} )</script>";
+                }
+            }
+        ?>
 
         <!-- Begin page -->
         <div class="accountbg"></div>
@@ -150,6 +162,11 @@
         <script src="assets/js/metismenu.min.js"></script>
         <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/waves.min.js"></script>
+
+        <!-- Sweet-Alert  -->
+        <script src="../plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="assets/js/sweetalert2.all.min.js"></script>
+
 
         <!-- App js -->
         <script src="assets/js/app.js"></script>

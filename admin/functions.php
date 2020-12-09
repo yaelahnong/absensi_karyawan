@@ -150,6 +150,12 @@
             return false;
         }
 
+        $cekusername = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
+
+        if(mysqli_fetch_assoc($cekusername)) {
+            return false;
+        }
+
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $query = "INSERT INTO admin VALUES('', '$nama', '$username', '$password', '$photo', $akses, '$created_at', null)";
