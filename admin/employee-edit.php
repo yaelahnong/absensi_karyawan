@@ -64,12 +64,13 @@
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='employee';} )</script>";
                 } else {
-                    echo "<script>Swal.fire({
-                        title: 'Failed!',
-                        text: 'Employee ID Number or Email Address is already exist',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    }).then(() => {window.history.back();} )</script>";
+                    // echo "<script>Swal.fire({
+                    //     title: 'Failed!',
+                    //     text: 'Employee ID Number or Email Address is already exist',
+                    //     icon: 'error',
+                    //     confirmButtonText: 'OK'
+                    // }).then(() => {window.history.back();} )</script>";
+                    // echo "<script>window.history.back();</script>";
                 }
             }
         ?>

@@ -52,13 +52,6 @@
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='department';} )</script>";
-                } else {
-                    echo "<script>Swal.fire({
-                        title: 'Failed!',
-                        text: 'Department already exists',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    }).then(() => {window.history.back();} )</script>";
                 }
             }
         ?>

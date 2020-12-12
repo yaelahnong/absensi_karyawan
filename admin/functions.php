@@ -41,19 +41,32 @@
         
         $cekNip = mysqli_query($conn, "SELECT * FROM user WHERE nip = '$nip'");
         $cekEmail = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-        
+
+
         if(mysqli_fetch_assoc($cekNip)) {
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Employee ID Number is already exist',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
         
         if (mysqli_fetch_assoc($cekEmail)) {
-            return false;      
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Email address is already exist',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
+            return false;
         }
         
         $password = password_hash($password, PASSWORD_DEFAULT);
         
         $query = "INSERT INTO user(
-            nip, 
+                                nip, 
                                 nama, 
                                 email, 
                                 password, 
@@ -110,10 +123,14 @@
         
 
         //CEK APAKAH USER PILIH GAMBAR ATAU TIDAK
-        if( $_FILES['photo'] ['error'] === 4) {
+        if( $_FILES['photo']['error'] === 4 ) {
             $photo = $gambarLama;
         } else {
-             $photo = uploadFoto();
+            $photo = uploadFoto();
+        }
+
+        if(!$photo) {
+            return false;
         }
 
         $query = "UPDATE user 
@@ -164,6 +181,12 @@
         $cekusername = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
 
         if(mysqli_fetch_assoc($cekusername)) {
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Username already exists',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
 
@@ -187,12 +210,15 @@
         // cek apakah ada foto yang di upload
         // 4 = tidak ada gambar yang di upload (error message)
         if( $error === 4 ) {
-            echo "<script>
-                alert('Pilih gambar terlebih dahulu!');
-            </script>";
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Select image first',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
-
+        
         // cek apakah foto yang diupload adalah gambar
         $ekstensiFotoValid = ['jpg', 'jpeg', 'png'];
         
@@ -202,28 +228,41 @@
         
         // cek apakah ekstensi gambar valid
         if( !in_array($ekstensiFoto, $ekstensiFotoValid) ) {
-            echo "<script>
-                alert('Yang anda upload bukan gambar!');
-            </script>";
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Image invalid format. Only this files are allowed: PNG, JPG, JPEG',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false; 
         }
-        
+
         // cek ukuran gambar (byte)
-        if( $ukuranFile > 1000000) {
-            echo "<script>
-                alert('Ukuran gambar terlalu besar!');
-            </script>";
+        if( $ukuranFile > 1000000 ) {
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Image may not be greater than 1 MB',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
 
         // gambar valid, siap di upload
+
+        // var_dump();
+        // exit;
         
-        move_uploaded_file($tmpName, 'assets/images/users/' . $namaFile);
+        move_uploaded_file($tmpName, $_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile);
+        copy($_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile, 'D:/INO/PRAKERIN/Project/absensi_karyawan_mobile/public/assets/images/' . $namaFile);
+        
 
         return $namaFile;
 
     }
     // UPLOAD FOTO END
+
+
 
     // TAMBAH DEPARTMENT START
     function tambah_department($data) {
@@ -234,6 +273,12 @@
 
         $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
         if (mysqli_fetch_assoc($result)) {
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Department already exists',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
 
@@ -244,7 +289,8 @@
                                 '$ket_department',
                                 '$created_at' 
                             )";
-        $tambah = mysqli_query($conn, $query);
+
+        mysqli_query($conn, $query);
 
         return mysqli_affected_rows($conn);
     }
@@ -260,6 +306,12 @@
 
         $result = mysqli_query($conn, "SELECT * FROM department WHERE ket_department = '$ket_department' ");
         if (mysqli_fetch_assoc($result)) {
+            echo "<script>Swal.fire({
+                title: 'Failed!',
+                text: 'Department already exists',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });</script>";
             return false;
         }
         $query = "UPDATE department 
@@ -396,9 +448,6 @@
         $nama =  htmlspecialchars($data['nama']);
         $updated_at =  htmlspecialchars($data['updated_at']);
         $gambarLama = htmlspecialchars($data['gambarLama']);
-
-        var_dump($data);
-        exit;
         
 
         //CEK APAKAH USER PILIH GAMBAR ATAU TIDAK

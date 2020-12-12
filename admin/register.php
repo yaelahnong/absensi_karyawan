@@ -17,13 +17,6 @@
         header("Location: index.php");
     }
 
-
-
-    // session_start();
-
-    // if(!isset($_SESSION['admin'])) {
-    //     header("Location: login");
-    // }
 ?>
 
 
@@ -52,7 +45,7 @@
 
     <body>
 
-         <?php 
+        <?php 
             if(isset($_POST['register'])) {
                 if(registrasi($_POST) > 0) {
                     echo "<script>Swal.fire({
@@ -61,13 +54,6 @@
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='user';} )</script>";
-                } else {
-                    echo "<script>Swal.fire({
-                        title: 'Error!',
-                        text: 'Username already exist',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    }).then(() => {window.history.back();} )</script>";
                 }
             }
         ?>
