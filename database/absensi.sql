@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2020 at 10:55 PM
+-- Generation Time: Dec 13, 2020 at 02:05 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -101,7 +101,8 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (59, '14:55:25', '14:55:31', NULL, '2020-12-09', 32, '-6.5646356, 106.7667236', '2020-12-09 14:55:25', '2020-12-09 14:55:31'),
 (60, '08:23:40', '14:58:03', NULL, '2020-12-10', 41, '-6.5646231, 106.7667118', '2020-12-09 14:57:40', '2020-12-09 14:58:03'),
 (61, '23:45:40', '00:00:00', NULL, '2020-12-11', 32, '-6.5646284, 106.7667143', '2020-12-11 16:45:40', '2020-12-11 17:00:00'),
-(62, '22:34:51', '00:00:00', NULL, '2020-12-12', 32, '-6.5647028, 106.7667855', '2020-12-12 15:34:51', '2020-12-12 17:00:00');
+(62, '22:34:51', '00:00:00', NULL, '2020-12-12', 32, '-6.5647028, 106.7667855', '2020-12-12 15:34:51', '2020-12-12 17:00:00'),
+(63, '16:58:35', '16:58:49', NULL, '2020-12-13', 41, '-6.5646284, 106.7667136', '2020-12-13 09:58:35', '2020-12-13 09:58:49');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `photo`, `id_akses`, `created_at`, `updated_at`) VALUES
-(20, 'Administrator', 'admin', '$2y$10$atJfVZK/hDkvAwh3Xm31a.op1RRKlsKe6OWvZMjCVoBWvmFGnEK8a', 'IMG_1089.jpg', 0, '2020-11-09 11:10:37', '2020-12-10 05:05:54'),
+(20, 'Administrator', 'admin', '$2y$10$atJfVZK/hDkvAwh3Xm31a.op1RRKlsKe6OWvZMjCVoBWvmFGnEK8a', 'IMG_1089.jpg', 0, '2020-11-09 11:10:37', '2020-12-13 13:00:15'),
 (21, 'Marino Imola', 'yaelahnong', '$2y$10$E3HaN2qQhmDnrRLAPNKqHudskW70n7mwiVWmBg0oXEzf0GJXV1LKq', 'ino.jpg', 1, '2020-11-09 11:28:38', NULL),
 (22, 'Marino Imola', 'inoo0001', '$2y$10$nqGJXUIaxiE9kqlTmE8FXe2fmyYG27NcGPkcPinVkY7Q.WA/nAm1S', '244551.jpg', 2, '2020-12-03 13:56:23', NULL),
 (23, 'Marino Imola', 'inoo0002', '$2y$10$.pEuO67HJ.vNIsLoaScEuOalogNZSjP2NrKYY01FWY7WwTVH16Rjq', 'user-1.jpg', 3, '2020-12-03 13:57:02', NULL);
@@ -179,28 +180,9 @@ CREATE TABLE `cuti` (
 --
 
 INSERT INTO `cuti` (`id_cuti`, `tanggal_mulai`, `tanggal_selesai`, `kategori`, `ket_cuti`, `foto`, `status`, `pesan`, `id_user`, `created_at`, `updated_at`) VALUES
-(2, '2020-11-28', '2020-11-29', NULL, 'Uji Sertifikasi', NULL, 'rejected', NULL, 41, '2020-11-26 21:48:20', '2020-11-26 21:48:20'),
-(3, '2020-11-28', '2020-11-29', NULL, 'Uji Sertifikasi', NULL, 'rejected', NULL, 32, '2020-11-26 22:21:27', '2020-11-26 22:21:27'),
-(5, '2020-11-28', '2020-11-29', NULL, 'Uji Sertifikasi', NULL, 'approved', NULL, 32, '2020-11-27 14:09:08', '2020-11-27 14:09:08'),
-(8, '2020-11-28', '2020-11-27', NULL, 'liburan', NULL, 'approved', NULL, 32, '2020-11-27 16:24:35', '2020-11-27 16:24:35'),
-(14, '2020-11-29', '2020-12-03', NULL, 'Dinas', NULL, 'approved', NULL, 32, '2020-11-29 12:07:21', '2020-11-29 12:07:21'),
-(15, '2020-12-31', '2020-12-31', NULL, 'sakit', NULL, 'approved', NULL, 39, '2020-11-30 11:13:32', '2020-11-30 11:13:32'),
-(16, '2020-12-03', '2020-12-06', NULL, 'Liburan', NULL, 'rejected', NULL, 32, '2020-12-03 12:44:21', '2020-12-03 12:44:21'),
-(35, '2020-12-29', '2020-12-31', NULL, 'cuti akhir tahun', NULL, 'approved', NULL, 41, '2020-12-08 20:11:42', '2020-12-08 20:11:42'),
-(36, '2021-01-01', '2021-01-02', NULL, 'cuti awal tahun', NULL, 'rejected', NULL, 41, '2020-12-08 21:06:38', '2020-12-08 21:06:38'),
-(37, '2021-01-08', '2021-01-09', NULL, 'Acara Nikahan Sepupu', NULL, 'approved', NULL, 41, '2020-12-08 21:39:59', '2020-12-08 21:39:59'),
-(38, '2021-01-10', '2021-01-11', NULL, 'Acara Nikahan Kakak', NULL, 'rejected', NULL, 41, '2020-12-08 21:40:56', '2020-12-08 21:40:56'),
-(39, '2021-01-11', '2021-01-12', NULL, 'Acara Nikahan Teman', NULL, 'approved', NULL, 41, '2020-12-08 21:44:48', '2020-12-08 21:44:48'),
-(40, '2020-12-11', '2020-12-12', NULL, 'liburaaaannnn', NULL, 'pending', NULL, 32, '2020-12-11 06:09:57', '2020-12-11 06:09:57'),
-(44, '2020-12-12', '2020-12-13', NULL, 'Liburaaaannnnsssssss', NULL, 'pending', NULL, 50, '2020-12-11 07:12:00', '2020-12-11 07:12:00'),
-(45, '2020-12-14', '2020-12-16', NULL, 'pulang kampuuungggg', NULL, 'rejected', 'Ditanggal tsb akan ada event penting, silahkan ambil cuti dilain hari', 50, '2020-12-11 07:45:39', '2020-12-11 07:45:39'),
-(48, '2020-12-13', '2020-12-14', NULL, 'liburan keluar kota', NULL, 'pending', NULL, 32, '2020-12-11 19:26:42', '2020-12-11 19:26:42'),
-(54, '2021-01-20', '2021-01-21', 'izin', 'Liburan bersama keluarga', '', 'pending', NULL, 41, '2020-12-12 09:17:49', '2020-12-12 09:17:49'),
-(55, '2021-01-23', '2021-01-24', 'sakit', 'Sick Leave', '5fd48af368f28.png', 'pending', NULL, 41, '2020-12-12 09:18:43', '2020-12-12 09:18:43'),
-(56, '2020-12-18', '2020-12-19', 'izin', 'Liburan bersama keluarga', '', 'pending', NULL, 50, '2020-12-12 09:39:42', '2020-12-12 09:39:42'),
-(57, '2020-12-20', '2020-12-21', 'sakit', 'Sick Leave', '5fd4900944c05.png', 'pending', NULL, 50, '2020-12-12 09:40:25', '2020-12-12 09:40:25'),
-(58, '2020-12-15', '2020-12-16', 'izin', 'Liburan bersama keluarga', '', 'pending', NULL, 32, '2020-12-12 09:50:49', '2020-12-12 09:50:49'),
-(59, '2020-12-17', '2020-12-18', 'sakit', 'Sick Leave', '5fd492f5e8347.png', 'pending', NULL, 32, '2020-12-12 09:52:53', '2020-12-12 09:52:53');
+(55, '2021-01-23', '2021-01-24', 'sakit', 'Sick Leave', '5fd48af368f28.png', 'rejected', 'Please send a valid image', 41, '2020-12-12 09:18:43', '2020-12-12 09:18:43'),
+(57, '2020-12-20', '2020-12-21', 'sakit', 'Sick Leave', '5fd4900944c05.png', 'rejected', 'Surat keterangan sakit kamu tidak valid', 50, '2020-12-12 09:40:25', '2020-12-12 09:40:25'),
+(59, '2020-12-17', '2020-12-18', 'sakit', 'Sick Leave', '5fd492f5e8347.png', 'rejected', 'Please send a valid image', 32, '2020-12-12 09:52:53', '2020-12-12 09:52:53');
 
 -- --------------------------------------------------------
 
@@ -353,11 +335,6 @@ CREATE TABLE `overtime` (
 --
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `status`, `pesan`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
-(38, '19:00:00', '22:00:00', 'lemburrrrrrrrrrrrrr', 'rejected', NULL, '2020-12-08', 41, '2020-12-07 19:29:20', '2020-12-07 19:29:20'),
-(39, '19:00:00', '22:00:00', 'Lemburrrrrrrrrrrrrrrr', 'rejected', NULL, '2020-12-08', 32, '2020-12-08 11:05:12', '2020-12-08 11:05:12'),
-(43, '19:00:00', '20:00:00', 'Lemburrrrrrrrr', 'rejected', NULL, '2020-12-09', 41, '2020-12-08 20:43:36', '2020-12-08 20:43:36'),
-(45, '19:00:00', '21:00:00', 'Bug Fixing', 'approved', NULL, '2020-12-11', 50, '2020-12-11 07:22:57', '2020-12-11 07:22:57'),
-(60, '19:00:00', '22:00:00', 'bug fixing', 'pending', NULL, '2020-12-12', 32, '2020-12-11 19:26:07', '2020-12-11 19:26:07'),
 (61, '19:00:00', '22:00:00', 'Bug Fixing', 'rejected', 'Besok libur', '2020-12-12', 50, '2020-12-12 09:38:39', '2020-12-12 09:38:39');
 
 -- --------------------------------------------------------
@@ -433,11 +410,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `kota`, `provinsi`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$Hk3tPyRIcM1Z8p90NNIXsOyMD8YSYdjJrAoJgoIeDEodgCd3XIISS', '2c1f6799dea96ca0cfa0af8a396fd2ab1819ea4f', 'eyJpdiI6IlhCcEZMUUQzSjFvb2RFMkZVNWZINUE9PSIsInZhbHVlIjoiQ3FOUUtsZklVUFJvTmxpbThhSE5jUT09IiwibWFjIjoiZTk5Y2EyZmYyYzQzMmQ2YTRkNzUzZjc3YzEyN2FjNTYyZDExNjBhMTE4ZDYzMzUyZmZkODAxN2FjYzIyYjE4ZCJ9', '2020-12-12 23:49:05', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-12-12 17:00:21'),
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$Hk3tPyRIcM1Z8p90NNIXsOyMD8YSYdjJrAoJgoIeDEodgCd3XIISS', '1a18efc8d1388cd27e4e35be8e68e8728567ea2c', 'eyJpdiI6IlhCcEZMUUQzSjFvb2RFMkZVNWZINUE9PSIsInZhbHVlIjoiQ3FOUUtsZklVUFJvTmxpbThhSE5jUT09IiwibWFjIjoiZTk5Y2EyZmYyYzQzMmQ2YTRkNzUzZjc3YzEyN2FjNTYyZDExNjBhMTE4ZDYzMzUyZmZkODAxN2FjYzIyYjE4ZCJ9', '2020-12-12 23:49:05', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-12-13 09:48:25'),
 (39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', 'f29e54e46be348a60362c4649d5c6003c578915c', NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'ola-small.jpg', 2, 1, '2020-11-19 03:45:15', '2020-11-30 11:10:23'),
 (40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$nIYlB09krRDhRRU7zPTwouX2.99/gX4KlANHaaVPsaIa8F98KJjyy', '30ca92f240287da23b7c15ae630853257a768d88', 'eyJpdiI6InpacS9qazluWmVOVk5neVZ6WDhsM2c9PSIsInZhbHVlIjoibWVkcEY0Lzl4U1VPYkJUczJnV0NUQT09IiwibWFjIjoiOGE0YjEwMjU3MDYxOTQ5ZmRiYTAzZmRmNjFkNDRmOTIyYzAyNTE5YmJlNzMyY2M5ZjUzZDZiZTA5NzMwZDliZCJ9', '2020-11-30 19:04:56', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', 'pupu-small.jpg', 3, 3, '2020-11-19 03:46:34', '2020-12-03 14:40:30'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'fb12fe7c8037843ea116fc0607cf1986f5849ad0', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'Karyawan ', 'damar-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-12-12 15:23:33'),
-(50, '200108012021061001', 'Adam Reyhan Mahessa Tabary', 'adam.reyhan.mt@gmail.com', '$2y$10$IpAJPu4gq0OZflwxWkDv5O7LNvyrbhW6s7xL/AjA7oZT.3yW/MjZK', 'f3f8674cb1f8e28ece7c986ea948eec0265df473', NULL, NULL, 'laki-laki', 'Cibungbulang', 'Bogor', 'Jawa Barat', '087882286867', 'Jomblo', 'user-10.jpg', 4, 2, '2020-12-11 17:04:00', '2020-12-13 03:53:03');
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'e71b239d0af8ebfae04abb37abcef34292b0ab8b', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'Karyawan ', '117385958_319405572441325_6641847657301553257_n-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-12-13 10:15:35'),
+(50, '200108012021061001', 'Adam Reyhan Mahessa Tabary', 'adam.reyhan.mt@gmail.com', '$2y$10$IpAJPu4gq0OZflwxWkDv5O7LNvyrbhW6s7xL/AjA7oZT.3yW/MjZK', '6114ea643bb799bdfcfa96954958a1ed0ae1a353', NULL, NULL, 'laki-laki', 'Cibungbulang', 'Bogor', 'Jawa Barat', '087882286867', 'Jomblo', '244551.jpg', 4, 2, '2020-12-11 17:04:00', '2020-12-13 12:58:31');
 
 -- --------------------------------------------------------
 
@@ -642,7 +619,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -660,7 +637,7 @@ ALTER TABLE `hak_akses`
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `qrcode`
