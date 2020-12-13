@@ -19,7 +19,7 @@
         header("Location: index");
     }
 
-    $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status 
+    $v_overtime = query("SELECT overtime.id_overtime, user.nip, user.nama, akses.ket_akses, overtime.jam_mulai, overtime.jam_selesai, overtime.ket_overtime, overtime.tanggal, overtime.status, overtime.pesan
         FROM user, akses, overtime
         WHERE user.id_user = overtime.id_user 
         AND akses.id_akses = user.id_akses
@@ -109,6 +109,7 @@
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Status</th>
+                                                    <th scope="col">Pesan</th>
                                                     <?php if ($overtime_approve || $overtime_reject || $overtime_edit): ?>
                                                     <th scope="col">Action</th>
                                                     <?php endif ?>
@@ -127,6 +128,7 @@
                                                     <td><?= $row['ket_overtime']; ?></td>
                                                     <td><?= $row['tanggal']; ?></td>
                                                     <td><?= $row['status']; ?></td>
+                                                    <td><?= $row['pesan']; ?></td>
                                                     <?php if ($overtime_approve || $overtime_reject || $overtime_edit): ?>
                                                         <td>
                                                             <?php if ($overtime_approve): ?>
@@ -138,9 +140,9 @@
                                                             <?php if ($overtime_reject): ?>
                                                                 
                                                                 <?php if($row['status'] == 'pending'): ?>
-                                                                <a onclick="popupReject(<?= $row['id_overtime']; ?> )" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                               <a class="btn btn-danger btn-sm rounded-0 text-light" href="overtime-reject?id=<?= $row['id_overtime'];?>"><i class="mdi mdi-close mdi-18px" ></i></a>
+                                                        <?php endif; ?></i></a>
                                                                 <?php endif; ?>
-                                                            <?php endif ?>
                                                             <?php if ($overtime_edit): ?>
                                                                 
                                                                 <?php if($row['status'] == 'approved' || $row['status'] == 'rejected'): ?>

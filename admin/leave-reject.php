@@ -86,14 +86,13 @@
                         <div class="page-title-box">
                             <div class="row align-items-center">
                                 <div class="col-sm-6">
-                                    <h4 class="page-title">Add Message</h4>
+                                    <h4 class="page-title">Leave Reject</h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Leave</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
-                                        <li class="breadcrumb-item"><a href="user-level">Leave Reject</a></li>
-                                        <li class="breadcrumb-item active">Add Message</li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Leave</a></li>
+                                        <li class="breadcrumb-item active">Leave Reject</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
@@ -114,7 +113,7 @@
                                             <input type="hidden" name="id_cuti" value="<?= $id_cuti ?>">
                                             <input type="hidden" name="created_at" value="<?= date('Y-m-d H:i:s'); ?>">
                                             <div class="form-group">
-                                                <label>Add Message</label>
+                                                <label>Message</label>
                                                 <input type="text" name="pesan" class="form-control" required/>
                                             </div>
 

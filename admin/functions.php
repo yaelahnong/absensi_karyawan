@@ -412,14 +412,26 @@
     }
     //APPROVE OVERTIME END
 
-    //REJECT OVERTIME START
-        function reject_overtime($id){
+     // //APPROVE OVERTIME START
+    function reject_overtime($data) {
         global $conn;
 
-        mysqli_query($conn, "UPDATE overtime SET status ='rejected' WHERE id_overtime='$id'");
-        return mysqli_affected_rows($conn);
+        $id = htmlspecialchars($data['id_overtime']);
+        $pesan = htmlspecialchars($data['pesan']);
+
+        $query = "UPDATE overtime
+                    SET pesan = '$pesan',
+                        status = 'rejected'
+                    WHERE id_overtime = '$id'";
+
+              mysqli_query($conn, $query);
+            
+            return mysqli_affected_rows($conn);
+        
+
     }
-    //
+    //APPROVE OVERTIME END
+
 
     //APPROVE LEAVE START
     function approve_leave($id){
@@ -451,6 +463,7 @@
     //APPROVE LEAVE END
    // mysqli_query($conn, $quer "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
     }
+    //REJECT LEAVE END
 
 
     // UBAH ADMIN START
