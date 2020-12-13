@@ -140,7 +140,7 @@
                                                             <?php if ($overtime_reject): ?>
                                                                 
                                                                 <?php if($row['status'] == 'pending'): ?>
-                                                               <a class="btn btn-danger btn-sm rounded-0 text-light" href="overtime-reject?id=<?= $row['id_overtime'];?>"><i class="mdi mdi-close mdi-18px" ></i></a>
+                                                                <a class="btn btn-danger btn-sm rounded-0 text-light" href="overtime-reject?id=<?= $row['id_overtime'];?>"><i class="mdi mdi-close mdi-18px" ></i></a>
                                                         <?php endif; ?></i></a>
                                                                 <?php endif; ?>
                                                             <?php if ($overtime_edit): ?>
@@ -250,15 +250,15 @@
             function popupReject(id_overtime) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure reject with this overtime!',
+                    text: 'You sure reject this overtime?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, reject it!',
                 }).then((result) => {
                     if(result.isConfirmed) {
                         swal.fire({
-                            title:'Reject!',
-                            text: 'Overtime has been Rejectend.',
+                            title:'Rejected!',
+                            text: 'Overtime has been Rejected',
                             icon: 'success'
                     }).then((result) => {
                             if(result.isConfirmed) {

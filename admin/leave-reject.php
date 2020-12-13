@@ -55,14 +55,14 @@
                 if(reject_leave($_POST) > 0) {
                     echo "<script>Swal.fire({
                         title: 'Success!',
-                        text: 'Edit user success',
+                        text: 'Reject leave success',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {window.location.href='leave';} )</script>";
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Failed!',
-                        text: 'Edit user failed',
+                        text: 'Reject leave failed',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";
@@ -90,8 +90,9 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <ol class="breadcrumb float-right">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Leave</a></li>
+                                        <li class="breadcrumb-item"><a href="leave">Leave</a></li>
                                         <li class="breadcrumb-item active">Leave Reject</li>
                                     </ol>
                                 </div>

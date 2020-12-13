@@ -218,7 +218,7 @@
             function popupApprove(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure approve with this leave',
+                    text: 'You sure approve this leave?',
                     icon: 'info',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, Approve it!',
@@ -228,7 +228,7 @@
                             title:'Approve!',
                             text: 'Leave has been Approved.',
                             icon: 'success'
-                      }).then((result) => {
+                    }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`leave-approve?id=${id_cuti}`;
                             }
@@ -242,17 +242,17 @@
             function popupReject(id_cuti) {
                 swal.fire({
                     title: 'Are you sure?',
-                    text: 'You sure reject with this leave',
+                    text: 'You sure reject with this leave?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, reject it!',
                 }).then((result) => {
                     if(result.isConfirmed) {
                         swal.fire({
-                            title:'Reject!',
-                            text: 'Leave has been Rejectend.',
+                            title:'Rejected!',
+                            text: 'Leave has been Rejected.',
                             icon: 'success'
-                      }).then((result) => {
+                    }).then((result) => {
                             if(result.isConfirmed) {
                                 window.location.href=`leave-reject?id=${id_cuti}`;
                             }

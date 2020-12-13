@@ -61,7 +61,7 @@
                 } else {
                     echo "<script>Swal.fire({
                         title: 'Failed!',
-                        text: 'The data already exists',
+                        text: 'Description already exists',
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(() => {window.history.back();} )</script>";

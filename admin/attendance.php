@@ -187,7 +187,7 @@
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Position</th>
                                                     <th scope="col">Start</th>
-                                                    <th scope="col">Leave</th>
+                                                    <th scope="col">End</th>
                                                     <th scope="col">Date</th>
                                                 </tr>
                                             </thead>
