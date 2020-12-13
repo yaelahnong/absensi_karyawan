@@ -412,14 +412,26 @@
     }
     //APPROVE OVERTIME END
 
-    //REJECT OVERTIME START
-        function reject_overtime($id){
+     // //APPROVE OVERTIME START
+    function reject_overtime($data) {
         global $conn;
 
-        mysqli_query($conn, "UPDATE overtime SET status ='rejected' WHERE id_overtime='$id'");
-        return mysqli_affected_rows($conn);
+        $id = htmlspecialchars($data['id_overtime']);
+        $pesan = htmlspecialchars($data['pesan']);
+
+        $query = "UPDATE overtime
+                    SET pesan = '$pesan',
+                        status = 'rejected'
+                    WHERE id_overtime = '$id'";
+
+              mysqli_query($conn, $query);
+            
+            return mysqli_affected_rows($conn);
+        
+
     }
-    //
+    //APPROVE OVERTIME END
+
 
     //APPROVE LEAVE START
     function approve_leave($id){
@@ -428,16 +440,30 @@
         mysqli_query($conn, "UPDATE cuti SET status = 'approved' WHERE id_cuti = $id");
         return mysqli_affected_rows($conn);
     }
+
     //APPROVE LEAVE END
 
-    //APPROVE LEAVE START
-    function reject_leave($id){
-    global $conn;
+    // //APPROVE LEAVE START
+    function reject_leave($data) {
+        global $conn;
 
-        mysqli_query($conn, "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
-        return mysqli_affected_rows($conn);
+        $id = htmlspecialchars($data['id_cuti']);
+        $pesan = htmlspecialchars($data['pesan']);
+
+        $query = "UPDATE cuti
+                    SET pesan = '$pesan',
+                        status = 'rejected'
+                    WHERE id_cuti = '$id'";
+
+              mysqli_query($conn, $query);
+            
+            return mysqli_affected_rows($conn);
+        
+
+    //APPROVE LEAVE END
+   // mysqli_query($conn, $quer "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
     }
-    //APPROVE LEAVE END
+    //REJECT LEAVE END
 
 
     // UBAH ADMIN START
