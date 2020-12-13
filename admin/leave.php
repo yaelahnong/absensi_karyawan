@@ -18,12 +18,13 @@
         header("Location: index");
     }
 
-    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
+    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status, cuti.foto 
         FROM user, akses, cuti
         WHERE user.id_user = cuti.id_user 
         AND akses.id_akses = user.id_akses
         ORDER BY id_cuti DESC
         ");
+    
 ?>
 
 
@@ -35,6 +36,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>ABSENSI | Leave</title>
+
     <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -106,6 +108,7 @@
                                                     <th scope="col">Start Date</th>
                                                     <th scope="col">End Date</th>
                                                     <th scope="col">Description</th>
+                                                    <th scope="col">Image</th>
                                                     <th scope="col">Status</th>
                                                     <?php if($leave_approve || $leave_reject): ?>
                                                     <th scope="col">Action</th>
@@ -123,6 +126,10 @@
                                                     <td><?= $row['tanggal_mulai']; ?></td>
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
+                                                    <td><a class="popup-img" href="assets/images/<?= $row['foto']; ?>">
+                                                     <img class="img-fluid" src="assets/images/<?= $row['foto']; ?>" class="img-responsive" alt="me" width="100px" height="100px" class="button"></a>
+
+                                                 </td>
                                                     <td><?= $row['status']; ?></td>
                                                     <?php if($leave_approve || $leave_reject): ?>
                                                     <td>
