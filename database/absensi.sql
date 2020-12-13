@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2020 at 02:05 PM
+-- Generation Time: Dec 13, 2020 at 09:28 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -102,7 +102,10 @@ INSERT INTO `absen` (`id_absen`, `jam_masuk`, `jam_keluar`, `keterangan`, `tangg
 (60, '08:23:40', '14:58:03', NULL, '2020-12-10', 41, '-6.5646231, 106.7667118', '2020-12-09 14:57:40', '2020-12-09 14:58:03'),
 (61, '23:45:40', '00:00:00', NULL, '2020-12-11', 32, '-6.5646284, 106.7667143', '2020-12-11 16:45:40', '2020-12-11 17:00:00'),
 (62, '22:34:51', '00:00:00', NULL, '2020-12-12', 32, '-6.5647028, 106.7667855', '2020-12-12 15:34:51', '2020-12-12 17:00:00'),
-(63, '16:58:35', '16:58:49', NULL, '2020-12-13', 41, '-6.5646284, 106.7667136', '2020-12-13 09:58:35', '2020-12-13 09:58:49');
+(63, '16:58:35', '16:58:49', NULL, '2020-12-13', 41, '-6.5646284, 106.7667136', '2020-12-13 09:58:35', '2020-12-13 09:58:49'),
+(64, '21:01:58', '00:00:01', NULL, '2020-12-13', 40, '-6.5647017, 106.7638259', '2020-12-13 14:01:58', '2020-12-13 17:00:01'),
+(65, '21:04:04', '00:00:01', NULL, '2020-12-13', 39, '-6.5647026, 106.7667844', '2020-12-13 14:04:04', '2020-12-13 17:00:01'),
+(66, '22:00:53', '00:00:00', NULL, '2020-12-13', 32, '-6.5646278, 106.7667153', '2020-12-13 15:00:53', '2020-12-13 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,14 @@ CREATE TABLE `cuti` (
 INSERT INTO `cuti` (`id_cuti`, `tanggal_mulai`, `tanggal_selesai`, `kategori`, `ket_cuti`, `foto`, `status`, `pesan`, `id_user`, `created_at`, `updated_at`) VALUES
 (55, '2021-01-23', '2021-01-24', 'sakit', 'Sick Leave', '5fd48af368f28.png', 'rejected', 'Please send a valid image', 41, '2020-12-12 09:18:43', '2020-12-12 09:18:43'),
 (57, '2020-12-20', '2020-12-21', 'sakit', 'Sick Leave', '5fd4900944c05.png', 'rejected', 'Surat keterangan sakit kamu tidak valid', 50, '2020-12-12 09:40:25', '2020-12-12 09:40:25'),
-(59, '2020-12-17', '2020-12-18', 'sakit', 'Sick Leave', '5fd492f5e8347.png', 'rejected', 'Please send a valid image', 32, '2020-12-12 09:52:53', '2020-12-12 09:52:53');
+(59, '2020-12-17', '2020-12-18', 'sakit', 'Sick Leave', '5fd492f5e8347.png', 'rejected', 'Please send a valid image', 32, '2020-12-12 09:52:53', '2020-12-12 09:52:53'),
+(63, '2020-12-30', '2020-12-31', 'sakit', 'Sick Leave', '5fd620be58cdb.png', 'pending', NULL, 32, '2020-12-13 14:10:06', '2020-12-13 14:10:06'),
+(64, '2021-01-01', '2021-01-03', 'sakit', 'Sick Leave', '5fd6219793656.png', 'approved', NULL, 32, '2020-12-13 14:13:43', '2020-12-13 14:13:43'),
+(65, '2020-12-13', '2020-12-14', 'izin', 'Liburan keluar kota', '', 'rejected', 'Di tanggal tersebut sedang ada kegiatan perusahaan', 39, '2020-12-13 14:14:39', '2020-12-13 14:14:39'),
+(66, '2020-12-15', '2020-12-16', 'sakit', 'Sick Leave', '5fd621fa87a60.png', 'approved', NULL, 39, '2020-12-13 14:15:22', '2020-12-13 14:15:22'),
+(67, '2021-01-25', '2021-01-26', 'izin', 'Liburan ke kampung halaman', '', 'approved', NULL, 41, '2020-12-13 17:04:47', '2020-12-13 17:04:47'),
+(68, '2021-01-04', '2021-01-05', 'izin', 'Liburan keluar kota', '', 'approved', NULL, 32, '2020-12-13 15:01:59', '2020-12-13 15:01:59'),
+(69, '2021-01-06', '2021-01-08', 'izin', 'Liburan bersama keluarga', '', 'rejected', 'Kemarin kan baru liburan', 32, '2020-12-13 19:57:37', '2020-12-13 19:57:37');
 
 -- --------------------------------------------------------
 
@@ -335,7 +345,10 @@ CREATE TABLE `overtime` (
 --
 
 INSERT INTO `overtime` (`id_overtime`, `jam_mulai`, `jam_selesai`, `ket_overtime`, `status`, `pesan`, `tanggal`, `id_user`, `created_at`, `updated_at`) VALUES
-(61, '19:00:00', '22:00:00', 'Bug Fixing', 'rejected', 'Besok libur', '2020-12-12', 50, '2020-12-12 09:38:39', '2020-12-12 09:38:39');
+(61, '19:00:00', '22:00:00', 'Bug Fixing', 'rejected', 'Besok libur', '2020-12-12', 50, '2020-12-12 09:38:39', '2020-12-12 09:38:39'),
+(64, '19:00:00', '22:00:00', 'laporan', 'rejected', 'Besok cuti bersama', '2020-12-14', 41, '2020-12-13 13:18:15', '2020-12-13 13:18:15'),
+(65, '21:00:00', '22:00:00', 'laporan', 'approved', NULL, '2020-12-15', 39, '2020-12-13 14:04:37', '2020-12-13 14:04:37'),
+(66, '19:00:00', '22:00:00', 'bug fixing', 'rejected', 'Besok libur', '2020-12-14', 32, '2020-12-13 15:02:51', '2020-12-13 15:02:51');
 
 -- --------------------------------------------------------
 
@@ -410,10 +423,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nip`, `nama`, `email`, `password`, `api_token`, `reset_password_token`, `reset_password_expires`, `jenis_kelamin`, `alamat`, `kota`, `provinsi`, `no_telp`, `status`, `foto`, `id_akses`, `id_department`, `created_at`, `updated_at`) VALUES
-(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$Hk3tPyRIcM1Z8p90NNIXsOyMD8YSYdjJrAoJgoIeDEodgCd3XIISS', '1a18efc8d1388cd27e4e35be8e68e8728567ea2c', 'eyJpdiI6IlhCcEZMUUQzSjFvb2RFMkZVNWZINUE9PSIsInZhbHVlIjoiQ3FOUUtsZklVUFJvTmxpbThhSE5jUT09IiwibWFjIjoiZTk5Y2EyZmYyYzQzMmQ2YTRkNzUzZjc3YzEyN2FjNTYyZDExNjBhMTE4ZDYzMzUyZmZkODAxN2FjYzIyYjE4ZCJ9', '2020-12-12 23:49:05', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-12-13 09:48:25'),
-(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', 'f29e54e46be348a60362c4649d5c6003c578915c', NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'ola-small.jpg', 2, 1, '2020-11-19 03:45:15', '2020-11-30 11:10:23'),
-(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$nIYlB09krRDhRRU7zPTwouX2.99/gX4KlANHaaVPsaIa8F98KJjyy', '30ca92f240287da23b7c15ae630853257a768d88', 'eyJpdiI6InpacS9qazluWmVOVk5neVZ6WDhsM2c9PSIsInZhbHVlIjoibWVkcEY0Lzl4U1VPYkJUczJnV0NUQT09IiwibWFjIjoiOGE0YjEwMjU3MDYxOTQ5ZmRiYTAzZmRmNjFkNDRmOTIyYzAyNTE5YmJlNzMyY2M5ZjUzZDZiZTA5NzMwZDliZCJ9', '2020-11-30 19:04:56', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', 'pupu-small.jpg', 3, 3, '2020-11-19 03:46:34', '2020-12-03 14:40:30'),
-(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'e71b239d0af8ebfae04abb37abcef34292b0ab8b', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'Karyawan ', '117385958_319405572441325_6641847657301553257_n-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-12-13 10:15:35'),
+(32, '200310032021061456', 'Marino Imola', 'marinoimola@gmail.com', '$2y$10$prE8RewlSYqc9boH5aOgOOuu3W2mU435XqMOMLL0qelzeAv2t3hsy', '5efc8d5d8bf247986afd1e725da34c0cd2771d8d', 'eyJpdiI6IlhCcEZMUUQzSjFvb2RFMkZVNWZINUE9PSIsInZhbHVlIjoiQ3FOUUtsZklVUFJvTmxpbThhSE5jUT09IiwibWFjIjoiZTk5Y2EyZmYyYzQzMmQ2YTRkNzUzZjc3YzEyN2FjNTYyZDExNjBhMTE4ZDYzMzUyZmZkODAxN2FjYzIyYjE4ZCJ9', '2020-12-12 23:49:05', 'laki-laki', 'Jl.Cijahe no.1 rt02/rw01 kel.Curug Mekar kec.Bogor Barat 16113', 'Bogor', 'Jawa Barat', '081284855532', 'Student', 'ino-small.jpg', 2, 1, '2020-11-03 02:14:48', '2020-12-13 20:23:18'),
+(39, '2003090603', 'Rima Lestari', 'lrima989@gmail.com', '$2y$10$fytcNBcfpbC3AO3Ej9W/o.08sIl9Q4zlts6Fso5nwq1fx1OM20L0W', '8451e33022d62056d47ae5acae09c4caef986e88', NULL, NULL, 'perempuan', 'Jln.simpang tiga', 'Bogor', 'Jawa Barat', '089614224096', 'Jomblo', 'ola-small.jpg', 2, 1, '2020-11-19 03:45:15', '2020-12-13 14:03:34'),
+(40, '12365478909282', 'Pupu Oktavia', 'oktaviapupu@gmail.com', '$2y$10$nIYlB09krRDhRRU7zPTwouX2.99/gX4KlANHaaVPsaIa8F98KJjyy', '2aef1d26b204b987b1f1cf74be9d5f97dc632b58', 'eyJpdiI6InpacS9qazluWmVOVk5neVZ6WDhsM2c9PSIsInZhbHVlIjoibWVkcEY0Lzl4U1VPYkJUczJnV0NUQT09IiwibWFjIjoiOGE0YjEwMjU3MDYxOTQ5ZmRiYTAzZmRmNjFkNDRmOTIyYzAyNTE5YmJlNzMyY2M5ZjUzZDZiZTA5NzMwZDliZCJ9', '2020-11-30 19:04:56', 'perempuan', 'Jln. Cicadas 02 RT/RW 003/002 kecamatan ciampea 116620', 'Bogor', 'Jawa Barat', '08958000000', 'Mau Nikah', 'pupu-small.jpg', 3, 3, '2020-11-19 03:46:34', '2020-12-13 17:03:02'),
+(41, '12039137131236123', 'Haikal Damar', 'haikaldamar23@gmail.com', '$2y$10$h5uTtKW.bX9j.jBzQBcXpOfKTTPpSY0Kxx.sMFW4XZiBdYKF6SqXm', 'd660f69a62cfcd0bedd9a9520899d82c2bf17f78', NULL, NULL, 'laki-laki', 'BTN Purwasari Regency Blok B no 48 RT/RW 004/006 Desa Purwasari Kec.Cicurug', 'Sukabumi ', 'Jawa Barat', '085722737371', 'Karyawan ', '117385958_319405572441325_6641847657301553257_n-small.jpg', 2, 1, '2020-11-19 03:50:24', '2020-12-13 19:54:06'),
 (50, '200108012021061001', 'Adam Reyhan Mahessa Tabary', 'adam.reyhan.mt@gmail.com', '$2y$10$IpAJPu4gq0OZflwxWkDv5O7LNvyrbhW6s7xL/AjA7oZT.3yW/MjZK', '6114ea643bb799bdfcfa96954958a1ed0ae1a353', NULL, NULL, 'laki-laki', 'Cibungbulang', 'Bogor', 'Jawa Barat', '087882286867', 'Jomblo', '244551.jpg', 4, 2, '2020-12-11 17:04:00', '2020-12-13 12:58:31');
 
 -- --------------------------------------------------------
@@ -619,7 +632,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -637,7 +650,7 @@ ALTER TABLE `hak_akses`
 -- AUTO_INCREMENT for table `overtime`
 --
 ALTER TABLE `overtime`
-  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_overtime` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `qrcode`
