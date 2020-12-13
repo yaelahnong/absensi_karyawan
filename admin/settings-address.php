@@ -97,7 +97,7 @@ require dirname(__FILE__)."/lib/countrycodes.php";
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">App Settings</a></li>
-                                        <li class="breadcrumb-item active">Àddress</li>
+                                        <li class="breadcrumb-item active">Àddress Settings</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->

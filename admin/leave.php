@@ -18,12 +18,13 @@
         header("Location: index");
     }
 
-    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status , cuti.pesan
-        FROM user, akses, cuti
-        WHERE user.id_user = cuti.id_user 
-        AND akses.id_akses = user.id_akses
-        ORDER BY id_cuti DESC
-        ");
+
+    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status, cuti.foto, cuti.pesan
+                        FROM user, akses, cuti
+                        WHERE user.id_user = cuti.id_user 
+                        AND akses.id_akses = user.id_akses
+                        ORDER BY id_cuti DESC
+                    ");
     
 ?>
 
@@ -128,8 +129,9 @@
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
                                                     <td><a class="popup-img" href="assets/images/<?= $row['foto']; ?>">
-                                                        <img class="img-fluid" src="assets/images/<?= $row['foto']; ?>" class="img-responsive" alt="me" width="100px" height="100px" class="button"></a>
-                                                    </td>
+                                                     <img class="img-fluid" src="assets/images/<?= $row['foto']; ?>" class="img-responsive" alt="me" width="100px" height="100px" class="button"></a>
+
+                                                 </td>
                                                     <td><?= $row['status']; ?></td>
                                                     <td><?= $row['pesan']; ?></td>
                                                     <?php if($leave_approve || $leave_reject): ?>

@@ -252,9 +252,10 @@
 
         // var_dump();
         // exit;
-        
-        move_uploaded_file($tmpName, $_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile);
-        copy($_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile, 'D:/INO/PRAKERIN/Project/absensi_karyawan_mobile/public/assets/images/' . $namaFile);
+
+        move_uploaded_file($tmpName, 'assets/images/users/' . $namaFile);
+        // move_uploaded_file($tmpName, $_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile);
+        // copy($_SERVER['DOCUMENT_ROOT'] . '/PRAKERIN/absensi_karyawan/admin/assets/images/users/' . $namaFile, 'D:/INO/PRAKERIN/Project/absensi_karyawan_mobile/public/assets/images/' . $namaFile);
         
 
         return $namaFile;
@@ -424,7 +425,7 @@
                         status = 'rejected'
                     WHERE id_overtime = '$id'";
 
-              mysqli_query($conn, $query);
+            mysqli_query($conn, $query);
             
             return mysqli_affected_rows($conn);
         
@@ -455,7 +456,7 @@
                         status = 'rejected'
                     WHERE id_cuti = '$id'";
 
-              mysqli_query($conn, $query);
+            mysqli_query($conn, $query);
             
             return mysqli_affected_rows($conn);
         

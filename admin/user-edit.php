@@ -124,10 +124,9 @@
                                                 <label>Full Name</label>
                                                 <input type="text" name="nama" value="<?= $user['nama']; ?>" class="form-control" required placeholder="Full Name"/>
                                             </div>
-                                            <div class="from-grup">
+                                            <div class="form-group">
                                                 <label>Image</label><br>
-                                                <img src="assets/images/users/<?= $user['photo'];?>" width="50px"><br>
-                                                <div class="form-group"><br>
+                                                <!-- <img src="assets/images/users/<?= $user['photo'];?>" width="50px"><br> -->
                                                 <input name="photo" type="file">
                                             </div>
                                             <div class="form-group">

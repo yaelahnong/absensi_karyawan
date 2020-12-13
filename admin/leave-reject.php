@@ -50,7 +50,7 @@
 
     <body>
 
-         <?php 
+        <?php 
             if(isset($_POST['reject_leave'])) {
                 if(reject_leave($_POST) > 0) {
                     echo "<script>Swal.fire({
@@ -119,7 +119,7 @@
 
                                             <div class="form-group">
                                                 <div>
-                                                    <button  type="submit" name="reject_leave" class="btn btn-danger waves-effect waves-light" onclick="popupreject(<?= $row['id_cuti']; ?> )" class="btn btn-danger waves-effect waves-light">
+                                                    <button  type="submit" name="reject_leave" class="btn btn-danger waves-effect waves-light" onclick="popupreject(<?= $id_cuti ?> )" class="btn btn-danger waves-effect waves-light">
                                                         Reject
 
                                                     </button>

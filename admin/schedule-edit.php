@@ -95,7 +95,7 @@
                                     <ol class="breadcrumb float-right">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Absensi</a></li>
                                         <li class="breadcrumb-item"><a href="settings-schedule.php">Schedule</a></li>
-                                        <li class="breadcrumb-item active">Ubah Schedule</li>
+                                        <li class="breadcrumb-item active">Edit Schedule</li>
                                     </ol>
                                 </div>
                             </div> <!-- end row -->
