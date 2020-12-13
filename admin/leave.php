@@ -129,9 +129,10 @@
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
                                                     <td><a class="popup-img" href="assets/images/<?= $row['foto']; ?>">
-                                                     <img class="img-fluid" src="assets/images/<?= $row['foto']; ?>" class="img-responsive" alt="me" width="100px" height="100px" class="button"></a>
-
-                                                 </td>
+                                                        <?php if($row['foto']): ?>
+                                                        <img class="img-fluid" src="assets/images/<?= $row['foto']; ?>" class="img-responsive" alt="me" width="100px" height="100px" class="button"></a>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= $row['status']; ?></td>
                                                     <td><?= $row['pesan']; ?></td>
                                                     <?php if($leave_approve || $leave_reject): ?>

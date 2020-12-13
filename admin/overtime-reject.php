@@ -50,7 +50,7 @@
 
     <body>
 
-         <?php 
+        <?php 
             if(isset($_POST['reject_overtime'])) {
                 if(reject_overtime($_POST) > 0) {
                     echo "<script>Swal.fire({
@@ -119,7 +119,7 @@
 
                                             <div class="form-group">
                                                 <div>
-                                                    <button  type="submit" name="reject_overtime" class="btn btn-danger waves-effect waves-light" onclick="popupreject(<?= $row['id_overtime']; ?> )" class="btn btn-danger waves-effect waves-light">
+                                                    <button  type="submit" name="reject_overtime" class="btn btn-danger waves-effect waves-light" onclick="popupreject(<?= $id_overtime ?> )" class="btn btn-danger waves-effect waves-light">
                                                         Reject
 
                                                     </button>

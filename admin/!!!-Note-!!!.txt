@@ -1,3 +1,0 @@
-- Hapus login session ketika browser ditutup
-
-SELECT user.*, akses.ket_akses, jabatan.jabatan FROM user, akses, jabatan WHERE akses.id_akses = user.id_akses AND jabatan.id_jabatan = user.id_jabatan
