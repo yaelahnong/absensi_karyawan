@@ -18,7 +18,7 @@
         header("Location: index");
     }
 
-    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status 
+    $v_leave = query("SELECT cuti.id_cuti, user.nip, user.nama, akses.ket_akses, cuti.tanggal_mulai, cuti.tanggal_selesai, cuti.ket_cuti, cuti.status , cuti.pesan
         FROM user, akses, cuti
         WHERE user.id_user = cuti.id_user 
         AND akses.id_akses = user.id_akses
@@ -107,6 +107,7 @@
                                                     <th scope="col">End Date</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Status</th>
+                                                    <th scope="col">Pesan</th>
                                                     <?php if($leave_approve || $leave_reject): ?>
                                                     <th scope="col">Action</th>
                                                     <?php endif; ?>
@@ -124,11 +125,12 @@
                                                     <td><?= $row['tanggal_selesai']; ?></td>
                                                     <td><?= $row['ket_cuti']; ?></td>
                                                     <td><?= $row['status']; ?></td>
+                                                    <td><?= $row['pesan']; ?></td>
                                                     <?php if($leave_approve || $leave_reject): ?>
                                                     <td>
                                                         <?php if($row['status'] == 'pending'): ?>
                                                         <a onclick="popupApprove(<?= $row['id_cuti']; ?> )" class="btn btn-success btn-sm rounded-0 text-light"><i class="mdi mdi-check mdi-18px"></i></a>
-                                                        <a onclick="popupReject(<?= $row['id_cuti']; ?>)" class="btn btn-danger btn-sm rounded-0 text-light"><i class="mdi mdi-close mdi-18px"></i></a>
+                                                        <a class="btn btn-danger btn-sm rounded-0 text-light" href="leave-reject?id=<?= $row['id_cuti'];?>"><i class="mdi mdi-close mdi-18px" ></i></a>
                                                         <?php endif; ?>
                                                     </td>
                                                     <?php endif; ?>

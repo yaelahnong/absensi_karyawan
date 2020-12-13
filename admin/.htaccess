@@ -9,4 +9,4 @@ RewriteRule ^([^\.]+)$ $1.php [L]
 RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
 RewriteRule .* - [L,R=404] 
 
-ErrorDocument 404 http://localhost/PRAKERIN/absensi_karyawan/admin/pages-404.html
+ErrorDocument 404 http://localhost/PRAKERIN/prakerin_absensi_karyawan/admin/pages-404.html

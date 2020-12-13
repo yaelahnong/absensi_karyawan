@@ -428,16 +428,29 @@
         mysqli_query($conn, "UPDATE cuti SET status = 'approved' WHERE id_cuti = $id");
         return mysqli_affected_rows($conn);
     }
+
     //APPROVE LEAVE END
 
-    //APPROVE LEAVE START
-    function reject_leave($id){
-    global $conn;
+    // //APPROVE LEAVE START
+    function reject_leave($data) {
+        global $conn;
 
-        mysqli_query($conn, "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
-        return mysqli_affected_rows($conn);
+        $id = htmlspecialchars($data['id_cuti']);
+        $pesan = htmlspecialchars($data['pesan']);
+
+        $query = "UPDATE cuti
+                    SET pesan = '$pesan',
+                        status = 'rejected'
+                    WHERE id_cuti = '$id'";
+
+              mysqli_query($conn, $query);
+            
+            return mysqli_affected_rows($conn);
+        
+
+    //APPROVE LEAVE END
+   // mysqli_query($conn, $quer "UPDATE cuti SET status = 'rejected' WHERE id_cuti = $id");
     }
-    //APPROVE LEAVE END
 
 
     // UBAH ADMIN START
