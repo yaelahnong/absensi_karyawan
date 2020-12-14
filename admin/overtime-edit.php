@@ -151,7 +151,7 @@
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <div>
-                                                    <textarea required name="ket_overtime" class="form-control" rows="5"><?= $overtime['ket_overtime']; ?></textarea>
+                                                    <textarea disabled required name="ket_overtime" class="form-control" rows="5"><?= $overtime['ket_overtime']; ?></textarea>
                                                 </div>
                                             </div>
 
