@@ -18,7 +18,7 @@
                         timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS checkin, timediff(absen.jam_keluar, schedule.jam_keluar) < 0 AS checkout
                         FROM user, absen, akses, schedule 
                         WHERE user.id_user = absen.id_user
-                        AND akses.id_akses = user.id_akses AND absen.tanggal = curdate() ORDER BY absen.jam_masuk AND absen.jam_keluar DESC
+                        AND akses.id_akses = user.id_akses AND absen.tanggal = curdate() ORDER BY absen.jam_masuk DESC, absen.jam_keluar DESC
                     ");
     $attendance = query("SELECT user.nip, user.nama, user.foto, akses.ket_akses, akses.ket_akses, absen.jam_masuk, absen.jam_keluar, absen.tanggal, timediff(absen.jam_masuk, schedule.jam_masuk) > 0 AS keterangan
                         FROM user, absen, akses, schedule 
