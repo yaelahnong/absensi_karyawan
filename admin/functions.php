@@ -408,7 +408,7 @@
     function approve_overtime($id){
         global $conn;
 
-        mysqli_query($conn, "UPDATE overtime SET status='approved' WHERE id_overtime='$id'");
+        mysqli_query($conn, "UPDATE overtime SET status='approved', pesan='Approved' WHERE id_overtime='$id'");
         return mysqli_affected_rows($conn);
     }
     //APPROVE OVERTIME END
@@ -438,7 +438,7 @@
     function approve_leave($id){
     global $conn;
 
-        mysqli_query($conn, "UPDATE cuti SET status = 'approved' WHERE id_cuti = $id");
+        mysqli_query($conn, "UPDATE cuti SET status = 'approved', pesan='Approved' WHERE id_cuti = $id");
         return mysqli_affected_rows($conn);
     }
 
