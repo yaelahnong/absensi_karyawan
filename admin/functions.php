@@ -1,7 +1,14 @@
 <?php 
 
     // CONNECTIONS TO DATABASE
-    $conn = mysqli_connect('localhost', 'root', '', 'absensi');
+    // $conn = mysqli_connect('localhost', 'root', '', 'absensi');
+    $db_host        = '209.209.40.92';
+    $db_user        = 'root';
+    $db_pass        = 'absensi_karyawan';
+    $db_database    = 'absensi_karyawan'; 
+    $db_port        = '34707';
+
+    $conn = mysqli_connect($db_host,$db_user,$db_pass,$db_database,$db_port);
     
     // QUERY START
     function query($query) {
